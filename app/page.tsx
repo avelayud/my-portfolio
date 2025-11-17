@@ -46,7 +46,6 @@ export default function Home() {
       {/* MAIN CONTENT */}
       <div className="ml-64 flex-1">
         {/* HERO + SNAPSHOT */}
-                {/* HERO + SNAPSHOT */}
         <section id="top" className="section-container pt-16 pb-10">
           <p className="text-xs uppercase tracking-[0.25em] text-text-muted mb-4">
             Deployment Strategy · Product · Data
@@ -56,8 +55,8 @@ export default function Home() {
             Arjuna Velayudam
           </h1>
 
-          <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-8 mt-4">
-            {/* Left: Narrative + skills */}
+          <div className="mt-4 grid md:grid-cols-[1.7fr_auto_1.3fr] gap-8 items-start">
+            {/* Left: Bio / current role */}
             <div className="space-y-4">
               <p className="text-lg text-text-secondary">
                 I help teams turn ambiguous, high-stakes problems into shipped
@@ -72,80 +71,52 @@ export default function Home() {
                 workflows that actually get used.
               </p>
 
-              {/* Skills / identity pills */}
-              <div className="flex flex-wrap gap-2 pt-2">
-                <span className="inline-flex items-center rounded-full bg-surface shadow-skeuo-soft px-3 py-1 text-xs text-text-secondary">
-                  Strategy &amp; operating models
-                </span>
-                <span className="inline-flex items-center rounded-full bg-surface shadow-skeuo-soft px-3 py-1 text-xs text-text-secondary">
-                  SQL &amp; Python for decision support
-                </span>
-                <span className="inline-flex items-center rounded-full bg-surface shadow-skeuo-soft px-3 py-1 text-xs text-text-secondary">
-                  Internal tools &amp; deployment
-                </span>
-              </div>
+              <p className="text-sm text-text-secondary/90">
+                Right now I&apos;m a Senior Associate in PwC&apos;s Deals
+                Transformation practice, working across standalone, synergy, and
+                carve-out work while building internal tools that make that work
+                faster and more repeatable.
+              </p>
             </div>
 
-            {/* Right: Snapshot cards */}
-            <div className="space-y-4">
-              {/* Now card */}
-              <div className="card-skeuo">
-                <h2 className="text-sm font-semibold text-text-primary mb-3">
-                  Now
-                </h2>
+            {/* Middle: Divider (only on desktop) */}
+            <div className="hidden md:flex justify-center">
+              <div className="w-px h-full bg-text-secondary/30" />
+            </div>
 
-                <div className="space-y-3 text-sm">
-                  <div>
-                    <div className="snapshot-label mb-1">Role</div>
-                    <div className="text-text-secondary">
-                      Senior Associate · M&amp;A (Deals Transformation) at PwC
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="snapshot-label mb-1">What I&apos;m focused on</div>
-                    <div className="text-text-secondary">
-                      Building &amp; deploying internal tools, structuring data
-                      for better decisions, and working closer to product /
-                      deployment strategy roles.
-                    </div>
-                  </div>
+            {/* Right: Contact / details */}
+            <div className="space-y-4 text-sm">
+              <div>
+                <div className="snapshot-label mb-1">Location</div>
+                <div className="text-text-secondary">
+                  New York City · from Buffalo, NY
                 </div>
               </div>
 
-              {/* Details card */}
-              <div className="card-skeuo">
-                <h2 className="text-sm font-semibold text-text-primary mb-3">
-                  Details
-                </h2>
-
-                <div className="space-y-3 text-sm">
-                  <div>
-                    <div className="snapshot-label mb-1">Location</div>
-                    <div className="text-text-secondary">
-                      New York City · from Buffalo, NY
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="snapshot-label mb-1">Contact</div>
-                    <div className="text-text-secondary">
-                      avelayudam@gmail.com
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="snapshot-label mb-1">LinkedIn</div>
-                    <a
-                      href="https://www.linkedin.com/in/arjunavelayudam"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-sm text-brand-primary underline underline-offset-2"
-                    >
-                      /in/arjunavelayudam
-                    </a>
-                  </div>
+              <div>
+                <div className="snapshot-label mb-1">Current role</div>
+                <div className="text-text-secondary">
+                  Senior Associate · M&amp;A (Deals Transformation), PwC
                 </div>
+              </div>
+
+              <div>
+                <div className="snapshot-label mb-1">Contact</div>
+                <div className="text-text-secondary">
+                  avelayudam@gmail.com
+                </div>
+              </div>
+
+              <div>
+                <div className="snapshot-label mb-1">LinkedIn</div>
+                <a
+                  href="https://www.linkedin.com/in/arjunavelayudam"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-text-secondary underline underline-offset-2 hover:text-brand-primary"
+                >
+                  /in/arjunavelayudam
+                </a>
               </div>
             </div>
           </div>

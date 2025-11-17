@@ -8,27 +8,33 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Brand & surfaces
+        // Brand
         brand: {
-          primary: "#4A5FC1",
+          primary: "#2643A3",   // Deep product blue
+          secondary: "#5E6AD2", // Bright slate blue
+          accent: "#E6B800",    // Soft lemon accent
         },
-        background: "#F8F9FB",
-        surface: "#FFFFFF",
+
+        // Surfaces
+        background: "#F7F9FC", // Page background
+        surface: "#FFFFFF",    // Cards / panels
 
         // Text
         text: {
-          primary: "#222222",
-          secondary: "#6B7280",
-          muted: "#9CA3AF",
+          primary: "#1A1F36",   // Main headings
+          secondary: "#4D5566", // Body text
+          muted: "#9CA3AF",     // Labels / metadata
         },
 
-        // Subtle borders (if you ever need them)
+        // Subtle lines / dividers
+        divider: "#D3DAE6",
+
+        // Optional border color if you ever need it
         border: {
-          subtle: "#E5E7EB",
+          subtle: "#D3DAE6",
         },
       },
       borderRadius: {
-        // 8px grid
         "av-sm": "8px",
         "av-md": "16px",
         "av-lg": "24px",
