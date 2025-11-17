@@ -46,63 +46,105 @@ export default function Home() {
       {/* MAIN CONTENT */}
       <div className="ml-64 flex-1">
         {/* HERO + SNAPSHOT */}
+                {/* HERO + SNAPSHOT */}
         <section id="top" className="section-container pt-16 pb-10">
           <p className="text-xs uppercase tracking-[0.25em] text-text-muted mb-4">
             Deployment Strategy · Product · Data
           </p>
 
-          <h1 className="text-5xl font-bold text-text-primary mb-4">
+          <h1 className="text-5xl font-bold text-text-primary mb-3">
             Arjuna Velayudam
           </h1>
 
-          <div className="grid md:grid-cols-[2fr,1.3fr] gap-8 mt-6">
-            {/* Left: Narrative */}
-            <div>
-              <p className="text-lg text-text-secondary mb-4">
+          <div className="grid md:grid-cols-[1.7fr,1.3fr] gap-8 mt-4">
+            {/* Left: Narrative + skills */}
+            <div className="space-y-4">
+              <p className="text-lg text-text-secondary">
                 I help teams turn ambiguous, high-stakes problems into shipped
                 systems. My sweet spot is where strategy, product thinking, and
                 data meet real-world constraints.
               </p>
+
               <p className="text-sm text-text-secondary/90">
-                Trained as an industrial engineer, sharpened in M&amp;A and deal
-                environments, and now focused on building and deploying tools
-                that operators actually use.
+                Trained as an industrial engineer and sharpened in M&amp;A deal
+                environments, I like working in the messy middle: talking to
+                operators, understanding constraints, and then shaping tools and
+                workflows that actually get used.
               </p>
+
+              {/* Skills / identity pills */}
+              <div className="flex flex-wrap gap-2 pt-2">
+                <span className="inline-flex items-center rounded-full bg-surface shadow-skeuo-soft px-3 py-1 text-xs text-text-secondary">
+                  Strategy &amp; operating models
+                </span>
+                <span className="inline-flex items-center rounded-full bg-surface shadow-skeuo-soft px-3 py-1 text-xs text-text-secondary">
+                  SQL &amp; Python for decision support
+                </span>
+                <span className="inline-flex items-center rounded-full bg-surface shadow-skeuo-soft px-3 py-1 text-xs text-text-secondary">
+                  Internal tools &amp; deployment
+                </span>
+              </div>
             </div>
 
-            {/* Right: Snapshot Card */}
-            <div className="card-skeuo">
-              <h2 className="text-sm font-semibold text-text-primary mb-4">
-                Snapshot
-              </h2>
+            {/* Right: Snapshot cards */}
+            <div className="space-y-4">
+              {/* Now card */}
+              <div className="card-skeuo">
+                <h2 className="text-sm font-semibold text-text-primary mb-3">
+                  Now
+                </h2>
 
-              <div className="space-y-4 text-sm">
-                <div className="flex justify-between gap-4">
-                  <span className="snapshot-label">Current</span>
-                  <span className="snapshot-value">
-                    Senior Associate · M&amp;A (Deals Transformation), PwC
-                  </span>
+                <div className="space-y-3 text-sm">
+                  <div>
+                    <div className="snapshot-label mb-1">Role</div>
+                    <div className="text-text-secondary">
+                      Senior Associate · M&amp;A (Deals Transformation) at PwC
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="snapshot-label mb-1">What I&apos;m focused on</div>
+                    <div className="text-text-secondary">
+                      Building &amp; deploying internal tools, structuring data
+                      for better decisions, and working closer to product /
+                      deployment strategy roles.
+                    </div>
+                  </div>
                 </div>
-                <div className="flex justify-between gap-4">
-                  <span className="snapshot-label">Location</span>
-                  <span className="snapshot-value">
-                    New York City · from Buffalo, NY
-                  </span>
-                </div>
-                <div className="flex justify-between gap-4">
-                  <span className="snapshot-label">Focus</span>
-                  <span className="snapshot-value">
-                    Deployment strategy, internal tools, data-heavy decision
-                    systems
-                  </span>
-                </div>
-                <div className="flex justify-between gap-4">
-                  <span className="snapshot-label">Contact</span>
-                  <span className="snapshot-value">
-                    avelayudam@gmail.com
-                    <br />
-                    /in/arjunavelayudam
-                  </span>
+              </div>
+
+              {/* Details card */}
+              <div className="card-skeuo">
+                <h2 className="text-sm font-semibold text-text-primary mb-3">
+                  Details
+                </h2>
+
+                <div className="space-y-3 text-sm">
+                  <div>
+                    <div className="snapshot-label mb-1">Location</div>
+                    <div className="text-text-secondary">
+                      New York City · from Buffalo, NY
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="snapshot-label mb-1">Contact</div>
+                    <div className="text-text-secondary">
+                      avelayudam@gmail.com
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="snapshot-label mb-1">LinkedIn</div>
+                    <a
+                      href="https://www.linkedin.com/in/arjunavelayudam"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-sm text-brand-primary underline underline-offset-2"
+                    >
+                      /in/arjunavelayudam
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
