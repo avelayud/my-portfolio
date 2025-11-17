@@ -1,163 +1,279 @@
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gray-50 flex">
+    <main className="min-h-screen bg-background flex">
       {/* LEFT SIDEBAR NAV */}
-      <aside className="fixed inset-y-0 left-0 w-64 bg-white border-r shadow-sm flex flex-col justify-between">
-        <div className="px-6 py-6">
+      <aside className="sidebar-shell">
+        <div>
           {/* Logo / Initials */}
           <div className="mb-8">
-            <div className="text-2xl font-bold tracking-tight">AV</div>
-            <p className="text-xs text-gray-500 mt-1">
+            <div className="text-2xl font-bold tracking-tight text-text-primary">
+              AV
+            </div>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-text-muted mt-2">
               Strategy · Product · Data
             </p>
           </div>
 
           {/* Nav Links */}
-          <nav className="space-y-3 text-sm">
-            <a href="#top" className="block text-gray-700 hover:text-black">
+          <nav className="space-y-4">
+            <a href="#top" className="nav-link">
               Overview
             </a>
-            <a href="#highlights" className="block text-gray-700 hover:text-black">
-              Highlights
+            <a href="#experience" className="nav-link">
+              Experience
             </a>
-            <a href="#featured-work" className="block text-gray-700 hover:text-black">
-              Featured Work
+            <a href="#featured-work" className="nav-link">
+              Deployments &amp; Product
             </a>
-            <a href="/projects" className="block text-gray-700 hover:text-black">
+            <a href="/projects" className="nav-link">
               Projects
             </a>
-            <a href="/about" className="block text-gray-700 hover:text-black">
+            <a href="/about" className="nav-link">
               About
             </a>
-            <a href="/contact" className="block text-gray-700 hover:text-black">
+            <a href="/contact" className="nav-link">
               Contact
             </a>
           </nav>
         </div>
 
         {/* Sidebar Footer */}
-        <div className="px-6 py-4 border-t text-xs text-gray-500">
-          Available for strategy / deployment roles.
+        <div className="mt-8 text-[11px] text-text-muted">
+          Available for strategy &amp; deployment roles.
         </div>
       </aside>
 
-      {/* MAIN CONTENT (SHIFTED RIGHT) */}
+      {/* MAIN CONTENT */}
       <div className="ml-64 flex-1">
-        {/* HERO SECTION */}
-        <section
-          id="top"
-          className="flex flex-col items-start justify-center px-10 pt-16 pb-10 max-w-5xl mx-auto"
-        >
-          <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-3">
+        {/* HERO + SNAPSHOT */}
+        <section id="top" className="section-container pt-16 pb-10">
+          <p className="text-xs uppercase tracking-[0.25em] text-text-muted mb-4">
             Deployment Strategy · Product · Data
           </p>
 
-          <h1 className="text-5xl font-bold mb-4">
+          <h1 className="text-5xl font-bold text-text-primary mb-4">
             Arjuna Velayudam
           </h1>
 
-          <p className="text-lg text-gray-700 max-w-2xl mb-4">
-            I help teams turn ambiguous problems into shipped products.
-            Blending engineering, deal execution, and data to design,
-            validate, and operationalize high-leverage systems.
-          </p>
-
-          <p className="text-sm text-gray-500 max-w-xl">
-            Currently a Senior Associate in M&amp;A at PwC, pivoting toward
-            product/deployment roles at tech and dual-use companies.
-          </p>
-        </section>
-
-        {/* HIGHLIGHT TILES */}
-        <section
-          id="highlights"
-          className="max-w-5xl mx-auto px-10 pb-16 grid grid-cols-1 sm:grid-cols-3 gap-6"
-        >
-          {/* EDUCATION */}
-          <div className="bg-white p-6 rounded-xl shadow-sm border hover:shadow-lg hover:-translate-y-1 transition transform cursor-pointer">
-            <h3 className="text-lg font-semibold mb-2">🎓 Education</h3>
-            <p className="text-gray-700 text-sm">
-              Northeastern University — B.S. Industrial Engineering
-            </p>
-            <p className="text-gray-500 text-xs mt-1">
-              Minors in Mathematics &amp; Economics
-            </p>
-          </div>
-
-          {/* BACKGROUND */}
-          <div className="bg-white p-6 rounded-xl shadow-sm border hover:shadow-lg hover:-translate-y-1 transition transform cursor-pointer">
-            <h3 className="text-lg font-semibold mb-2">📍 Background</h3>
-            <p className="text-gray-700 text-sm">
-              Buffalo, NY → New York City.
-            </p>
-            <p className="text-gray-500 text-xs mt-1">
-              Experience across PE-backed M&amp;A, A&amp;D, tech, and
-              industrials.
-            </p>
-          </div>
-
-          {/* CONTACT */}
-          <div className="bg-white p-6 rounded-xl shadow-sm border hover:shadow-lg hover:-translate-y-1 transition transform cursor-pointer">
-            <h3 className="text-lg font-semibold mb-2">📬 Contact</h3>
-            <p className="text-gray-700 text-sm">
-              avelayudam@gmail.com
-            </p>
-            <p className="text-gray-700 text-sm">
-              LinkedIn: /in/arjunavelayudam
-            </p>
-          </div>
-        </section>
-
-        {/* PLACEHOLDER: FEATURED WORK / DEPLOYMENT SECTION */}
-        <section
-          id="featured-work"
-          className="max-w-5xl mx-auto px-10 pb-24"
-        >
-          <h2 className="text-2xl font-semibold mb-4">
-            Featured Deployment & Product Work
-          </h2>
-          <p className="text-gray-700 text-sm mb-6 max-w-2xl">
-            A sample of problems I&apos;ve helped structure and solve — from
-            building internal tools in consulting environments to designing
-            data workflows and decision systems. Case studies coming soon.
-          </p>
-
-          {/* Placeholder Case Study Card */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-xl shadow-sm border">
-              <p className="text-xs font-semibold text-indigo-600 mb-1">
-                DEPLOYMENT CASE STUDY · COMING SOON
+          <div className="grid md:grid-cols-[2fr,1.3fr] gap-8 mt-6">
+            {/* Left: Narrative */}
+            <div>
+              <p className="text-lg text-text-secondary mb-4">
+                I help teams turn ambiguous, high-stakes problems into shipped
+                systems. My sweet spot is where strategy, product thinking, and
+                data meet real-world constraints.
               </p>
-              <h3 className="text-lg font-semibold mb-2">
+              <p className="text-sm text-text-secondary/90">
+                Trained as an industrial engineer, sharpened in M&amp;A and deal
+                environments, and now focused on building and deploying tools
+                that operators actually use.
+              </p>
+            </div>
+
+            {/* Right: Snapshot Card */}
+            <div className="card-skeuo">
+              <h2 className="text-sm font-semibold text-text-primary mb-4">
+                Snapshot
+              </h2>
+
+              <div className="space-y-4 text-sm">
+                <div className="flex justify-between gap-4">
+                  <span className="snapshot-label">Current</span>
+                  <span className="snapshot-value">
+                    Senior Associate · M&amp;A (Deals Transformation), PwC
+                  </span>
+                </div>
+                <div className="flex justify-between gap-4">
+                  <span className="snapshot-label">Location</span>
+                  <span className="snapshot-value">
+                    New York City · from Buffalo, NY
+                  </span>
+                </div>
+                <div className="flex justify-between gap-4">
+                  <span className="snapshot-label">Focus</span>
+                  <span className="snapshot-value">
+                    Deployment strategy, internal tools, data-heavy decision
+                    systems
+                  </span>
+                </div>
+                <div className="flex justify-between gap-4">
+                  <span className="snapshot-label">Contact</span>
+                  <span className="snapshot-value">
+                    avelayudam@gmail.com
+                    <br />
+                    /in/arjunavelayudam
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* EXPERIENCE: COMPANY FLIP TILES */}
+        <section id="experience" className="section-container pb-16">
+          <h2 className="section-title">Where I&apos;ve Built &amp; Executed</h2>
+          <p className="section-subtitle">
+            A mix of high-intensity deal work, operational problem solving,
+            and internal product building across finance and consulting.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Goldman Sachs */}
+            <div className="group perspective h-56">
+              <div className="flip-card-inner rounded-av-lg shadow-skeuo-soft bg-surface">
+                {/* Front */}
+                <div className="flip-card-face rounded-av-lg flex flex-col items-center justify-center px-6">
+                  <div className="text-xs tracking-[0.25em] text-text-muted mb-2">
+                    FINANCE
+                  </div>
+                  <div className="text-lg font-semibold text-text-primary mb-1">
+                    Goldman Sachs
+                  </div>
+                  <div className="text-xs text-text-secondary">
+                    Operations / Markets · Internship
+                  </div>
+                </div>
+                {/* Back */}
+                <div className="flip-card-face flip-card-back rounded-av-lg bg-surface px-5 py-5 text-xs text-text-secondary">
+                  <div className="font-semibold text-text-primary mb-2">
+                    What I did
+                  </div>
+                  <ul className="space-y-1 list-disc list-inside">
+                    <li>Automated recurring ops reports under tight SLAs.</li>
+                    <li>Analyzed trade flow patterns to flag anomalies.</li>
+                    <li>Worked across teams to de-bug data breaks quickly.</li>
+                  </ul>
+                  <div className="mt-3 text-[11px] text-text-muted">
+                    Early exposure to high-volume systems and failure modes.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Alvarez & Marsal */}
+            <div className="group perspective h-56">
+              <div className="flip-card-inner rounded-av-lg shadow-skeuo-soft bg-surface">
+                {/* Front */}
+                <div className="flip-card-face rounded-av-lg flex flex-col items-center justify-center px-6">
+                  <div className="text-xs tracking-[0.25em] text-text-muted mb-2">
+                    TURNAROUND
+                  </div>
+                  <div className="text-lg font-semibold text-text-primary mb-1">
+                    Alvarez &amp; Marsal
+                  </div>
+                  <div className="text-xs text-text-secondary">
+                    Performance Improvement
+                  </div>
+                </div>
+                {/* Back */}
+                <div className="flip-card-face flip-card-back rounded-av-lg bg-surface px-5 py-5 text-xs text-text-secondary">
+                  <div className="font-semibold text-text-primary mb-2">
+                    What I did
+                  </div>
+                  <ul className="space-y-1 list-disc list-inside">
+                    <li>Built cost and cash-flow models for distressed assets.</li>
+                    <li>Mapped operational KPIs to real levers on the ground.</li>
+                    <li>Helped teams prioritize actions in constrained timelines.</li>
+                  </ul>
+                  <div className="mt-3 text-[11px] text-text-muted">
+                    Got comfortable making decisions with imperfect data.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* PwC */}
+            <div className="group perspective h-56">
+              <div className="flip-card-inner rounded-av-lg shadow-skeuo-soft bg-surface">
+                {/* Front */}
+                <div className="flip-card-face rounded-av-lg flex flex-col items-center justify-center px-6">
+                  <div className="text-xs tracking-[0.25em] text-text-muted mb-2">
+                    DEALS · PRODUCT
+                  </div>
+                  <div className="text-lg font-semibold text-text-primary mb-1">
+                    PwC
+                  </div>
+                  <div className="text-xs text-text-secondary">
+                    Senior Associate · Deals Transformation
+                  </div>
+                </div>
+                {/* Back */}
+                <div className="flip-card-face flip-card-back rounded-av-lg bg-surface px-5 py-5 text-xs text-text-secondary">
+                  <div className="font-semibold text-text-primary mb-2">
+                    What I did
+                  </div>
+                  <ul className="space-y-1 list-disc list-inside">
+                    <li>
+                      Led design and rollout of a Deal Scenario Analysis Hub used
+                      across engagements.
+                    </li>
+                    <li>
+                      Helped build a sector metrics hub combining internal and
+                      market data.
+                    </li>
+                    <li>
+                      Worked directly with partners and clients to shape features
+                      and drive adoption.
+                    </li>
+                  </ul>
+                  <div className="mt-3 text-[11px] text-text-muted">
+                    Where strategy, product thinking, and data really converged.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FEATURED DEPLOYMENTS & PRODUCT WORK */}
+        <section id="featured-work" className="section-container pb-24">
+          <h2 className="section-title">Featured Deployments &amp; Product Work</h2>
+          <p className="section-subtitle">
+            A deeper look at the tooling and decision systems I&apos;ve helped
+            design and deploy — from internal hubs in consulting to
+            operator-facing analytics.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Deal Scenario Analysis Hub */}
+            <div className="card-skeuo">
+              <p className="text-[11px] font-semibold text-brand-primary mb-1">
+                INTERNAL TOOL · DEPLOYED
+              </p>
+              <h3 className="text-lg font-semibold text-text-primary mb-2">
                 Deal Scenario Analysis Hub
               </h3>
-              <p className="text-gray-700 text-sm mb-3">
-                Internal tool to simulate M&amp;A scenarios and surface insights
-                for partners and clients across multiple workstreams.
+              <p className="text-sm text-text-secondary mb-3">
+                Internal web-based tool to quickly simulate standalone, synergy,
+                and carve-out scenarios across deals, giving partners and teams a
+                single place to reason about outcomes.
               </p>
-              <ul className="text-xs text-gray-600 space-y-1">
-                <li>• Defined requirements with partners & engagement teams</li>
-                <li>• Aggregated & normalized deal + operational data</li>
-                <li>• Designed workflows for non-technical users</li>
-                <li>• Drove adoption via training and iteration loops</li>
+              <ul className="text-xs text-text-secondary space-y-1">
+                <li>• Defined must-have scenarios with partners &amp; teams.</li>
+                <li>• Aggregated and normalized financial &amp; operational inputs.</li>
+                <li>• Designed workflows non-technical users could navigate.</li>
+                <li>• Iterated based on feedback to improve speed and clarity.</li>
               </ul>
             </div>
 
-            <div className="bg-white p-6 rounded-xl shadow-sm border">
-              <p className="text-xs font-semibold text-indigo-600 mb-1">
+            {/* Restaurant Tip & Performance Analytics */}
+            <div className="card-skeuo">
+              <p className="text-[11px] font-semibold text-brand-primary mb-1">
                 DATA PRODUCT · IN PROGRESS
               </p>
-              <h3 className="text-lg font-semibold mb-2">
-                Restaurant Tip & Performance Analytics
+              <h3 className="text-lg font-semibold text-text-primary mb-2">
+                Restaurant Tip &amp; Performance Analytics
               </h3>
-              <p className="text-gray-700 text-sm mb-3">
-                Prototype data product to quantify front-of-house performance and
-                design fair, incentive-aligned tip pools.
+              <p className="text-sm text-text-secondary mb-3">
+                Prototype data product to quantify server performance and design
+                a fair, incentive-aligned tip pool — giving operators a clearer
+                picture of who drives revenue and why.
               </p>
-              <ul className="text-xs text-gray-600 space-y-1">
-                <li>• Synthetic PoS data model in SQL</li>
-                <li>• Python-based analytics & scenario testing</li>
-                <li>• Focus on explainability for operators</li>
+              <ul className="text-xs text-text-secondary space-y-1">
+                <li>• Synthetic PoS schema in PostgreSQL.</li>
+                <li>• Python-based analysis for revenue &amp; tip distributions.</li>
+                <li>• Focus on metrics that feel fair and explainable to staff.</li>
+                <li>• Grounded in real conversations with restaurant workers.</li>
               </ul>
             </div>
           </div>
