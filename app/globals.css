@@ -19,6 +19,10 @@
     @apply block text-text-secondary hover:text-text-primary text-sm transition;
   }
 
+   .nav-link-active {
+    @apply text-text-primary font-medium;
+  }
+
   .section-container {
     @apply max-w-5xl mx-auto px-10;
   }
