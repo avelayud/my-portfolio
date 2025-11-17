@@ -46,77 +46,106 @@ export default function Home() {
       {/* MAIN CONTENT */}
       <div className="ml-64 flex-1">
         {/* HERO + SNAPSHOT */}
-        <section id="top" className="section-container pt-16 pb-10">
-          <p className="text-xs uppercase tracking-[0.25em] text-text-muted mb-4">
-            Deployment Strategy · Product · Data
-          </p>
+        <section id="top" className="section-container pt-20 pb-12">
+          <div className="relative">
 
-          <h1 className="text-5xl font-bold text-text-primary mb-3">
-            Arjuna Velayudam
-          </h1>
+            {/* Faint blue accent bar (desktop only) */}
+            <div className="hidden md:block absolute -left-8 top-0 h-full w-1 rounded-full bg-brand-secondary/25" />
 
-          <div className="mt-4 grid md:grid-cols-[1.7fr_auto_1.3fr] gap-8 items-start">
-            {/* Left: Bio / current role */}
-            <div className="space-y-4">
-              <p className="text-lg text-text-secondary">
-                I help teams turn ambiguous, high-stakes problems into shipped
-                systems. My sweet spot is where strategy, product thinking, and
-                data meet real-world constraints.
+            {/* Content block */}
+            <div className="relative">
+              {/* Top tagline */}
+              <p className="text-xs uppercase tracking-[0.25em] text-brand-secondary mb-4">
+                Strategy · Product · Deployment
               </p>
 
-              <p className="text-sm text-text-secondary/90">
-                Trained as an industrial engineer and sharpened in M&amp;A deal
-                environments, I like working in the messy middle: talking to
-                operators, understanding constraints, and then shaping tools and
-                workflows that actually get used.
-              </p>
-
-              <p className="text-sm text-text-secondary/90">
-                Right now I&apos;m a Senior Associate in PwC&apos;s Deals
-                Transformation practice, working across standalone, synergy, and
-                carve-out work while building internal tools that make that work
-                faster and more repeatable.
-              </p>
-            </div>
-
-            {/* Middle: Divider (only on desktop) */}
-            <div className="hidden md:flex justify-center">
-              <div className="w-px h-full bg-text-secondary/30" />
-            </div>
-
-            {/* Right: Contact / details */}
-            <div className="space-y-4 text-sm">
-              <div>
-                <div className="snapshot-label mb-1">Location</div>
-                <div className="text-text-secondary">
-                  New York City · from Buffalo, NY
-                </div>
+              {/* Name + accent line */}
+              <div className="mb-10">
+                <h1 className="text-5xl md:text-[3.25rem] font-bold text-text-primary mb-3 leading-tight">
+                  Arjuna Velayudam
+                </h1>
+                <div className="h-1 w-24 bg-brand-accent rounded-full" />
               </div>
 
-              <div>
-                <div className="snapshot-label mb-1">Current role</div>
-                <div className="text-text-secondary">
-                  Senior Associate · M&amp;A (Deals Transformation), PwC
-                </div>
-              </div>
+              {/* Main grid */}
+              <div className="grid md:grid-cols-[1.6fr_auto_1.2fr] gap-12 items-start">
+                {/* LEFT — concise bio */}
+                <div className="space-y-4">
+                  <p className="text-lg md:text-xl text-text-secondary leading-relaxed">
+                    Builder-minded strategist focused on improving decisions,
+                    workflows, and internal tools inside complex environments.
+                  </p>
 
-              <div>
-                <div className="snapshot-label mb-1">Contact</div>
-                <div className="text-text-secondary">
-                  avelayudam@gmail.com
+                  <p className="text-sm md:text-base text-text-secondary/90 leading-relaxed">
+                    I like turning ambiguity into structured systems — working
+                    between data, product, and operators to get things shipped.
+                  </p>
                 </div>
-              </div>
 
-              <div>
-                <div className="snapshot-label mb-1">LinkedIn</div>
-                <a
-                  href="https://www.linkedin.com/in/arjunavelayudam"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-text-secondary underline underline-offset-2 hover:text-brand-primary"
-                >
-                  /in/arjunavelayudam
-                </a>
+                {/* Middle divider */}
+                <div className="hidden md:flex justify-center">
+                  <div className="w-px h-full bg-divider" />
+                </div>
+
+                {/* RIGHT — snapshot with icons */}
+                <div className="space-y-5">
+
+                  <div className="snapshot-row">
+                    <div className="snapshot-icon">💼</div>
+                    <div>
+                      <div className="snapshot-label mb-1">Current</div>
+                      <div className="text-text-secondary">
+                        Senior Associate · PwC Deals Transformation
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="snapshot-row">
+                    <div className="snapshot-icon">🎯</div>
+                    <div>
+                      <div className="snapshot-label mb-1">Focus Areas</div>
+                      <div className="text-text-secondary">
+                        Deployment strategy, internal tools, data-informed workflows
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="snapshot-row">
+                    <div className="snapshot-icon">📍</div>
+                    <div>
+                      <div className="snapshot-label mb-1">Location</div>
+                      <div className="text-text-secondary">
+                        New York City · originally from Buffalo, NY
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="snapshot-row">
+                    <div className="snapshot-icon">✉️</div>
+                    <div>
+                      <div className="snapshot-label mb-1">Contact</div>
+                      <div className="text-text-secondary">
+                        velayudamarjuna@gmail.com
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="snapshot-row">
+                    <div className="snapshot-icon">in</div>
+                    <div>
+                      <div className="snapshot-label mb-1">LinkedIn</div>
+                      <a
+                        href="https://www.linkedin.com/in/arjuna-velayudam"
+                        className="text-brand-secondary underline underline-offset-2 hover:text-brand-primary"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        /in/arjunavelayudam
+                      </a>
+                    </div>
+                  </div>
+
+                </div>
               </div>
             </div>
           </div>
