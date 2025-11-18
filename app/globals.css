@@ -92,19 +92,6 @@
     @apply underline underline-offset-4;
   }
 
-  /* SCROLL REVEAL
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.35s ease-out, transform 0.35s ease-out;
-  }
-
-  .reveal-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  */
 
   /* EDUCATION CARDS (summary + expanded view) */
 
