@@ -11,8 +11,29 @@ const WorldMap = dynamic(
   { ssr: false }
 );
 
-const visitedCountries = [
-  "USA","Canada","Mexico","Costa Rica","Colombia","Belize","Spain","France","Portugal","Monaco","Netherlands","Switzerland","UK","Ireland","India","Thailand","Cambodia","Vietnam","Morocco","Vatican","UAE"
+// ISO 3166-1 alpha-2 codes for visited countries
+const visitedCountryData = [
+  { country: "US", value: 1 }, // USA
+  { country: "CA", value: 1 }, // Canada
+  { country: "MX", value: 1 }, // Mexico
+  { country: "CR", value: 1 }, // Costa Rica
+  { country: "CO", value: 1 }, // Colombia
+  { country: "BZ", value: 1 }, // Belize
+  { country: "ES", value: 1 }, // Spain
+  { country: "FR", value: 1 }, // France
+  { country: "PT", value: 1 }, // Portugal
+  { country: "MC", value: 1 }, // Monaco
+  { country: "NL", value: 1 }, // Netherlands
+  { country: "CH", value: 1 }, // Switzerland
+  { country: "GB", value: 1 }, // UK
+  { country: "IE", value: 1 }, // Ireland
+  { country: "IN", value: 1 }, // India
+  { country: "TH", value: 1 }, // Thailand
+  { country: "KH", value: 1 }, // Cambodia
+  { country: "VN", value: 1 }, // Vietnam
+  { country: "MA", value: 1 }, // Morocco
+  { country: "VA", value: 1 }, // Vatican City
+  { country: "AE", value: 1 }, // UAE
 ];
 
 
@@ -118,7 +139,7 @@ export default function AboutPage() {
             <WorldMap
               color="blue"
               size="responsive"
-              data={visitedCountries.map((c) => ({ country: c, value: 1 }))}
+              data={visitedCountryData}
             />
           </div>
         </section>
