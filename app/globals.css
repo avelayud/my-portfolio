@@ -172,9 +172,10 @@
   .edu-pill {
     @apply text-[11px] md:text-xs px-3 py-1.5 rounded-full border border-divider 
            bg-surface/80 text-text-secondary transition 
-           inline-flex items-center gap-1.5 cursor-pointer;
+           inline-flex items-center justify-center text-center gap-1 cursor-pointer;
   }
 
+  /* Hover: simple highlight, no movement/reordering */
   .edu-pill:hover {
     @apply bg-surface shadow-skeuo-soft;
   }
@@ -183,9 +184,9 @@
     @apply text-[9px] uppercase tracking-wide;
   }
 
-  /* Expanded pill: stack content vertically when active */
+  /* Expanded pill: full-width, stacked, centered text */
   .edu-pill-active {
-    @apply bg-surface shadow-skeuo-soft flex-col items-start;
+    @apply bg-surface shadow-skeuo-soft flex-col items-center justify-center text-center w-full;
   }
 
   .edu-pill-mit {
