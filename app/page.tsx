@@ -6,9 +6,12 @@ export default function Home() {
         <div>
           {/* Logo / Initials */}
           <div className="mb-8">
-            <div className="text-2xl font-bold tracking-tight text-text-primary">
+            <a
+            href="/"
+            className="text-2xl font-bold tracking-tight text-text-primary"
+            >
               AV
-            </div>
+            </a>
             <p className="text-[10px] uppercase tracking-[0.2em] text-text-muted mt-2">
               Strategy · Product · Data
             </p>

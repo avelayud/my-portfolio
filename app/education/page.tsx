@@ -6,9 +6,12 @@ export default function EducationPage() {
         <div>
           {/* Logo / Initials */}
           <div className="mb-8">
-            <div className="text-2xl font-bold tracking-tight text-text-primary">
+            <a
+              href="/"
+              className="text-2xl font-bold tracking-tight text-text-primary"
+            >
               AV
-            </div>
+            </a>
             <p className="text-[10px] uppercase tracking-[0.2em] text-text-muted mt-2">
               Strategy · Product · Data
             </p>
@@ -48,202 +51,196 @@ export default function EducationPage() {
 
       {/* MAIN CONTENT */}
       <div className="ml-64 flex-1">
-        {/* HERO + SNAPSHOT */}
-        <section id="top" className="section-container pt-20 pb-12">
+        {/* HERO: simple + 4 anchor pills */}
+        <section id="top" className="section-container pt-20 pb-10">
           <div className="relative">
-            {/* Faint blue accent bar (desktop only) */}
+            {/* Faint blue accent bar */}
             <div className="hidden md:block absolute -left-8 top-0 h-full w-1 rounded-full bg-brand-secondary/25" />
 
-            {/* Content block */}
-            <div className="relative">
-              {/* Top tagline */}
-              <p className="text-xs uppercase tracking-[0.25em] text-brand-secondary mb-4">
-                Education · Global Experience · Continuous Learning
+            <div className="relative space-y-6">
+              {/* Tagline */}
+              <p className="text-xs uppercase tracking-[0.25em] text-brand-secondary">
+                Education
               </p>
 
-              {/* Title + accent line */}
-              <div className="mb-10">
-                <h1 className="text-4xl md:text-[2.75rem] font-bold text-text-primary mb-3 leading-tight">
-                  Education &amp; Learning
+              {/* Heading + short line */}
+              <div>
+                <h1 className="text-4xl md:text-[2.75rem] font-bold text-text-primary mb-2 leading-tight">
+                  Global, applied, and still ongoing.
                 </h1>
-                <div className="h-1 w-24 bg-brand-accent rounded-full" />
+                <p className="text-sm md:text-base text-text-secondary max-w-xl">
+                  A path through Boston, Lyon, New York, San Francisco, and Mexico
+                  — mixing engineering, data, and real work with operators.
+                </p>
               </div>
 
-              {/* Main grid */}
-              <div className="grid md:grid-cols-[1.6fr_auto_1.4fr] gap-12 items-start">
-                {/* LEFT — summary */}
-                <div className="space-y-4">
-                  <p className="text-lg md:text-xl text-text-secondary leading-relaxed">
-                    Built across Boston, Lyon, New York, San Francisco, and
-                    Mexico, my education has always been tied to real work:
-                    applying engineering, data, and experimentation in live
-                    environments.
-                  </p>
-
-                  <p className="text-sm md:text-base text-text-secondary/90 leading-relaxed">
-                    From a five-year co-op model at Northeastern to a
-                    sixteen-week MIT Bootcamp in Python and AI, the throughline
-                    is the same: learn the theory, then pressure-test it with
-                    operators, data, and real constraints.
-                  </p>
-                </div>
-
-                {/* Middle divider */}
-                <div className="hidden md:flex justify-center">
-                  <div className="w-px h-full bg-divider" />
-                </div>
-
-                {/* RIGHT — education snapshot */}
-                <div className="space-y-5">
-                  <div className="snapshot-row">
-                    <div className="snapshot-icon">🎓</div>
-                    <div>
-                      <div className="snapshot-label mb-1">Core Degrees</div>
-                      <div className="text-text-secondary">
-                        B.S. Industrial Engineering · Economics &amp; Mathematics minors
-                      </div>
+              {/* 4 “pill” cards that jump down the page */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <a href="#mit" className="hero-pill group">
+                  <div className="snapshot-icon">🤖</div>
+                  <div>
+                    <div className="text-sm font-semibold text-text-primary">
+                      MIT Bootcamp
+                    </div>
+                    <div className="text-xs text-text-secondary">
+                      Python for AI &amp; Data · Remote / Global
                     </div>
                   </div>
+                </a>
 
-                  <div className="snapshot-row">
-                    <div className="snapshot-icon">🌍</div>
-                    <div>
-                      <div className="snapshot-label mb-1">Global Footprint</div>
-                      <div className="text-text-secondary">
-                        Boston · Lyon · New York · San Francisco · Mexico
-                      </div>
+                <a href="#neu" className="hero-pill group">
+                  <div className="snapshot-icon">🎓</div>
+                  <div>
+                    <div className="text-sm font-semibold text-text-primary">
+                      Northeastern University
+                    </div>
+                    <div className="text-xs text-text-secondary">
+                      B.S. Industrial Engineering · Boston, MA
                     </div>
                   </div>
+                </a>
 
-                  <div className="snapshot-row">
-                    <div className="snapshot-icon">🤖</div>
-                    <div>
-                      <div className="snapshot-label mb-1">Current Focus</div>
-                      <div className="text-text-secondary">
-                        Python, AI/ML, and data workflows for real-world deployment
-                      </div>
+                <a href="#lyon" className="hero-pill group">
+                  <div className="snapshot-icon">🌍</div>
+                  <div>
+                    <div className="text-sm font-semibold text-text-primary">
+                      Lyon Catholic University
+                    </div>
+                    <div className="text-xs text-text-secondary">
+                      Study Abroad · Lyon, France
                     </div>
                   </div>
+                </a>
 
-                  <div className="snapshot-row">
-                    <div className="snapshot-icon">📚</div>
-                    <div>
-                      <div className="snapshot-label mb-1">Themes</div>
-                      <div className="text-text-secondary">
-                        Applied learning, experimentation, and operator-facing systems
-                      </div>
+                <a href="#eahs" className="hero-pill group">
+                  <div className="snapshot-icon">📣</div>
+                  <div>
+                    <div className="text-sm font-semibold text-text-primary">
+                      East Aurora High School
+                    </div>
+                    <div className="text-xs text-text-secondary">
+                      Leadership &amp; AP Foundation · East Aurora, NY
                     </div>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
           </div>
         </section>
 
-        {/* FORMAL EDUCATION */}
-        <section id="education" className="section-container pb-20">
-          <h2 className="section-title">Formal Education</h2>
-          <p className="section-subtitle">
-            Programs that shaped how I think about systems, data, and people.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* MIT Bootcamp */}
-            <div className="card-skeuo">
-              <p className="text-[11px] font-semibold text-brand-primary mb-1">
-                CONTINUING EDUCATION · 16 WEEKS
-              </p>
-              <h3 className="text-lg font-semibold text-text-primary mb-1">
-                MIT Bootcamp — Python for AI &amp; Data
-              </h3>
-              <p className="text-xs text-text-muted mb-2">
-                Remote / Global
-              </p>
-              <p className="text-sm text-text-secondary mb-3">
-                16-week intensive focused on using Python to build AI-powered and
-                data-driven applications, from exploratory analysis to full
-                machine learning workflows.
-              </p>
-              <ul className="text-xs text-text-secondary space-y-1">
-                <li>• Built end-to-end pipelines for ML and analytics projects.</li>
-                <li>• Applied CNNs and classical ML to real datasets.</li>
-                <li>• Deepened comfort with Python for production-like workflows.</li>
-              </ul>
+        {/* DETAIL SECTIONS (expand on hover) */}
+        <section className="section-container pb-24 space-y-10">
+          {/* MIT */}
+          <div id="mit" className="edu-expand">
+            <div className="flex items-start justify-between gap-4 mb-3">
+              <div>
+                <h2 className="text-base md:text-lg font-semibold text-text-primary mb-1">
+                  MIT Bootcamp — Python for AI &amp; Data
+                </h2>
+                <p className="text-xs text-text-secondary">
+                  Remote / Global · 16-week continuing education program
+                </p>
+              </div>
+              <span className="text-[11px] text-text-muted uppercase tracking-wide">
+                Continuing Education
+              </span>
             </div>
+            <p className="text-sm text-text-secondary mb-3">
+              Focused on using Python to build AI-powered and data-driven
+              applications, from exploratory analysis to full machine learning
+              workflows.
+            </p>
+            <ul className="text-xs text-text-secondary space-y-1">
+              <li>• Built end-to-end ML and analytics pipelines.</li>
+              <li>• Applied CNNs and classical models to real datasets.</li>
+              <li>• Strengthened comfort with Python in production-like contexts.</li>
+            </ul>
+          </div>
 
-            {/* Northeastern */}
-            <div className="card-skeuo">
-              <p className="text-[11px] font-semibold text-brand-primary mb-1">
-                UNDERGRAD · 5-YEAR CO-OP PROGRAM
-              </p>
-              <h3 className="text-lg font-semibold text-text-primary mb-1">
-                Northeastern University — B.S. Industrial Engineering
-              </h3>
-              <p className="text-xs text-text-muted mb-2">
-                Boston, MA · Minors in Economics &amp; Mathematics
-              </p>
-              <p className="text-sm text-text-secondary mb-3">
-                A five-year program combining engineering fundamentals with
-                three six-month full-time co-op roles across New York,
-                San Francisco, and Mexico.
-              </p>
-              <ul className="text-xs text-text-secondary space-y-1">
-                <li>• 3× 6-month co-ops in NYC, SF, and Mexico.</li>
-                <li>• Robotics Club, Kappa Sigma, French Club.</li>
-                <li>
-                  • Chemistry lab researcher building catalysts to convert
-                  methane into methanol and reduce greenhouse gas emissions.
-                </li>
-                <li>• Fenway Academic Mentor &amp; Engineering Capstone.</li>
-              </ul>
+          {/* Northeastern */}
+          <div id="neu" className="edu-expand">
+            <div className="flex items-start justify-between gap-4 mb-3">
+              <div>
+                <h2 className="text-base md:text-lg font-semibold text-text-primary mb-1">
+                  Northeastern University — B.S. Industrial Engineering
+                </h2>
+                <p className="text-xs text-text-secondary">
+                  Boston, MA · Minors in Economics &amp; Mathematics · 5-year co-op program
+                </p>
+              </div>
+              <span className="text-[11px] text-text-muted uppercase tracking-wide">
+                Undergraduate
+              </span>
             </div>
+            <p className="text-sm text-text-secondary mb-3">
+              A five-year program combining engineering fundamentals with three
+              six-month full-time co-op roles across New York, San Francisco, and
+              Mexico.
+            </p>
+            <ul className="text-xs text-text-secondary space-y-1">
+              <li>• 3 × 6-month co-ops in NYC, SF, and Mexico.</li>
+              <li>• Robotics Club, Kappa Sigma, French Club.</li>
+              <li>
+                • Chemistry lab researcher on catalysts converting methane into
+                methanol to reduce greenhouse gas emissions.
+              </li>
+              <li>• Fenway Academic Mentor &amp; Engineering Capstone.</li>
+            </ul>
+          </div>
 
-            {/* Lyon Catholic University */}
-            <div className="card-skeuo">
-              <p className="text-[11px] font-semibold text-brand-primary mb-1">
-                STUDY ABROAD
-              </p>
-              <h3 className="text-lg font-semibold text-text-primary mb-1">
-                Lyon Catholic University (Université Catholique de Lyon)
-              </h3>
-              <p className="text-xs text-text-muted mb-2">
-                Lyon, France
-              </p>
-              <p className="text-sm text-text-secondary mb-3">
-                Study abroad term through Northeastern, combining coursework with
-                day-to-day immersion in French language and culture.
-              </p>
-              <ul className="text-xs text-text-secondary space-y-1">
-                <li>• Coursework spanning engineering, business, and culture.</li>
-                <li>• Built comfort operating in a new language and context.</li>
-              </ul>
+          {/* Lyon */}
+          <div id="lyon" className="edu-expand">
+            <div className="flex items-start justify-between gap-4 mb-3">
+              <div>
+                <h2 className="text-base md:text-lg font-semibold text-text-primary mb-1">
+                  Lyon Catholic University (Université Catholique de Lyon)
+                </h2>
+                <p className="text-xs text-text-secondary">
+                  Lyon, France · Study abroad through Northeastern
+                </p>
+              </div>
+              <span className="text-[11px] text-text-muted uppercase tracking-wide">
+                Study Abroad
+              </span>
             </div>
+            <p className="text-sm text-text-secondary mb-3">
+              Combined coursework with day-to-day immersion in French language,
+              culture, and operating in a new context.
+            </p>
+            <ul className="text-xs text-text-secondary space-y-1">
+              <li>• Courses spanning engineering, business, and culture.</li>
+              <li>• Built comfort working and living in another language.</li>
+            </ul>
+          </div>
 
-            {/* East Aurora High School */}
-            <div className="card-skeuo">
-              <p className="text-[11px] font-semibold text-brand-primary mb-1">
-                FOUNDATION
-              </p>
-              <h3 className="text-lg font-semibold text-text-primary mb-1">
-                East Aurora High School
-              </h3>
-              <p className="text-xs text-text-muted mb-2">
-                East Aurora, NY
-              </p>
-              <p className="text-sm text-text-secondary mb-3">
-                Early mix of leadership, academics, sports, and music that
-                shaped how I show up on teams and handle responsibility.
-              </p>
-              <ul className="text-xs text-text-secondary space-y-1">
-                <li>• Student Council President &amp; Key Club President.</li>
-                <li>• Varsity Soccer, Varsity Track, Drummers Unlimited.</li>
-                <li>
-                  • 10 AP classes: Statistics, Chemistry, Economics, Government,
-                  Calculus A &amp; B, World History, American History, Spanish,
-                  Language &amp; Composition.
-                </li>
-              </ul>
+          {/* East Aurora HS */}
+          <div id="eahs" className="edu-expand">
+            <div className="flex items-start justify-between gap-4 mb-3">
+              <div>
+                <h2 className="text-base md:text-lg font-semibold text-text-primary mb-1">
+                  East Aurora High School
+                </h2>
+                <p className="text-xs text-text-secondary">
+                  East Aurora, NY · Leadership, academics, and music foundation
+                </p>
+              </div>
+              <span className="text-[11px] text-text-muted uppercase tracking-wide">
+                Foundation
+              </span>
             </div>
+            <p className="text-sm text-text-secondary mb-3">
+              Early mix of leadership, academics, sports, and music that shaped
+              how I show up on teams and handle responsibility.
+            </p>
+            <ul className="text-xs text-text-secondary space-y-1">
+              <li>• Student Council President &amp; Key Club President.</li>
+              <li>• Varsity Soccer, Varsity Track, Drummers Unlimited.</li>
+              <li>
+                • 10 AP classes: Statistics, Chemistry, Economics, Government,
+                Calculus A &amp; B, World History, American History, Spanish,
+                Language &amp; Composition.
+              </li>
+            </ul>
           </div>
         </section>
       </div>

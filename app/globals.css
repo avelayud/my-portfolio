@@ -16,11 +16,16 @@
   }
 
   .nav-link {
-    @apply block text-text-secondary hover:text-text-primary text-sm transition;
+    @apply block text-text-secondary text-sm transition;
   }
 
-   .nav-link-active {
-    @apply text-text-primary font-medium;
+  /* Stronger hover + active state */
+  .nav-link:hover {
+    @apply text-brand-primary bg-brand-secondary/5 rounded-av-md pl-3;
+  }
+
+  .nav-link-active {
+    @apply text-text-primary font-medium bg-brand-secondary/10 rounded-av-md pl-3;
   }
 
   .section-container {
@@ -43,24 +48,39 @@
     @apply bg-surface rounded-av-lg p-4 shadow-skeuo-soft;
   }
 
-  .snapshot-value {
-    @apply text-text-secondary text-sm text-right;
-  }
-
   .snapshot-row {
     @apply flex items-start gap-3 text-sm;
   }
 
   .snapshot-icon {
-    @apply mt-0.5 h-6 w-6 rounded-full bg-brand-secondary/10 
-           flex items-center justify-center text-[11px] text-brand-secondary;
+    @apply mt-0.5 h-7 w-7 rounded-full bg-brand-secondary/10 
+           flex items-center justify-center text-[12px] text-brand-secondary;
   }
 
   .snapshot-label {
-    @apply text-text-muted text-[11px] tracking-wide uppercase;
+    @apply text-text-primary text-[11px] tracking-wide uppercase;
   }
 
+  /* New: hero “pill” cards */
+  .hero-pill {
+    @apply flex items-center gap-3 border border-divider rounded-av-md px-4 py-3
+           bg-surface/70 cursor-pointer transition;
+  }
+
+  .hero-pill:hover {
+    @apply bg-surface shadow-skeuo-soft -translate-y-0.5;
+  }
+
+  /* New: expandable detail rows */
+  .edu-expand {
+    @apply bg-surface rounded-av-lg p-5 border border-divider transition;
+  }
+
+  .edu-expand:hover {
+    @apply shadow-skeuo-soft bg-gradient-to-r from-brand-secondary/10 to-brand-primary/5 -translate-y-1;
+  }
 }
+
 
 /* Flip-card / 3D utilities */
 .perspective {
