@@ -319,25 +319,6 @@ export default function EducationPage() {
 
                     {/* Activity pills */}
                     <div className="edu-pill-row">
-                      {edu.activities.map((act) => (
-                        <div
-                          key={act.title}
-                          className={`edu-pill ${edu.pillAccentClass}`}
-                        >
-                          <span className="edu-pill-badge">
-                            {act.category}
-                          </span>
-                          <span className="font-semibold text-text-primary">
-                            {act.title}
-                          </span>
-                          <span className="edu-pill-body hidden md:inline text-[11px] text-text-secondary">
-                            {" — "}
-                            {act.desc}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="edu-pill-row">
                         {edu.activities.map((act) => {
                             const isActivityActive = activeActivityByEdu[edu.id] === act.title;
 
