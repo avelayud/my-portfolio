@@ -74,10 +74,11 @@
 
 
   /* HERO (Education) */
-
   .edu-hero-section {
-    @apply section-container pt-24 pb-20 md:min-h-[80vh] flex flex-col justify-center;
+    @apply max-w-5xl mx-auto px-10 pt-24 pb-20 md:min-h-[80vh]
+           flex flex-col justify-center;
   }
+
 
   .hero-list {
     @apply flex flex-col gap-4 mt-8;
