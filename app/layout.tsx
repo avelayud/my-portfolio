@@ -35,11 +35,11 @@ export default function RootLayout({
             {children}
           </main>
 
-          {/* Global footer on every page */}
+          {/* Global footer */}
           <Footer />
         </div>
 
-        {/* Floating back-to-top button */}
+        {/* Floating Back to Top Button */}
         <BackToTopButton />
       </body>
     </html>

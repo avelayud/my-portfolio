@@ -1,7 +1,7 @@
 // app/contact/page.tsx
 "use client";
 
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/app/components/Sidebar";
 
 function IconMail(props: React.SVGProps<SVGSVGElement>) {
   return (

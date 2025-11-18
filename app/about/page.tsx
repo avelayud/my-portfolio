@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/app/components/Sidebar";
 import dynamic from "next/dynamic";
 import { Globe2, Camera, Book, Dumbbell, Code2 } from "lucide-react";
 
