@@ -1,56 +1,13 @@
+import Sidebar from "@/components/Sidebar";
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-background flex">
-      {/* LEFT SIDEBAR NAV */}
-      <aside className="sidebar-shell">
-        <div>
-          {/* Logo / Initials */}
-          <div className="mb-8">
-            <a
-            href="/"
-            className="text-2xl font-bold tracking-tight text-text-primary"
-            >
-              AV
-            </a>
-            <p className="text-[10px] uppercase tracking-[0.2em] text-text-muted mt-2">
-              Strategy · Product · Data
-            </p>
-          </div>
-
-          {/* Nav Links */}
-          <nav className="space-y-4">
-            <a href="#top" className="nav-link">
-              Overview
-            </a>
-            <a href="#experience" className="nav-link">
-              Experience
-            </a>
-            <a href="#featured-work" className="nav-link">
-              Deployments &amp; Product
-            </a>
-            <a href="/projects" className="nav-link">
-              Projects
-            </a>
-            <a href="/education" className="nav-link">
-              Education
-            </a>
-            <a href="/about" className="nav-link">
-              About
-            </a>
-            <a href="/contact" className="nav-link">
-              Contact
-            </a>
-          </nav>
-        </div>
-
-        {/* Sidebar Footer */}
-        <div className="mt-8 text-[11px] text-text-muted">
-          Available for strategy &amp; deployment roles.
-        </div>
-      </aside>
+      
+      <Sidebar />
 
       {/* MAIN CONTENT */}
-      <div className="ml-64 flex-1">
+      <div className="flex-1 md:ml-64 ml-0 pt-14 md:pt-0">
         {/* HERO + SNAPSHOT */}
         <section id="top" className="section-container pt-20 pb-12">
           <div className="relative">
