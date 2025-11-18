@@ -2,7 +2,7 @@
   /* Layout + nav */
 
   .sidebar-shell {
-    @apply fixed inset-y-0 left-0 w-64 bg-background shadow-skeuo-soft
+    @apply fixed top-0 bottom-0 left-0 w-64 bg-background shadow-skeuo-soft
       flex flex-col justify-between px-8 py-8;
   }
 
