@@ -6,7 +6,7 @@ const projects = [
 
 export default function Projects() {
   return (
-    <main className="p-8 max-w-3xl mx-auto">
+    <main>
       <h1 className="text-3xl font-bold mb-6">Projects</h1>
       <ul className="space-y-4">
         {projects.map((p) => (

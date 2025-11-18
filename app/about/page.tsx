@@ -39,7 +39,7 @@ const visitedCountryData = [
 export default function AboutPage() {
   return (
     <div className="flex">
-      <main className="ml-64 w-full min-h-screen bg-background px-10 py-12">
+      <main>
         {/* Header Section */}
         <section className="max-w-5xl mx-auto mb-12">
           <h1 className="text-4xl font-semibold text-text-primary mb-4">About Me</h1>

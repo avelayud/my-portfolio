@@ -205,7 +205,7 @@ export default function EducationPage() {
   };
 
   return (
-    <main className="min-h-screen bg-background flex">
+    <main>
       <div className="flex-1 md:ml-64 ml-0 pt-14 md:pt-0">
         {/* HERO: vertical list, tall section */}
         <section id="top" className="edu-hero-section">
