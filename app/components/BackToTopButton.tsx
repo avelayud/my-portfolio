@@ -2,22 +2,18 @@
 
 import { useEffect, useState } from "react";
 
-const SCROLL_THRESHOLD = 250; // px before showing button
+const SCROLL_THRESHOLD = 250;
 
 const BackToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > SCROLL_THRESHOLD) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      setIsVisible(window.scrollY > SCROLL_THRESHOLD);
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // run on mount
+    handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -36,7 +32,10 @@ const BackToTopButton = () => {
       aria-label="Back to top"
       onClick={scrollToTop}
       className="
-        fixed bottom-6 right-6 z-40
+        fixed
+        bottom-24 right-6
+        md:bottom-20 md:right-10
+        z-40
         rounded-full border border-border/40 bg-background/90
         shadow-skeuo-soft backdrop-blur
         p-3 md:p-3.5
