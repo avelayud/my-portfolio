@@ -1,8 +1,6 @@
 // app/contact/page.tsx
 "use client";
 
-import Sidebar from "@/app/components/Sidebar";
-
 function IconMail(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
@@ -77,7 +75,6 @@ function IconLocation(props: React.SVGProps<SVGSVGElement>) {
 export default function ContactPage() {
   return (
     <div className="flex">
-      <Sidebar />
 
       <main className="ml-64 w-full min-h-screen bg-background px-10 py-16">
         <div className="section-container">

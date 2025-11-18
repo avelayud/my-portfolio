@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Sidebar from "@/app/components/Sidebar";
 import dynamic from "next/dynamic";
 import { Globe2, Camera, Book, Dumbbell, Code2 } from "lucide-react";
 
@@ -40,7 +39,6 @@ const visitedCountryData = [
 export default function AboutPage() {
   return (
     <div className="flex">
-      <Sidebar />
       <main className="ml-64 w-full min-h-screen bg-background px-10 py-12">
         {/* Header Section */}
         <section className="max-w-5xl mx-auto mb-12">

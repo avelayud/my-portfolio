@@ -1,11 +1,7 @@
-import Sidebar from "@/app/components/Sidebar";
-
 export default function Home() {
   return (
     <main className="min-h-screen bg-background flex">
       
-      <Sidebar />
-
       {/* MAIN CONTENT */}
       <div className="flex-1 md:ml-64 ml-0 pt-14 md:pt-0">
         {/* HERO + SNAPSHOT */}

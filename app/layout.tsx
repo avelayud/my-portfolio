@@ -1,7 +1,9 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
 import BackToTopButton from "./components/BackToTopButton";
 
@@ -30,17 +32,24 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-text-primary`}
       >
-        <div className="min-h-screen flex flex-col">
-          <main className="flex-1">
-            {children}
-          </main>
+        <div className="min-h-screen bg-background">
+          {/* Global sidebar (desktop + mobile top bar handled inside Sidebar) */}
+          <Sidebar />
 
-          {/* Global footer */}
-          <Footer />
+          {/* Main content area shifted right of sidebar on desktop */}
+          <div className="flex flex-col min-h-screen md:ml-64">
+            {/* Top padding so content doesn't sit under mobile top bar */}
+            <main className="flex-1 pt-16 md:pt-10">
+              {children}
+            </main>
+
+            {/* Global footer */}
+            <Footer />
+          </div>
+
+          {/* Floating Back to Top button */}
+          <BackToTopButton />
         </div>
-
-        {/* Floating Back to Top Button */}
-        <BackToTopButton />
       </body>
     </html>
   );
