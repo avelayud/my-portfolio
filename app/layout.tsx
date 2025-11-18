@@ -33,11 +33,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-text-primary`}
       >
         <div className="min-h-screen bg-background">
-          {/* Global sidebar (desktop + mobile top bar handled inside Sidebar) */}
+          {/* Global sidebar (desktop + mobile handled inside) */}
           <Sidebar />
 
-          {/* Main content area shifted right of sidebar on desktop */}
-          <div className="flex flex-col min-h-screen md:ml-64">
+          {/* Main column; pad left on desktop to clear fixed sidebar */}
+          <div className="flex flex-col min-h-screen md:pl-64">
             {/* Top padding so content doesn't sit under mobile top bar */}
             <main className="flex-1 pt-16 md:pt-10">
               {children}
