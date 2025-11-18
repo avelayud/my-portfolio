@@ -147,8 +147,9 @@
   /* Light accent variants per institution */
 
   .edu-card-mit {
-    @apply bg-gradient-to-r from-brand-primary/5 to-brand-secondary/5 border-brand-secondary/30;
+    @apply bg-gradient-to-br from-rose-100/40 to-rose-50 border-rose-300/40;
   }
+
 
   .edu-card-neu {
     @apply bg-gradient-to-r from-brand-secondary/5 to-brand-primary/5 border-brand-primary/25;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Sidebar from "@/components/Sidebar";
 
 type EduId = "mit" | "neu" | "lyon" | "eahs";
@@ -173,50 +173,36 @@ const EDUCATION: EduEntry[] = [
 ];
 
 export default function EducationPage() {
-  const [activeId, setActiveId] = useState<EduId>("neu");
+  const [activeId, setActiveId] = useState<EduId | null>(null);
 
   const [activeActivityByEdu, setActiveActivityByEdu] = useState<
     Partial<Record<EduId, string | null>>
   >({});
 
   const handlePillClick = (eduId: EduId, title: string) => {
-  setActiveActivityByEdu((prev) => {
-    const current = prev[eduId] ?? null;
-    // Toggle: clicking again collapses
-    return {
-      ...prev,
-      [eduId]: current === title ? null : title,
-            };
+    setActiveActivityByEdu((prev) => {
+      const current = prev[eduId] ?? null;
+      return {
+        ...prev,
+        [eduId]: current === title ? null : title,
+      };
     });
   };
 
-
-  // Scroll-reveal for cards
-    useEffect(() => {
-    const elements = document.querySelectorAll<HTMLElement>(".reveal");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("reveal-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    elements.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
-
   const handleSelect = (id: EduId) => {
-    setActiveId(id);
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    setActiveId((prev) => {
+      const next = prev === id ? null : id;
+
+      // Only scroll when opening a card
+      if (next === id) {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+
+      return next;
+    });
   };
 
   return (
@@ -289,6 +275,7 @@ export default function EducationPage() {
         <section className="section-container pb-24 space-y-8">
           {EDUCATION.map((edu) => {
             const isActive = edu.id === activeId;
+
             return (
               <article
                 key={edu.id}
@@ -296,7 +283,7 @@ export default function EducationPage() {
                 className={`edu-card ${edu.cardAccentClass} ${
                   isActive ? "edu-card-active" : "edu-card-inactive"
                 } scroll-mt-28`}
-                onClick={() => setActiveId(edu.id)}
+                onClick={() => handleSelect(edu.id)}
               >
                 <header className="edu-card-header">
                   <div>
@@ -318,57 +305,60 @@ export default function EducationPage() {
                     <p className="edu-card-long">{edu.longDesc}</p>
 
                     {/* Activity pills */}
-
                     <div className="edu-pill-row">
-                        {(() => {
-                            const activeTitle = activeActivityByEdu[edu.id] ?? null;
+                      {(() => {
+                        const activeTitle = activeActivityByEdu[edu.id] ?? null;
 
-                            const activitiesForCard = activeTitle
-                            ? [
-                                // active first
-                                ...edu.activities.filter((a) => a.title === activeTitle),
-                                // others after
-                                ...edu.activities.filter((a) => a.title !== activeTitle),
-                                ]
-                            : edu.activities;
+                        const activitiesForCard = activeTitle
+                          ? [
+                              // active first
+                              ...edu.activities.filter(
+                                (a) => a.title === activeTitle
+                              ),
+                              // others after
+                              ...edu.activities.filter(
+                                (a) => a.title !== activeTitle
+                              ),
+                            ]
+                          : edu.activities;
 
-                            return activitiesForCard.map((act) => {
-                            const isActivityActive = activeActivityByEdu[edu.id] === act.title;
+                        return activitiesForCard.map((act) => {
+                          const isActivityActive =
+                            activeActivityByEdu[edu.id] === act.title;
 
-                            return (
-                                <button
-                                key={act.title}
-                                type="button"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    handlePillClick(edu.id, act.title);
-                                }}
-                                className={`edu-pill ${edu.pillAccentClass} ${
-                                    isActivityActive ? "edu-pill-active" : ""
-                                }`}
-                                >
-                                {/* Always show title */}
-                                <span className="font-semibold text-text-primary">
-                                    {act.title}
-                                </span>
+                          return (
+                            <button
+                              key={act.title}
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handlePillClick(edu.id, act.title);
+                              }}
+                              className={`edu-pill ${edu.pillAccentClass} ${
+                                isActivityActive ? "edu-pill-active" : ""
+                              }`}
+                            >
+                              {/* Always show title */}
+                              <span className="font-semibold text-text-primary">
+                                {act.title}
+                              </span>
 
-                                {/* Only show tag + description when active */}
-                                {isActivityActive && (
-                                    <>
-                                    <span className="edu-pill-badge mt-1">
-                                        {act.category}
-                                    </span>
-                                    <p className="text-[11px] text-text-secondary mt-1">
-                                        {act.desc}
-                                    </p>
-                                    </>
-                                )}
-                                </button>
-                            );
-                            });
-                        })()}
+                              {/* Only show tag + description when active */}
+                              {isActivityActive && (
+                                <>
+                                  <span className="edu-pill-badge mt-1">
+                                    {act.category}
+                                  </span>
+                                  <p className="text-[11px] text-text-secondary mt-1">
+                                    {act.desc}
+                                  </p>
+                                </>
+                              )}
+                            </button>
+                          );
+                        });
+                      })()}
                     </div>
-
                   </>
                 )}
               </article>
