@@ -1,4 +1,5 @@
 // app/contact/page.tsx
+"use client";
 
 function IconMail(props: React.SVGProps<SVGSVGElement>) {
   return (
