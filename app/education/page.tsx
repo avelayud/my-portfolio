@@ -176,7 +176,7 @@ export default function EducationPage() {
   const [activeId, setActiveId] = useState<EduId>("neu");
 
   // Scroll-reveal for cards
-  useEffect(() => {
+    useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>(".reveal");
     const observer = new IntersectionObserver(
       (entries) => {
@@ -277,7 +277,7 @@ export default function EducationPage() {
               <article
                 key={edu.id}
                 id={edu.id}
-                className={`reveal edu-card ${edu.cardAccentClass} ${
+                className={`edu-card ${edu.cardAccentClass} ${
                   isActive ? "edu-card-active" : "edu-card-inactive"
                 } scroll-mt-28`}
                 onClick={() => setActiveId(edu.id)}
