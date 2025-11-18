@@ -72,16 +72,32 @@
 
   /* HERO LIST (Education top section) */
 
+
+  /* HERO (Education) */
+
+  .edu-hero-section {
+    @apply section-container pt-24 pb-20 md:min-h-[80vh] flex flex-col justify-center;
+  }
+
   .hero-list {
-    @apply flex flex-col gap-3 mt-6;
+    @apply flex flex-col gap-4 mt-8;
   }
 
   .hero-list-item {
-    @apply flex items-center gap-3 cursor-pointer py-2;
+    @apply flex items-center gap-4 cursor-pointer px-3 py-3 rounded-av-md 
+           border border-transparent transition text-left;
+  }
+
+  .hero-list-item:hover {
+    @apply bg-surface shadow-skeuo-soft border-divider;
+  }
+
+  .hero-list-item-active {
+    @apply bg-surface shadow-skeuo-soft border-brand-secondary/40;
   }
 
   .hero-list-text-main {
-    @apply text-base md:text-lg font-semibold text-text-primary;
+    @apply text-lg md:text-xl font-semibold text-text-primary;
   }
 
   .hero-list-text-meta {
@@ -96,7 +112,7 @@
   /* EDUCATION CARDS (summary + expanded view) */
 
   .edu-card {
-    @apply rounded-av-lg p-5 border border-divider transition cursor-pointer;
+    @apply rounded-av-lg p-6 md:p-8 border border-divider transition cursor-pointer bg-surface;
   }
 
   .edu-card-active {
@@ -108,15 +124,15 @@
   }
 
   .edu-card-header {
-    @apply flex items-start justify-between gap-4 mb-2;
+    @apply flex items-start justify-between gap-4 mb-3;
   }
 
   .edu-card-title {
-    @apply text-base md:text-lg font-semibold text-text-primary;
+    @apply text-lg md:text-2xl font-semibold text-text-primary;
   }
 
   .edu-card-meta {
-    @apply text-[11px] text-text-secondary;
+    @apply text-[11px] md:text-xs text-text-secondary;
   }
 
   .edu-card-tag {
@@ -124,12 +140,13 @@
   }
 
   .edu-card-short {
-    @apply text-sm text-text-secondary;
+    @apply text-sm md:text-base text-text-secondary;
   }
 
   .edu-card-long {
-    @apply text-sm text-text-secondary mt-3;
+    @apply text-sm md:text-base text-text-secondary mt-3;
   }
+
 
   /* Light accent variants per institution */
 
@@ -150,65 +167,69 @@
     @apply bg-gradient-to-r from-amber-100/40 to-brand-secondary/5 border-brand-secondary/25;
   }
 
-  /* ACTIVITY PILLS */
+/* ACTIVITY PILLS */
 
-
-    /* Pill row */
-    .edu-pill-row {
-    @apply flex flex-wrap gap-2 mt-4;
-    }
-
-    /* Default pill — compact */
-    .edu-pill {
-    @apply text-[11px] md:text-xs px-3 py-1 rounded-full border border-divider 
-            bg-surface/80 text-text-secondary transition-all duration-200
-            inline-flex items-center justify-center text-center gap-1 cursor-pointer
-            leading-tight;
-    }
-
-    /* Hover: light highlight only */
-    .edu-pill:hover {
-    @apply bg-surface shadow-skeuo-soft;
-    }
-
-    /* Expanded pill */
-    .edu-pill-active {
-    @apply bg-surface shadow-skeuo-soft flex-col items-center justify-center text-center w-full 
-            px-4 py-3 rounded-av-md;
-    }
-
-    /* Larger text when expanded */
-    .edu-pill-active .font-semibold {
-    @apply text-sm md:text-base;
-    }
-
-    .edu-pill-active .edu-pill-badge {
-    @apply text-[10px] md:text-xs;
-    }
-
-    .edu-pill-active p {
-    @apply text-[12px] md:text-sm leading-snug;
+/* Pill row */
+.edu-pill-row {
+  @apply flex flex-wrap gap-2 mt-4;
 }
 
-    .edu-pill-badge {
-        @apply text-[9px] uppercase tracking-wide;
-    }
+/* Default pill — compact, evenly centered */
+.edu-pill {
+  @apply text-[11px] md:text-xs px-3 py-1.5 rounded-full border border-divider 
+         bg-surface/80 text-text-secondary transition-all duration-200
+         inline-flex items-center justify-center text-center cursor-pointer
+         leading-tight whitespace-nowrap;
+}
 
-  .edu-pill-mit {
-    @apply border-brand-primary/30 bg-brand-primary/5;
-  }
+/* Hover: simple highlight */
+.edu-pill:hover {
+  @apply bg-surface shadow-skeuo-soft;
+}
 
-  .edu-pill-neu {
-    @apply border-brand-secondary/30 bg-brand-secondary/5;
-  }
+/* Expanded pill */
+.edu-pill-active {
+  @apply bg-surface shadow-skeuo-soft flex flex-col items-center justify-center 
+         text-center w-full px-4 py-4 rounded-av-md gap-1;
+}
 
-  .edu-pill-lyon {
-    @apply border-emerald-400/40 bg-emerald-50;
-  }
+/* Title larger when expanded */
+.edu-pill-active .font-semibold {
+  @apply text-sm md:text-base;
+}
 
-  .edu-pill-eahs {
-    @apply border-amber-400/40 bg-amber-50;
-  }
+/* Category tag */
+.edu-pill-badge {
+  @apply text-[9px] uppercase tracking-wide text-text-muted;
+}
+
+/* Category larger when expanded */
+.edu-pill-active .edu-pill-badge {
+  @apply text-[10px] md:text-xs;
+}
+
+/* Expanded description */
+.edu-pill-active p {
+  @apply text-[12px] md:text-sm leading-snug max-w-[32rem];
+}
+
+/* COLOR VARIANTS */
+.edu-pill-mit {
+  @apply border-brand-primary/30 bg-brand-primary/5;
+}
+
+.edu-pill-neu {
+  @apply border-brand-secondary/30 bg-brand-secondary/5;
+}
+
+.edu-pill-lyon {
+  @apply border-emerald-400/40 bg-emerald-50;
+}
+
+.edu-pill-eahs {
+  @apply border-amber-400/40 bg-amber-50;
+}
+
 }
 
 /* Flip-card / 3D utilities (Experience section) */

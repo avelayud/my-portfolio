@@ -210,8 +210,8 @@ export default function EducationPage() {
       <Sidebar />
 
       <div className="flex-1 md:ml-64 ml-0 pt-14 md:pt-0">
-        {/* HERO: vertical list */}
-        <section id="top" className="section-container pt-20 pb-8">
+        {/* HERO: vertical list, tall section */}
+        <section id="top" className="edu-hero-section">
           <div className="relative">
             {/* Faint blue accent bar */}
             <div className="hidden md:block absolute -left-8 top-0 h-full w-1 rounded-full bg-brand-secondary/25" />
@@ -223,7 +223,7 @@ export default function EducationPage() {
               </p>
 
               {/* Heading + line */}
-              <div className="mb-4">
+              <div className="mb-2">
                 <h1 className="text-4xl md:text-[2.75rem] font-bold text-text-primary mb-2 leading-tight">
                   Global, applied, and still ongoing.
                 </h1>
@@ -236,30 +236,36 @@ export default function EducationPage() {
 
               {/* Hero vertical list */}
               <div className="hero-list">
-                {EDUCATION.map((edu) => (
-                  <button
-                    key={edu.id}
-                    type="button"
-                    onClick={() => handleSelect(edu.id)}
-                    className="hero-list-item text-left"
-                  >
-                    <div className="snapshot-icon">
-                      {edu.id === "mit"
-                        ? "🤖"
-                        : edu.id === "neu"
-                        ? "🎓"
-                        : edu.id === "lyon"
-                        ? "🌍"
-                        : "📣"}
-                    </div>
-                    <div>
-                      <div className="hero-list-text-main">{edu.name}</div>
-                      <div className="hero-list-text-meta">
-                        {edu.duration} · {edu.location}
+                {EDUCATION.map((edu) => {
+                  const isActive = edu.id === activeId;
+
+                  return (
+                    <button
+                      key={edu.id}
+                      type="button"
+                      onClick={() => handleSelect(edu.id)}
+                      className={`hero-list-item ${
+                        isActive ? "hero-list-item-active" : ""
+                      }`}
+                    >
+                      <div className="snapshot-icon">
+                        {edu.id === "mit"
+                          ? "🤖"
+                          : edu.id === "neu"
+                          ? "🎓"
+                          : edu.id === "lyon"
+                          ? "🌍"
+                          : "📣"}
                       </div>
-                    </div>
-                  </button>
-                ))}
+                      <div>
+                        <div className="hero-list-text-main">{edu.name}</div>
+                        <div className="hero-list-text-meta">
+                          {edu.duration} · {edu.location}
+                        </div>
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -272,7 +278,7 @@ export default function EducationPage() {
         </section>
 
         {/* DETAIL CARDS */}
-        <section className="section-container pb-24 space-y-8">
+        <section className="section-container pb-24 space-y-10">
           {EDUCATION.map((edu) => {
             const isActive = edu.id === activeId;
 
