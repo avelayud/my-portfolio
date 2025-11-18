@@ -92,7 +92,7 @@
     @apply underline underline-offset-4;
   }
 
-  /* SCROLL REVEAL */
+  /* SCROLL REVEAL
 
   .reveal {
     opacity: 0;
@@ -104,6 +104,7 @@
     opacity: 1;
     transform: translateY(0);
   }
+  */
 
   /* EDUCATION CARDS (summary + expanded view) */
 
@@ -167,20 +168,24 @@
     @apply flex flex-wrap gap-2 mt-4;
   }
 
+  /* Default: small chip, width based on title */
   .edu-pill {
     @apply text-[11px] md:text-xs px-3 py-1.5 rounded-full border border-divider 
            bg-surface/80 text-text-secondary transition 
-           flex items-center gap-1.5 order-none;
+           inline-flex items-center gap-1.5 cursor-pointer;
   }
 
   .edu-pill:hover {
-    @apply shadow-skeuo-soft bg-surface;
-    order: -1;
-    flex-basis: 100%;
+    @apply bg-surface shadow-skeuo-soft;
   }
 
   .edu-pill-badge {
     @apply text-[9px] uppercase tracking-wide;
+  }
+
+  /* Expanded pill: stack content vertically when active */
+  .edu-pill-active {
+    @apply bg-surface shadow-skeuo-soft flex-col items-start;
   }
 
   .edu-pill-mit {

@@ -175,6 +175,22 @@ const EDUCATION: EduEntry[] = [
 export default function EducationPage() {
   const [activeId, setActiveId] = useState<EduId>("neu");
 
+  const [activeActivityByEdu, setActiveActivityByEdu] = useState<
+    Partial<Record<EduId, string | null>>
+  >({});
+
+  const handlePillClick = (eduId: EduId, title: string) => {
+  setActiveActivityByEdu((prev) => {
+    const current = prev[eduId] ?? null;
+    // Toggle: clicking again collapses
+    return {
+      ...prev,
+      [eduId]: current === title ? null : title,
+            };
+    });
+  };
+
+
   // Scroll-reveal for cards
     useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>(".reveal");
@@ -320,6 +336,42 @@ export default function EducationPage() {
                           </span>
                         </div>
                       ))}
+                    </div>
+                    <div className="edu-pill-row">
+                        {edu.activities.map((act) => {
+                            const isActivityActive = activeActivityByEdu[edu.id] === act.title;
+
+                            return (
+                            <button
+                                key={act.title}
+                                type="button"
+                                onClick={(e) => {
+                                e.stopPropagation(); // don’t toggle the whole card when clicking a pill
+                                handlePillClick(edu.id, act.title);
+                                }}
+                                className={`edu-pill ${edu.pillAccentClass} ${
+                                isActivityActive ? "edu-pill-active" : ""
+                                }`}
+                            >
+                                {/* Always show title */}
+                                <span className="font-semibold text-text-primary">
+                                {act.title}
+                                </span>
+
+                                {/* Only show tag + description when active */}
+                                {isActivityActive && (
+                                <>
+                                    <span className="edu-pill-badge mt-1">
+                                    {act.category}
+                                    </span>
+                                    <p className="text-[11px] text-text-secondary mt-1">
+                                    {act.desc}
+                                    </p>
+                                </>
+                                )}
+                            </button>
+                            );
+                        })}
                     </div>
                   </>
                 )}
