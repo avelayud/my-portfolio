@@ -165,30 +165,47 @@
 
   /* ACTIVITY PILLS */
 
-  .edu-pill-row {
+
+    /* Pill row */
+    .edu-pill-row {
     @apply flex flex-wrap gap-2 mt-4;
-  }
+    }
 
-  /* Default: small chip, width based on title */
-  .edu-pill {
-    @apply text-[11px] md:text-xs px-3 py-1.5 rounded-full border border-divider 
-           bg-surface/80 text-text-secondary transition 
-           inline-flex items-center justify-center text-center gap-1 cursor-pointer;
-  }
+    /* Default pill — compact */
+    .edu-pill {
+    @apply text-[11px] md:text-xs px-3 py-1 rounded-full border border-divider 
+            bg-surface/80 text-text-secondary transition-all duration-200
+            inline-flex items-center justify-center text-center gap-1 cursor-pointer
+            leading-tight;
+    }
 
-  /* Hover: simple highlight, no movement/reordering */
-  .edu-pill:hover {
+    /* Hover: light highlight only */
+    .edu-pill:hover {
     @apply bg-surface shadow-skeuo-soft;
-  }
+    }
 
-  .edu-pill-badge {
-    @apply text-[9px] uppercase tracking-wide;
-  }
+    /* Expanded pill */
+    .edu-pill-active {
+    @apply bg-surface shadow-skeuo-soft flex-col items-center justify-center text-center w-full 
+            px-4 py-3 rounded-av-md;
+    }
 
-  /* Expanded pill: full-width, stacked, centered text */
-  .edu-pill-active {
-    @apply bg-surface shadow-skeuo-soft flex-col items-center justify-center text-center w-full;
-  }
+    /* Larger text when expanded */
+    .edu-pill-active .font-semibold {
+    @apply text-sm md:text-base;
+    }
+
+    .edu-pill-active .edu-pill-badge {
+    @apply text-[10px] md:text-xs;
+    }
+
+    .edu-pill-active p {
+    @apply text-[12px] md:text-sm leading-snug;
+}
+
+    .edu-pill-badge {
+        @apply text-[9px] uppercase tracking-wide;
+    }
 
   .edu-pill-mit {
     @apply border-brand-primary/30 bg-brand-primary/5;
