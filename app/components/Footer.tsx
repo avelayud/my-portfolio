@@ -48,7 +48,7 @@ const Footer = () => {
                     LinkedIn
                   </a>
                   <a
-                    href="#"
+                    href="https://www.instagram.com/arjuna.velay/?igsh=dGY3ZTM2cnp6cW9v&utm_source=qr"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-brand-primary transition"
@@ -56,7 +56,7 @@ const Footer = () => {
                     Instagram
                   </a>
                   <a
-                    href="#"
+                    href="https://www.strava.com/athletes/136319241"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-brand-primary transition"
@@ -64,7 +64,7 @@ const Footer = () => {
                     Strava
                   </a>
                   <a
-                    href="#"
+                    href="https://github.com/avelayud"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-brand-primary transition"
