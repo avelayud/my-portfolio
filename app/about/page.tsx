@@ -11,27 +11,33 @@ const WorldMap = dynamic(
 
 // ISO 3166-1 alpha-2 codes for visited countries
 const visitedCountryData = [
-  { country: "US", value: 1 },
-  { country: "CA", value: 1 },
-  { country: "MX", value: 1 },
-  { country: "CR", value: 1 },
-  { country: "CO", value: 1 },
-  { country: "BZ", value: 1 },
-  { country: "ES", value: 1 },
-  { country: "FR", value: 1 },
-  { country: "PT", value: 1 },
-  { country: "MC", value: 1 },
-  { country: "NL", value: 1 },
-  { country: "CH", value: 1 },
-  { country: "GB", value: 1 },
-  { country: "IE", value: 1 },
-  { country: "IN", value: 1 },
-  { country: "TH", value: 1 },
-  { country: "KH", value: 1 },
-  { country: "VN", value: 1 },
-  { country: "MA", value: 1 },
-  { country: "VA", value: 1 },
-  { country: "AE", value: 1 },
+  { country: "US", value: 1 }, // United States
+  { country: "CA", value: 1 }, // Canada
+  { country: "MX", value: 1 }, // Mexico
+  { country: "CR", value: 1 }, // Costa Rica
+  { country: "CO", value: 1 }, // Colombia
+  { country: "BZ", value: 1 }, // Belize
+  { country: "ES", value: 1 }, // Spain
+  { country: "FR", value: 1 }, // France
+  { country: "PT", value: 1 }, // Portugal
+  { country: "MC", value: 1 }, // Monaco
+  { country: "NL", value: 1 }, // Netherlands
+  { country: "CH", value: 1 }, // Switzerland
+  { country: "GB", value: 1 }, // United Kingdom
+  { country: "IE", value: 1 }, // Ireland
+  { country: "IN", value: 1 }, // India
+  { country: "TH", value: 1 }, // Thailand
+  { country: "KH", value: 1 }, // Cambodia
+  { country: "VN", value: 1 }, // Vietnam
+  { country: "MA", value: 1 }, // Morocco
+  { country: "VA", value: 1 }, // Vatican City
+  { country: "AE", value: 1 }, // United Arab Emirates
+  { country: "IT", value: 1 }, // Italy
+  { country: "TR", value: 1 }, // Turkey
+  { country: "BE", value: 1 }, // Belgium
+  { country: "LC", value: 1 }, // Saint Lucia
+  { country: "GI", value: 1 }, // Gibraltar
+  { country: "PE", value: 1 }, // Peru
 ];
 
 export default function AboutPage() {
