@@ -6,9 +6,8 @@ import { useState } from "react";
 
 const navItems = [
   { key: "overview", label: "Overview", href: "/" },
-  { key: "experience", label: "Experience", href: "/#experience" },
-  { key: "featured-work", label: "Deployments & Product", href: "/#featured-work" },
-  { key: "projects", label: "Projects", href: "/projects" },
+  { key: "experience", label: "Experience", href: "/experience" },
+  { key: "deployments", label: "Deployments & Product", href: "/deployments" },
   { key: "education", label: "Education", href: "/education" },
   { key: "about", label: "About", href: "/about" },
   { key: "contact", label: "Contact", href: "/contact" },
@@ -18,7 +17,8 @@ function isActive(key: string, href: string, pathname: string) {
   const baseHref = href.split("#")[0];
 
   if (key === "overview") return pathname === "/";
-  if (key === "projects") return pathname.startsWith("/projects");
+  if (key === "experience") return pathname.startsWith("/experience");
+  if (key === "deployments") return pathname.startsWith("/deployments");
   if (key === "education") return pathname.startsWith("/education");
   if (key === "about") return pathname.startsWith("/about");
   if (key === "contact") return pathname.startsWith("/contact");
@@ -91,7 +91,6 @@ export default function Sidebar() {
           className="flex items-center justify-center h-8 w-8 rounded-av-md border border-divider"
           aria-label="Toggle navigation"
         >
-          {/* simple hamburger icon */}
           <div className="space-y-1.5">
             <span className="block h-[2px] w-4 bg-text-primary" />
             <span className="block h-[2px] w-4 bg-text-primary" />
