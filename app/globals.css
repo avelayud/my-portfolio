@@ -110,18 +110,17 @@
   }
 
 
-  /* EDUCATION CARDS (summary + expanded view) */
-
+  /* --- Education (standardized, no per-school theming) --- */
   .edu-card {
-    @apply rounded-av-lg p-6 md:p-8 border border-divider transition cursor-pointer bg-surface;
+    @apply rounded-2xl border border-border-subtle bg-background/70 px-6 py-6 shadow-skeuo-soft/40 cursor-pointer transition;
   }
 
   .edu-card-active {
-    @apply shadow-skeuo-soft;
+    @apply border-brand-primary/40 ring-1 ring-brand-primary/25;
   }
 
   .edu-card-inactive {
-    @apply opacity-80;
+    @apply hover:border-border-subtle/80;
   }
 
   .edu-card-header {
@@ -129,110 +128,45 @@
   }
 
   .edu-card-title {
-    @apply text-lg md:text-2xl font-semibold text-text-primary;
+    @apply text-base md:text-lg font-semibold text-text-primary;
   }
 
   .edu-card-meta {
-    @apply text-[11px] md:text-xs text-text-secondary;
+    @apply text-[11px] text-text-tertiary mt-1;
   }
 
   .edu-card-tag {
-    @apply text-[11px] text-text-muted uppercase tracking-wide;
+    @apply text-[10px] uppercase tracking-[0.16em] text-text-tertiary border border-border-subtle rounded-full px-2.5 py-1 whitespace-nowrap;
   }
 
   .edu-card-short {
-    @apply text-sm md:text-base text-text-secondary;
+    @apply text-sm text-text-secondary;
   }
 
   .edu-card-long {
-    @apply text-sm md:text-base text-text-secondary mt-3;
+    @apply text-sm text-text-secondary mt-3 leading-relaxed;
   }
 
-
-  /* Light accent variants per institution */
-
-  .edu-card-mit {
-    @apply bg-gradient-to-br from-rose-100/40 to-rose-50 border-rose-300/40;
+  .edu-pill-row {
+    @apply mt-4 flex flex-wrap gap-2;
   }
 
-
-  .edu-card-neu {
-    @apply bg-gradient-to-r from-brand-secondary/5 to-brand-primary/5 border-brand-primary/25;
+  .edu-pill {
+    @apply text-left rounded-xl border border-border-subtle bg-background/60 px-3 py-2 text-xs text-text-secondary transition;
   }
 
-  .edu-card-lyon {
-    @apply bg-gradient-to-r from-emerald-100/40 to-brand-secondary/5 border-brand-secondary/25;
+  .edu-pill:hover {
+    @apply border-border-subtle/80;
   }
 
-  .edu-card-eahs {
-    @apply bg-gradient-to-r from-amber-100/40 to-brand-secondary/5 border-brand-secondary/25;
+  .edu-pill-active {
+    @apply border-brand-primary/40 ring-1 ring-brand-primary/25;
   }
 
-/* ACTIVITY PILLS */
-
-/* Pill row */
-.edu-pill-row {
-  @apply flex flex-wrap gap-2 mt-4;
+  .edu-pill-badge {
+    @apply inline-flex w-fit rounded-full border border-border-subtle bg-background px-2 py-0.5 text-[10px] text-text-tertiary;
+  }
 }
-
-/* Default pill — compact, evenly centered */
-.edu-pill {
-  @apply text-[11px] md:text-xs px-3 py-1.5 rounded-full border border-divider 
-         bg-surface/80 text-text-secondary transition-all duration-200
-         inline-flex items-center justify-center text-center cursor-pointer
-         leading-tight whitespace-nowrap;
-}
-
-/* Hover: simple highlight */
-.edu-pill:hover {
-  @apply bg-surface shadow-skeuo-soft;
-}
-
-/* Expanded pill */
-.edu-pill-active {
-  @apply bg-surface shadow-skeuo-soft flex flex-col items-center justify-center 
-         text-center w-full px-4 py-4 rounded-av-md gap-1;
-}
-
-/* Title larger when expanded */
-.edu-pill-active .font-semibold {
-  @apply text-sm md:text-base;
-}
-
-/* Category tag */
-.edu-pill-badge {
-  @apply text-[9px] uppercase tracking-wide text-text-muted;
-}
-
-/* Category larger when expanded */
-.edu-pill-active .edu-pill-badge {
-  @apply text-[10px] md:text-xs;
-}
-
-/* Expanded description */
-.edu-pill-active p {
-  @apply text-[12px] md:text-sm leading-snug max-w-[32rem];
-}
-
-/* COLOR VARIANTS */
-.edu-pill-mit {
-  @apply border-brand-primary/30 bg-brand-primary/5;
-}
-
-.edu-pill-neu {
-  @apply border-brand-secondary/30 bg-brand-secondary/5;
-}
-
-.edu-pill-lyon {
-  @apply border-emerald-400/40 bg-emerald-50;
-}
-
-.edu-pill-eahs {
-  @apply border-amber-400/40 bg-amber-50;
-}
-
-}
-
 /* Flip-card / 3D utilities (Experience section) */
 .perspective {
   perspective: 1200px;

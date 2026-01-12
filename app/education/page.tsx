@@ -2,6 +2,7 @@
 "use client";
 
 import { useState } from "react";
+import PageHeader from "@/app/components/PageHeader";
 
 type EduId = "mit" | "neu" | "lyon" | "eahs";
 
@@ -19,8 +20,6 @@ type EduEntry = {
   duration: string;
   shortDesc: string;
   longDesc: string;
-  cardAccentClass: string;
-  pillAccentClass: string;
   activities: Activity[];
 };
 
@@ -35,8 +34,6 @@ const EDUCATION: EduEntry[] = [
       "Focused on using Python to build AI-powered and data-driven applications.",
     longDesc:
       "Built end-to-end ML pipelines and analytics workflows using Python, from EDA and feature engineering through model training and evaluation, with a focus on computer vision and deployment-minded use cases.",
-    cardAccentClass: "edu-card-mit",
-    pillAccentClass: "edu-pill-mit",
     activities: [
       {
         title: "ML Pipelines",
@@ -70,8 +67,6 @@ const EDUCATION: EduEntry[] = [
       "Industrial Engineering with Economics & Math minors, built around three 6-month co-op rotations.",
     longDesc:
       "Combined engineering fundamentals with real-world rotations in New York, San Francisco, and Mexico, tying data and process design to how organizations actually operate under constraints.",
-    cardAccentClass: "edu-card-neu",
-    pillAccentClass: "edu-pill-neu",
     activities: [
       {
         title: "Co-op Rotations",
@@ -115,8 +110,6 @@ const EDUCATION: EduEntry[] = [
       "Study abroad term through Northeastern combining coursework with immersion in French language and culture.",
     longDesc:
       "Spent a term in Lyon, experiencing how institutions and teams operate outside the U.S., and learning to navigate academics and daily life in French.",
-    cardAccentClass: "edu-card-lyon",
-    pillAccentClass: "edu-pill-lyon",
     activities: [
       {
         title: "French Language",
@@ -140,8 +133,6 @@ const EDUCATION: EduEntry[] = [
       "Leadership, academics, sports, and music that set the base for how I show up on teams.",
     longDesc:
       "Balanced student leadership roles, varsity sports, music, and a heavy AP course load, building early habits for responsibility and follow-through.",
-    cardAccentClass: "edu-card-eahs",
-    pillAccentClass: "edu-pill-eahs",
     activities: [
       {
         title: "Student Council President",
@@ -174,7 +165,6 @@ const EDUCATION: EduEntry[] = [
 
 export default function EducationPage() {
   const [activeId, setActiveId] = useState<EduId | null>(null);
-
   const [activeActivityByEdu, setActiveActivityByEdu] = useState<
     Partial<Record<EduId, string | null>>
   >({});
@@ -182,99 +172,63 @@ export default function EducationPage() {
   const handlePillClick = (eduId: EduId, title: string) => {
     setActiveActivityByEdu((prev) => {
       const current = prev[eduId] ?? null;
-      return {
-        ...prev,
-        [eduId]: current === title ? null : title,
-      };
+      return { ...prev, [eduId]: current === title ? null : title };
     });
   };
 
   const handleSelect = (id: EduId) => {
     setActiveId((prev) => {
       const next = prev === id ? null : id;
-
-      // Only scroll when opening a card
       if (next === id) {
         const el = document.getElementById(id);
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
       }
-
       return next;
     });
   };
 
   return (
     <>
-      {/* HERO: vertical list, tall section */}
-      <section id="top" className="edu-hero-section">
-        <div className="relative">
-          {/* Faint blue accent bar */}
-          <div className="hidden md:block absolute -left-8 top-0 h-full w-1 rounded-full bg-brand-secondary/25" />
+      <PageHeader
+        kicker="Education"
+        title="Global, applied, and still ongoing."
+        subtitle="A path through Boston, Lyon, New York, San Francisco, and Mexico — mixing engineering, data, and real work with operators."
+      />
 
-          <div className="relative">
-            {/* Tagline */}
-            <p className="text-xs uppercase tracking-[0.25em] text-brand-secondary mb-4">
-              Education
-            </p>
-
-            {/* Heading + line */}
-            <div className="mb-2">
-              <h1 className="text-4xl md:text-[2.75rem] font-bold text-text-primary mb-2 leading-tight">
-                Global, applied, and still ongoing.
-              </h1>
-              <p className="text-sm md:text-base text-text-secondary max-w-xl">
-                A path through Boston, Lyon, New York, San Francisco, and
-                Mexico — mixing engineering, data, and real work with operators.
-              </p>
-              <div className="h-1 w-24 bg-brand-accent rounded-full mt-4" />
-            </div>
-
-            {/* Hero vertical list */}
-            <div className="hero-list">
-              {EDUCATION.map((edu) => {
-                const isActive = edu.id === activeId;
-
-                return (
-                  <button
-                    key={edu.id}
-                    type="button"
-                    onClick={() => handleSelect(edu.id)}
-                    className={`hero-list-item ${
-                      isActive ? "hero-list-item-active" : ""
-                    }`}
-                  >
-                    <div className="snapshot-icon">
-                      {edu.id === "mit"
-                        ? "🤖"
-                        : edu.id === "neu"
-                        ? "🎓"
-                        : edu.id === "lyon"
-                        ? "🌍"
-                        : "📣"}
-                    </div>
-                    <div>
-                      <div className="hero-list-text-main">{edu.name}</div>
-                      <div className="hero-list-text-meta">
-                        {edu.duration} · {edu.location}
-                      </div>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
+      {/* Hero list */}
+      <section className="section-container pb-10">
+        <div className="hero-list">
+          {EDUCATION.map((edu) => {
+            const isActive = edu.id === activeId;
+            return (
+              <button
+                key={edu.id}
+                type="button"
+                onClick={() => handleSelect(edu.id)}
+                className={`hero-list-item ${isActive ? "hero-list-item-active" : ""}`}
+              >
+                <div className="snapshot-icon">
+                  {edu.id === "mit"
+                    ? "🤖"
+                    : edu.id === "neu"
+                    ? "🎓"
+                    : edu.id === "lyon"
+                    ? "🌍"
+                    : "📣"}
+                </div>
+                <div>
+                  <div className="hero-list-text-main">{edu.name}</div>
+                  <div className="hero-list-text-meta">
+                    {edu.duration} · {edu.location}
+                  </div>
+                </div>
+              </button>
+            );
+          })}
         </div>
       </section>
 
-      {/* DETAILS HEADER */}
-      <section className="section-container pb-4">
-        <h2 className="section-title">Details &amp; Activities</h2>
-        <div className="w-full h-px bg-divider" />
-      </section>
-
-      {/* DETAIL CARDS */}
+      {/* Details */}
       <section className="section-container pb-24 space-y-10">
         {EDUCATION.map((edu) => {
           const isActive = edu.id === activeId;
@@ -283,9 +237,7 @@ export default function EducationPage() {
             <article
               key={edu.id}
               id={edu.id}
-              className={`edu-card ${edu.cardAccentClass} ${
-                isActive ? "edu-card-active" : "edu-card-inactive"
-              } scroll-mt-28`}
+              className={`edu-card ${isActive ? "edu-card-active" : "edu-card-inactive"} scroll-mt-28`}
               onClick={() => handleSelect(edu.id)}
             >
               <header className="edu-card-header">
@@ -307,21 +259,14 @@ export default function EducationPage() {
                 <>
                   <p className="edu-card-long">{edu.longDesc}</p>
 
-                  {/* Activity pills */}
                   <div className="edu-pill-row">
                     {(() => {
                       const activeTitle = activeActivityByEdu[edu.id] ?? null;
 
                       const activitiesForCard = activeTitle
                         ? [
-                            // active first
-                            ...edu.activities.filter(
-                              (a) => a.title === activeTitle
-                            ),
-                            // others after
-                            ...edu.activities.filter(
-                              (a) => a.title !== activeTitle
-                            ),
+                            ...edu.activities.filter((a) => a.title === activeTitle),
+                            ...edu.activities.filter((a) => a.title !== activeTitle),
                           ]
                         : edu.activities;
 
@@ -337,9 +282,7 @@ export default function EducationPage() {
                               e.stopPropagation();
                               handlePillClick(edu.id, act.title);
                             }}
-                            className={`edu-pill ${edu.pillAccentClass} ${
-                              isActivityActive ? "edu-pill-active" : ""
-                            }`}
+                            className={`edu-pill ${isActivityActive ? "edu-pill-active" : ""}`}
                           >
                             <span className="font-semibold text-text-primary">
                               {act.title}
