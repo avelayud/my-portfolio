@@ -1,26 +1,27 @@
 @config "../tailwind.config.js";
 @import "tailwindcss";
 
-/* Base styles */
+/* =========================
+   Base
+========================= */
 @layer base {
   body {
     @apply bg-background text-text-primary font-sans antialiased leading-relaxed;
   }
 }
 
-/* Components */
+/* =========================
+   Components
+========================= */
 @layer components {
-  /* Layout + nav */
-
+  /* --- Layout + nav --- */
   .sidebar-shell {
-    /* Use plain CSS for positioning to avoid Tailwind @apply issues */
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
 
-    @apply w-64 bg-background shadow-skeuo-soft
-      flex flex-col justify-between px-8 py-8;
+    @apply w-64 bg-background shadow-skeuo-soft flex flex-col justify-between px-8 py-8;
   }
 
   .nav-link {
@@ -35,8 +36,9 @@
     @apply text-text-primary font-medium bg-brand-secondary/10 rounded-av-md pl-3;
   }
 
+  /* --- Page spacing --- */
   .section-container {
-    @apply max-w-5xl mx-auto px-10;
+    @apply max-w-5xl mx-auto px-6 sm:px-8 md:px-10;
   }
 
   .section-title {
@@ -44,9 +46,10 @@
   }
 
   .section-subtitle {
-    @apply text-sm md:text-base text-text-secondary mb-6 max-w-2xl leading-relaxed;
+    @apply text-sm md:text-base text-text-secondary mb-6 max-w-3xl leading-relaxed;
   }
 
+  /* --- Cards --- */
   .card-skeuo {
     @apply bg-surface rounded-av-lg p-6 shadow-skeuo-soft;
   }
@@ -55,14 +58,13 @@
     @apply bg-surface rounded-av-lg p-4 shadow-skeuo-soft;
   }
 
-  /* Snapshot primitives (reused on home + edu hero) */
-
+  /* --- Snapshot primitives (reused) --- */
   .snapshot-row {
     @apply flex items-start gap-3 text-sm;
   }
 
   .snapshot-icon {
-    @apply mt-0.5 h-7 w-7 rounded-full bg-brand-secondary/10 
+    @apply mt-0.5 h-7 w-7 rounded-full bg-brand-secondary/10
            flex items-center justify-center text-[12px] text-brand-secondary;
   }
 
@@ -70,22 +72,22 @@
     @apply text-text-primary text-[11px] tracking-wide uppercase;
   }
 
-  /* HERO LIST (Education top section) */
+  /* =========================
+     Education (hero + cards)
+     (Standardized, no per-school theming)
+  ========================= */
 
-
-  /* HERO (Education) */
   .edu-hero-section {
-    @apply max-w-5xl mx-auto px-10 pt-24 pb-20 md:min-h-[80vh]
+    @apply max-w-5xl mx-auto px-6 sm:px-8 md:px-10 pt-24 pb-20 md:min-h-[80vh]
            flex flex-col justify-center;
   }
-
 
   .hero-list {
     @apply flex flex-col gap-4 mt-8;
   }
 
   .hero-list-item {
-    @apply flex items-center gap-4 cursor-pointer px-3 py-3 rounded-av-md 
+    @apply flex items-center gap-4 cursor-pointer px-3 py-3 rounded-av-md
            border border-transparent transition text-left;
   }
 
@@ -109,10 +111,9 @@
     @apply underline underline-offset-4;
   }
 
-
-  /* --- Education (standardized, no per-school theming) --- */
   .edu-card {
-    @apply rounded-2xl border border-border-subtle bg-background/70 px-6 py-6 shadow-skeuo-soft/40 cursor-pointer transition;
+    @apply rounded-2xl border border-divider bg-background/70 px-6 py-6
+           shadow-skeuo-soft/40 cursor-pointer transition;
   }
 
   .edu-card-active {
@@ -120,7 +121,7 @@
   }
 
   .edu-card-inactive {
-    @apply hover:border-border-subtle/80;
+    @apply hover:border-divider/80;
   }
 
   .edu-card-header {
@@ -131,12 +132,15 @@
     @apply text-base md:text-lg font-semibold text-text-primary;
   }
 
+  /* NOTE: replaced text-text-tertiary -> text-text-muted */
   .edu-card-meta {
-    @apply text-[11px] text-text-tertiary mt-1;
+    @apply text-[11px] text-text-muted mt-1;
   }
 
+  /* NOTE: replaced text-text-tertiary + border-border-subtle -> text-text-muted + border-divider */
   .edu-card-tag {
-    @apply text-[10px] uppercase tracking-[0.16em] text-text-tertiary border border-border-subtle rounded-full px-2.5 py-1 whitespace-nowrap;
+    @apply text-[10px] uppercase tracking-[0.16em] text-text-muted
+           border border-divider rounded-full px-2.5 py-1 whitespace-nowrap;
   }
 
   .edu-card-short {
@@ -152,22 +156,29 @@
   }
 
   .edu-pill {
-    @apply text-left rounded-xl border border-border-subtle bg-background/60 px-3 py-2 text-xs text-text-secondary transition;
+    @apply text-left rounded-xl border border-divider bg-background/60 px-3 py-2
+           text-xs text-text-secondary transition;
   }
 
   .edu-pill:hover {
-    @apply border-border-subtle/80;
+    @apply border-divider/80;
   }
 
   .edu-pill-active {
     @apply border-brand-primary/40 ring-1 ring-brand-primary/25;
   }
 
+  /* NOTE: replaced border-border-subtle + text-text-tertiary -> border-divider + text-text-muted */
   .edu-pill-badge {
-    @apply inline-flex w-fit rounded-full border border-border-subtle bg-background px-2 py-0.5 text-[10px] text-text-tertiary;
+    @apply inline-flex w-fit rounded-full border border-divider bg-background px-2 py-0.5
+           text-[10px] text-text-muted;
   }
 }
-/* Flip-card / 3D utilities (Experience section) */
+
+/* =========================
+   Flip-card / 3D utilities
+   (Experience section)
+========================= */
 .perspective {
   perspective: 1200px;
 }
