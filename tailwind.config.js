@@ -2,7 +2,6 @@
 module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
-    "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
@@ -12,28 +11,28 @@ module.exports = {
         brand: {
           primary: "#2643A3",   // Deep product blue
           secondary: "#5E6AD2", // Bright slate blue
-          accent: "#E6B800",    // Soft lemon accent
+          accent: "#E6B800",    // Soft lemon accent (use sparingly)
         },
 
         // Surfaces
-        background: "#F7F9FC", // Page background
-        surface: "#FFFFFF",    // Cards / panels
+        background: "#F7F9FC",
+        surface: "#FFFFFF",
 
         // Text
         text: {
-          primary: "#1A1F36",   // Main headings
-          secondary: "#4D5566", // Body text
-          muted: "#9CA3AF",     // Labels / metadata
+          primary: "#1A1F36",
+          secondary: "#4D5566",
+          tertiary: "#6B7280", // <- added (fixes text-text-tertiary)
+          muted: "#9CA3AF",
         },
 
-        // Subtle lines / dividers
+        // Lines / borders
         divider: "#D3DAE6",
-
-        // Optional border color if you ever need it
         border: {
           subtle: "#D3DAE6",
         },
       },
+
       borderRadius: {
         "av-sm": "8px",
         "av-md": "16px",
