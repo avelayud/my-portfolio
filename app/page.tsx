@@ -1,11 +1,20 @@
 // app/page.tsx
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import PageHeader from "@/app/components/PageHeader";
-import { Mail, Linkedin, X } from "lucide-react";
+import { Mail, Linkedin, Phone, X } from "lucide-react";
+
+type Experience = {
+  id: string;
+  company: string;
+  logoSrc: string; // /public path
+  roleLine: string; // role / group / years
+  short: string;
+  bullets: string[];
+};
 
 type Deployment = {
   id: string;
@@ -13,11 +22,75 @@ type Deployment = {
   title: string;
   summary: string;
   bullets: string[];
-  tag: string;
+};
+
+type Education = {
+  id: string;
+  icon: string;
+  school: string;
+  meta: string; // major / years
+  footer: string; // honors/clubs line
+  summary: string;
+  bullets: string[];
+};
+
+type Interest = {
+  id: string;
+  label: string;
+  emoji: string;
+  detail: string;
 };
 
 export default function Home() {
-  const deployments: Deployment[] = useMemo(
+  const experiences: Experience[] = useMemo(
+    () => [
+      {
+        id: "pwc",
+        company: "PwC",
+        logoSrc: "/companies/pwc_logo.png",
+        roleLine: "Senior Associate · Deals Transformation · 2022–Now",
+        short:
+          "Built internal tools + decision systems for teams operating under deal timelines.",
+        bullets: [
+          "Shipped a scenario hub used across engagements; reduced repeat modeling churn and improved speed-to-answer.",
+          "Designed partner-friendly outputs that work live in meetings (fast, legible, decision-ready).",
+          "Translated operator constraints into product requirements; iterated with feedback and shipped upgrades.",
+          "Owned end-to-end delivery for internal tooling: scoping, build coordination, rollout, and adoption support.",
+        ],
+      },
+      {
+        id: "am",
+        company: "Alvarez & Marsal",
+        logoSrc: "/companies/AM_logo.png",
+        roleLine: "Analyst · Performance Improvement · 2020–2022",
+        short:
+          "Built SQL workflows, visualizations, and forecast models for damages / expert testimony work.",
+        bullets: [
+          "Built repeatable SQL pipelines for multi-source datasets under tight deadlines and strict QA requirements.",
+          "Produced exhibits and visuals designed for scrutiny (clear logic, defensible assumptions, documented lineage).",
+          "Created forecast models tying assumptions to outcomes; ensured end-to-end traceability for review.",
+          "Partnered cross-functionally to translate messy inputs into crisp narratives decision-makers could use.",
+        ],
+      },
+      {
+        id: "gs",
+        company: "Goldman Sachs",
+        logoSrc: "/companies/GS_logo.png",
+        roleLine: "Operations / Markets · Internship · 2017–2018",
+        short:
+          "Early exposure to high-volume systems, tight SLAs, and failure modes that matter.",
+        bullets: [
+          "Automated recurring ops reporting; improved reliability under strict SLAs and reduced manual effort.",
+          "Analyzed flow anomalies by validating inputs, breaks, and downstream impact quickly.",
+          "Coordinated across teams to resolve data issues with minimal downtime and clear comms.",
+        ],
+      },
+    ],
+    []
+  );
+
+  // Keep your 4 featured cards here
+  const deployments = useMemo(
     () => [
       {
         id: "deal-hub",
@@ -29,81 +102,179 @@ export default function Home() {
           "Normalized financial + operational inputs into one decision-ready view.",
           "Designed workflows for non-technical teams; reduced repeat analysis churn.",
         ],
-        tag: "Deployed · Internal Tool",
       },
       {
         id: "metrics-hub",
         icon: "📈",
-        title: "Benchmarking & Performance Comparison Tool",
-        summary: "Sector metrics hub combining internal + market data for quick comps.",
+        title: "Benchmarking & Performance Tool",
+        summary: "Sector comps combining internal + market data for quick storytelling.",
         bullets: [
           "Unified disparate sources into a consistent metric dictionary.",
-          "Built “tell me the story” views for partners in live meetings.",
-          "Improved speed-to-insight by standardizing inputs + outputs.",
+          "Built “tell me the story” views for partner conversations.",
+          "Standardized inputs + outputs to improve speed-to-insight.",
         ],
-        tag: "Deployed · Analytics",
       },
       {
         id: "reporting-hub",
         icon: "🧩",
         title: "Business Reporting / Metrics Hub",
-        summary: "Reporting layer that makes status, risks, and KPIs hard to ignore.",
+        summary: "Reporting layer that makes risks + KPIs hard to ignore.",
         bullets: [
           "Translated messy operational reality into clean weekly reporting.",
-          "Created rollups that align operators and execs on the same numbers.",
+          "Created rollups aligning operators and execs on the same numbers.",
           "Designed visuals for clarity under time pressure.",
         ],
-        tag: "Deployed · Ops Reporting",
       },
       {
         id: "aml",
         icon: "🕵️",
         title: "AML Pattern Analysis (Case Study)",
-        summary: "SQL + Python exploration of coordination, routes, and suspicious behavior.",
+        summary: "SQL + Python triage of coordination, routes, and suspicious behavior.",
         bullets: [
           "Built lag, frequency, dyad, and network analyses to triage suspects.",
-          "Produced decision-ready visuals + suspect short list for a director review.",
+          "Produced decision-ready visuals + suspect short list for review.",
           "Focused on explainable signals over black-box scoring.",
         ],
-        tag: "Project · Data Analysis",
-      },
-      {
-        id: "tipper",
-        icon: "🍝",
-        title: "Restaurant Tip & Performance Analytics",
-        summary: "Prototype to quantify server performance and design a fair bonus pool.",
-        bullets: [
-          "Designed PostgreSQL schema for PoS-like transactions and shifts.",
-          "Built Python metrics for revenue, tips, and repeatable performance signals.",
-          "Grounded in real operator conversations (not spreadsheet fantasy).",
-        ],
-        tag: "In Progress · Data Product",
       },
     ],
     []
   );
 
-  // Carousel / modal state
-  const [activeDeployment, setActiveDeployment] = useState<Deployment | null>(null);
-  const [marqueePaused, setMarqueePaused] = useState(false);
-  const marqueeRef = useRef<HTMLDivElement | null>(null);
+  const education: Education[] = useMemo(
+    () => [
+      {
+        id: "neu",
+        icon: "🎓",
+        school: "Northeastern University",
+        meta: "B.S. Industrial Engineering · Math + Econ minors",
+        footer: "Honors / clubs: (add 1–2 here)",
+        summary: "Systems + optimization background; strong quant base.",
+        bullets: [
+          "Coursework: optimization, stochastic models, operations research, statistics.",
+          "Built comfort translating real-world mess into structured models and decisions.",
+          "Leadership: (add 1–2 crisp bullets that matter).",
+        ],
+      },
+      {
+        id: "mit",
+        icon: "🤖",
+        school: "MIT xPRO",
+        meta: "AI / ML Bootcamp · Python-heavy",
+        footer: "Capstone: malaria detection (CNN)",
+        summary: "Hands-on ML pipeline work with evaluation artifacts.",
+        bullets: [
+          "End-to-end ML pipeline: preprocessing → training → evaluation.",
+          "Iterated with regularization + early stopping; tracked metrics carefully.",
+          "Built explainable artifacts: performance summary, confusion matrix, etc.",
+        ],
+      },
+      {
+        id: "hs",
+        icon: "🏫",
+        school: "High School",
+        meta: "Name · Year",
+        footer: "Honors / activities: (optional)",
+        summary: "Keep it light — 1–2 lines max.",
+        bullets: ["(Optional) 1–2 bullets only.", "(Keep it short)."],
+      },
+    ],
+    []
+  );
 
-  // Pause the marquee when modal opens, resume when closed
-  useEffect(() => {
-    setMarqueePaused(Boolean(activeDeployment));
-  }, [activeDeployment]);
+  const interests: Interest[] = useMemo(
+    () => [
+      {
+        id: "diver",
+        label: "PADI Advanced Diver",
+        emoji: "🤿",
+        detail:
+          "I’m happiest underwater. I like technical skill-building and calm problem solving when things get spicy.",
+      },
+      {
+        id: "lifeguard",
+        label: "Lifeguard / CPR",
+        emoji: "🛟",
+        detail:
+          "Certified, trained, and still quietly judging people who run at the pool. Safety-first, always.",
+      },
+      {
+        id: "bjj",
+        label: "BJJ (white belt)",
+        emoji: "🥋",
+        detail:
+          "Weekly humility practice. Learning to stay calm, get feedback, and keep showing up anyway.",
+      },
+      {
+        id: "paragliding",
+        label: "Paragliding (5 flights)",
+        emoji: "🪂",
+        detail:
+          "Working toward certification. 5 flights recorded, 0 hero moments — I’m a process guy, not a stunt guy.",
+      },
+      {
+        id: "wwoof",
+        label: "WWOOF / sustainable farming",
+        emoji: "🌱",
+        detail:
+          "Volunteered on a rural Italy farm when I was dead broke. Great character development (and sore back).",
+      },
+      {
+        id: "runner",
+        label: "Half marathon running",
+        emoji: "🏃",
+        detail:
+          "I suffer for fun, on schedule. Good training for long deployments and hard problems.",
+      },
+      {
+        id: "snow",
+        label: "Ski + snowboard",
+        emoji: "🎿",
+        detail:
+          "Cold weather + controlled chaos. Also where I do my best thinking (between runs).",
+      },
+      {
+        id: "wac",
+        label: "Williamsburg Athletic Club",
+        emoji: "🏋️",
+        detail:
+          "Adult recess. Consistency > motivation — applies to training and building.",
+      },
+      {
+        id: "travel",
+        label: "New country every year",
+        emoji: "🌍",
+        detail:
+          "Collecting perspective, not magnets. I like being the dumbest person in a new room (briefly).",
+      },
+      {
+        id: "tech",
+        label: "Technical tinkering",
+        emoji: "🧠",
+        detail:
+          "Always learning: SQL, Python, data pipelines, and building stuff that’s actually usable.",
+      },
+    ],
+    []
+  );
 
-  // Close modal on ESC
+  const [activeExperience, setActiveExperience] = useState<Experience | null>(null);
+  const [activeDeployment, setActiveDeployment] = useState<(typeof deployments)[number] | null>(null);
+  const [activeEducation, setActiveEducation] = useState<Education | null>(null);
+
+  const [activeInterestId, setActiveInterestId] = useState<string | null>(null);
+  const activeInterest = interests.find((i) => i.id === activeInterestId) || null;
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setActiveDeployment(null);
+      if (e.key === "Escape") {
+        setActiveExperience(null);
+        setActiveDeployment(null);
+        setActiveEducation(null);
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
-
-  // Duplicate items to create a seamless loop
-  const marqueeItems = useMemo(() => [...deployments, ...deployments], [deployments]);
 
   return (
     <>
@@ -113,21 +284,22 @@ export default function Home() {
         subtitle="Engineer working to get out of Finance & into tech. Looking for on-the-ground, with-customers roles tackling important missions."
       />
 
-      {/* Intro + Snapshot */}
-      <section className="section-container pb-8">
-        <div className="grid gap-6 md:grid-cols-[1.7fr_1fr] items-start">
-          {/* Left */}
-          <div className="space-y-3">
-            <p className="text-sm md:text-base text-text-secondary leading-relaxed">
-              I like turning ambiguity into systems that ship — translating between operators, data, and product so teams can make
-              clean decisions and move.
+      {/* Top section */}
+      <section className="section-container pb-10">
+        <div className="top-grid">
+          <div className="panel-clear h-full flex flex-col">
+            <p className="panel-title mb-2">Who I am</p>
+
+            <p className="text-base md:text-[1.05rem] text-text-secondary leading-relaxed">
+              I turn ambiguity into shippable systems — translating between operators, data, and product so teams can make clean
+              decisions and move.
             </p>
 
-            <div className="rounded-2xl border border-border-subtle bg-background/60 px-5 py-4 backdrop-blur-sm">
-              <p className="text-[11px] uppercase tracking-[0.18em] text-text-tertiary mb-2">
-                what I&apos;m looking for
-              </p>
-              <ul className="text-xs text-text-secondary space-y-1">
+            <div className="divider-soft my-5" />
+
+            <div className="flex-1">
+              <p className="panel-title mb-2">What I&apos;m looking for</p>
+              <ul className="text-sm md:text-base text-text-secondary space-y-2">
                 <li>• Build alongside talented people (high standards, low ego)</li>
                 <li>• Work hand-in-hand with customers and operators</li>
                 <li>• Build, deploy, iterate — real problems, real outcomes</li>
@@ -135,11 +307,10 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right: Snapshot (smaller) */}
-          <div className="rounded-2xl border border-border-subtle bg-background/70 px-5 py-5 shadow-skeuo-soft/40">
-            <p className="text-[11px] uppercase tracking-[0.18em] text-text-tertiary mb-3">
-              Snapshot
-            </p>
+          <div className="top-vert-divider" />
+
+          <div className="panel-clear h-full">
+            <p className="panel-title mb-4">Snapshot</p>
 
             <div className="space-y-4">
               <div className="snapshot-row">
@@ -148,7 +319,9 @@ export default function Home() {
                 </div>
                 <div>
                   <div className="snapshot-label mb-1">Current</div>
-                  <div className="text-text-secondary">Senior Associate · PwC Deals Transformation</div>
+                  <div className="text-text-secondary">
+                    Senior Associate · PwC Deals Transformation
+                  </div>
                 </div>
               </div>
 
@@ -158,7 +331,9 @@ export default function Home() {
                 </div>
                 <div>
                   <div className="snapshot-label mb-1">Location</div>
-                  <div className="text-text-secondary">New York City · originally Buffalo, NY</div>
+                  <div className="text-text-secondary">
+                    New York City · originally Buffalo, NY
+                  </div>
                 </div>
               </div>
 
@@ -167,12 +342,27 @@ export default function Home() {
                   <Mail size={14} />
                 </div>
                 <div>
-                  <div className="snapshot-label mb-1">Contact</div>
+                  <div className="snapshot-label mb-1">Email</div>
                   <a
                     href="mailto:velayudamarjuna@gmail.com"
                     className="text-brand-primary underline underline-offset-2 hover:opacity-90"
                   >
                     velayudamarjuna@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              <div className="snapshot-row">
+                <div className="snapshot-icon" aria-label="Phone">
+                  <Phone size={14} />
+                </div>
+                <div>
+                  <div className="snapshot-label mb-1">Phone</div>
+                  <a
+                    href="tel:+17168034767"
+                    className="text-brand-primary underline underline-offset-2 hover:opacity-90"
+                  >
+                    +1 (716) 803 - 4767
                   </a>
                 </div>
               </div>
@@ -198,204 +388,159 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Preview: Experience */}
+      <div className="section-divider" />
+
+      {/* Experience */}
       <section className="section-container pb-10">
-        <div className="flex items-end justify-between gap-4 mb-5">
-          <div>
-            <h2 className="section-title mb-1">Where I&apos;ve Worked</h2>
-            <p className="section-subtitle max-w-3xl mb-0">
-              I&apos;ve been the “make it real” person: messy inputs → clean outputs → shipped workflows.
-            </p>
-          </div>
-        </div>
+        <h2 className="section-title mb-2">Where I&apos;ve Worked</h2>
+        <p className="section-subtitle max-w-3xl mb-6">
+          I&apos;ve been the “make it real” person: messy inputs → clean outputs → shipped workflows.
+        </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* PwC */}
-          <div className="group perspective h-64">
-            <div className="flip-card-inner rounded-av-lg shadow-skeuo-soft bg-surface">
-              <div className="flip-card-face rounded-av-lg flex flex-col justify-center px-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="h-9 w-9 rounded-xl border border-divider bg-background flex items-center justify-center overflow-hidden">
-                    <Image
-                      src="/companies/pwc_logo.png"
-                      alt="PwC logo"
-                      width={24}
-                      height={24}
-                    />
-                  </div>
-                  <div>
-                    <div className="text-lg font-semibold text-text-primary leading-tight">PwC</div>
-                    <div className="text-xs text-text-secondary">Senior Associate · Deals Transformation · 2022–Now</div>
-                  </div>
-                </div>
-
-                <p className="text-sm text-text-secondary leading-relaxed">
-                  Built internal tools + decision systems for partners and teams operating under deal timelines.
-                </p>
-                <p className="mt-3 text-[11px] text-text-muted">
-                  Flip for the “resume bullets” version →
-                </p>
+          {experiences.map((e) => (
+            <button
+              key={e.id}
+              type="button"
+              className="experience-card experience-card-centered"
+              onClick={() => setActiveExperience(e)}
+            >
+              <div className="experience-logo-plain">
+                <Image
+                  src={e.logoSrc}
+                  alt={`${e.company} logo`}
+                  width={100}
+                  height={100}
+                  className="experience-logo-img"
+                  priority
+                />
               </div>
 
-              <div className="flip-card-face flip-card-back rounded-av-lg bg-surface px-5 py-5 text-xs text-text-secondary">
-                <div className="font-semibold text-text-primary mb-2">Highlights</div>
-                <ul className="space-y-2 list-disc list-inside">
-                  <li>Shipped a scenario hub used across engagements; reduced repeat modeling churn.</li>
-                  <li>Designed partner-friendly outputs that work live in meetings (fast, legible, decisive).</li>
-                  <li>Translated operator constraints into product requirements and iterated with feedback.</li>
-                </ul>
-                <div className="mt-3 text-[11px] text-text-muted">
-                  “Clear answers, quickly” — without sacrificing accuracy.
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* A&M */}
-          <div className="group perspective h-64">
-            <div className="flip-card-inner rounded-av-lg shadow-skeuo-soft bg-surface">
-              <div className="flip-card-face rounded-av-lg flex flex-col justify-center px-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="h-9 w-9 rounded-xl border border-divider bg-background flex items-center justify-center overflow-hidden">
-                    <Image
-                      src="/companies/AM_logo.png"
-                      alt="Alvarez & Marsal logo"
-                      width={24}
-                      height={24}
-                    />
-                  </div>
-                  <div>
-                    <div className="text-lg font-semibold text-text-primary leading-tight">Alvarez &amp; Marsal</div>
-                    <div className="text-xs text-text-secondary">Analyst · Performance Improvement · 2020–2022</div>
-                  </div>
-                </div>
-
-                <p className="text-sm text-text-secondary leading-relaxed">
-                  Built SQL workflows, visualizations, and forecast models to support expert testimony in damages cases.
-                </p>
-                <p className="mt-3 text-[11px] text-text-muted">
-                  Flip for the “resume bullets” version →
-                </p>
+              <div className="experience-stack">
+                <div className="experience-company">{e.company}</div>
+                <div className="experience-role">{e.roleLine}</div>
+                <p className="experience-short">{e.short}</p>
               </div>
 
-              <div className="flip-card-face flip-card-back rounded-av-lg bg-surface px-5 py-5 text-xs text-text-secondary">
-                <div className="font-semibold text-text-primary mb-2">Highlights</div>
-                <ul className="space-y-2 list-disc list-inside">
-                  <li>Built repeatable SQL pipelines for multi-source datasets under tight deadlines.</li>
-                  <li>Produced exhibits and visuals that held up to scrutiny (and cross-examination).</li>
-                  <li>Created forecast models tying assumptions to outcomes; documented logic end-to-end.</li>
-                </ul>
-                <div className="mt-3 text-[11px] text-text-muted">
-                  Learned to be precise when stakes (and lawyers) are high.
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Goldman */}
-          <div className="group perspective h-64">
-            <div className="flip-card-inner rounded-av-lg shadow-skeuo-soft bg-surface">
-              <div className="flip-card-face rounded-av-lg flex flex-col justify-center px-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="h-9 w-9 rounded-xl border border-divider bg-background flex items-center justify-center overflow-hidden">
-                    <Image
-                      src="/companies/GS_logo.png"
-                      alt="Goldman Sachs logo"
-                      width={24}
-                      height={24}
-                    />
-                  </div>
-                  <div>
-                    <div className="text-lg font-semibold text-text-primary leading-tight">Goldman Sachs</div>
-                    <div className="text-xs text-text-secondary">Ops / Markets · Internship · 2017–2018</div>
-                  </div>
-                </div>
-
-                <p className="text-sm text-text-secondary leading-relaxed">
-                  First look at high-volume systems, tight SLAs, and how small breaks become big problems.
-                </p>
-                <p className="mt-3 text-[11px] text-text-muted">
-                  Flip for the “resume bullets” version →
-                </p>
-              </div>
-
-              <div className="flip-card-face flip-card-back rounded-av-lg bg-surface px-5 py-5 text-xs text-text-secondary">
-                <div className="font-semibold text-text-primary mb-2">Highlights</div>
-                <ul className="space-y-2 list-disc list-inside">
-                  <li>Automated recurring ops reporting; improved reliability under strict SLAs.</li>
-                  <li>Flagged flow anomalies by validating inputs, breaks, and downstream impact quickly.</li>
-                  <li>Coordinated across teams to resolve data issues with minimal downtime.</li>
-                </ul>
-                <div className="mt-3 text-[11px] text-text-muted">
-                  Systems thinking started here — and stuck.
-                </div>
-              </div>
-            </div>
-          </div>
+              <div className="experience-cta">View details →</div>
+            </button>
+          ))}
         </div>
 
-        {/* View all */}
         <div className="mt-6 flex justify-center">
-          <Link href="/experience" className="btn-primary">
+          <Link href="/experience" className="btn-muted">
             View all experience →
           </Link>
         </div>
+
+        {activeExperience && (
+          <div className="modal-overlay" onMouseDown={() => setActiveExperience(null)}>
+            <div className="modal-card" onMouseDown={(ev) => ev.stopPropagation()}>
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex items-start gap-4">
+                  <div className="modal-logo">
+                    <Image
+                      src={activeExperience.logoSrc}
+                      alt={`${activeExperience.company} logo`}
+                      width={64}
+                      height={64}
+                      className="experience-logo-img"
+                    />
+                  </div>
+                  <div>
+                    <div className="text-xl font-semibold text-text-primary">
+                      {activeExperience.company}
+                    </div>
+                    <div className="text-sm text-text-primary mt-1">
+                      {activeExperience.roleLine}
+                    </div>
+                    <p className="text-sm text-text-secondary mt-3">
+                      {activeExperience.short}
+                    </p>
+                  </div>
+                </div>
+
+                <button className="icon-btn" onClick={() => setActiveExperience(null)} aria-label="Close modal">
+                  <X size={16} />
+                </button>
+              </div>
+
+              <div className="mt-5">
+                <div className="text-xs font-semibold text-text-primary mb-2">
+                  Highlights
+                </div>
+                <ul className="text-sm text-text-secondary space-y-2 list-disc list-inside">
+                  {activeExperience.bullets.map((b) => (
+                    <li key={b}>{b}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="mt-6 flex justify-end">
+                <Link
+                  href="/experience"
+                  className="btn-secondary"
+                  onClick={() => setActiveExperience(null)}
+                >
+                  Full experience →
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
 
-      {/* Featured Deployments & Product work (scrolling carousel + modal) */}
+      <div className="section-divider" />
+
+      {/* Featured Deployments (scroll, no outer outline, centered, uniform) */}
       <section className="section-container pb-12">
         <h2 className="section-title mb-2">Featured Deployments &amp; Product Work</h2>
         <p className="section-subtitle max-w-3xl mb-6">
-          A rotating sampler — click one to pause and peek inside.
+          A few highlights. Click a card to open details.
         </p>
 
-        <div
-          className={`marquee-outer ${marqueePaused ? "marquee-paused" : ""}`}
-          onMouseEnter={() => setMarqueePaused(true)}
-          onMouseLeave={() => setMarqueePaused(Boolean(activeDeployment))}
-        >
-          <div className="marquee-track" ref={marqueeRef}>
-            {marqueeItems.map((d, idx) => (
+        <div className="hscroll-outer hscroll-outer-soft">
+          <div className="hscroll hscroll-hidebar">
+            {deployments.map((d) => (
               <button
-                key={`${d.id}-${idx}`}
-                className="marquee-card"
-                onClick={() => setActiveDeployment(d)}
+                key={d.id}
                 type="button"
+                className="hscroll-card hscroll-card-centered"
+                onClick={() => setActiveDeployment(d)}
               >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex items-center gap-3">
-                    <div className="h-9 w-9 rounded-xl border border-divider bg-background flex items-center justify-center text-[16px]">
-                      {d.icon}
-                    </div>
-                    <div className="text-left">
-                      <div className="text-sm font-semibold text-text-primary leading-tight">{d.title}</div>
-                      <div className="text-xs text-text-secondary">{d.summary}</div>
-                    </div>
-                  </div>
-                  <span className="pill-tag">{d.tag}</span>
+                <div className="hscroll-icon">{d.icon}</div>
+
+                <div className="hscroll-stack">
+                  <div className="hscroll-title">{d.title}</div>
+                  <div className="hscroll-meta">{d.summary}</div>
+                </div>
+
+                <div className="hscroll-cta-row">
+                  <span className="hscroll-cta">View details →</span>
                 </div>
               </button>
             ))}
 
-            {/* “See more” card */}
-            <Link href="/deployments" className="marquee-card link-card">
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <div className="h-9 w-9 rounded-xl border border-divider bg-background flex items-center justify-center text-[16px]">
-                    →
-                  </div>
-                  <div className="text-left">
-                    <div className="text-sm font-semibold text-text-primary leading-tight">See more</div>
-                    <div className="text-xs text-text-secondary">Full list of deployments &amp; product work.</div>
-                  </div>
-                </div>
-                <span className="pill-tag">Explore</span>
+            {/* 5th card: View all */}
+            <Link href="/deployments" className="hscroll-card hscroll-card-centered hscroll-viewall">
+              <div className="hscroll-icon">→</div>
+              <div className="hscroll-stack">
+                <div className="hscroll-title">View all</div>
+                <div className="hscroll-meta">See the full deployments &amp; product page.</div>
+              </div>
+              <div className="hscroll-cta-row">
+                <span className="hscroll-cta">Go →</span>
               </div>
             </Link>
           </div>
         </div>
 
-        {/* Modal */}
+        <div className="mt-6 flex justify-center">
+          <Link href="/deployments" className="btn-muted">
+            View all deployments →
+          </Link>
+        </div>
+
         {activeDeployment && (
           <div className="modal-overlay" onMouseDown={() => setActiveDeployment(null)}>
             <div className="modal-card" onMouseDown={(e) => e.stopPropagation()}>
@@ -405,10 +550,11 @@ export default function Home() {
                     {activeDeployment.icon}
                   </div>
                   <div>
-                    <div className="text-base font-semibold text-text-primary">{activeDeployment.title}</div>
-                    <div className="text-sm text-text-secondary mt-1">{activeDeployment.summary}</div>
-                    <div className="mt-2">
-                      <span className="pill-tag">{activeDeployment.tag}</span>
+                    <div className="text-base font-semibold text-text-primary">
+                      {activeDeployment.title}
+                    </div>
+                    <div className="text-sm text-text-secondary mt-1">
+                      {activeDeployment.summary}
                     </div>
                   </div>
                 </div>
@@ -419,7 +565,9 @@ export default function Home() {
               </div>
 
               <div className="mt-4">
-                <div className="text-xs font-semibold text-text-primary mb-2">What it is / what I did</div>
+                <div className="text-xs font-semibold text-text-primary mb-2">
+                  What it is / what I did
+                </div>
                 <ul className="text-sm text-text-secondary space-y-2 list-disc list-inside">
                   {activeDeployment.bullets.map((b) => (
                     <li key={b}>{b}</li>
@@ -429,13 +577,15 @@ export default function Home() {
 
               <div className="mt-5 flex justify-end">
                 <Link href="/deployments" className="btn-secondary" onClick={() => setActiveDeployment(null)}>
-                  View more deployments →
+                  View more →
                 </Link>
               </div>
             </div>
           </div>
         )}
       </section>
+
+      <div className="section-divider" />
 
       {/* Education */}
       <section className="section-container pb-12">
@@ -445,135 +595,119 @@ export default function Home() {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Northeastern */}
-          <div className="edu-mini-card group">
-            <div className="flex items-start justify-between gap-3">
-              <div className="flex items-start gap-3">
-                <div className="h-9 w-9 rounded-xl border border-divider bg-background flex items-center justify-center">
-                  🎓
-                </div>
-                <div>
-                  <div className="text-sm font-semibold text-text-primary">Northeastern University</div>
-                  <div className="text-xs text-text-secondary">B.S. Industrial Engineering · Math + Econ minors</div>
-                  <div className="text-xs text-text-muted mt-1">Honors / notes: (add here)</div>
-                </div>
+          {education.map((ed) => (
+            <button
+              key={ed.id}
+              type="button"
+              className="experience-card experience-card-centered"
+              onClick={() => setActiveEducation(ed)}
+            >
+              <div className="experience-logo-plain text-[28px]">{ed.icon}</div>
+
+              <div className="experience-stack">
+                <div className="experience-company">{ed.school}</div>
+                <div className="experience-role">{ed.meta}</div>
+                <p className="experience-short">{ed.summary}</p>
               </div>
-              <span className="pill-tag">Boston</span>
-            </div>
 
-            <div className="edu-hover">
-              <div className="mt-3 text-xs font-semibold text-text-primary">Coursework highlights</div>
-              <ul className="mt-2 text-xs text-text-secondary list-disc list-inside space-y-1">
-                <li>Optimization, stochastic models, operations research</li>
-                <li>Statistics, probability, econometrics foundations</li>
-                <li>Systems design + process improvement</li>
-              </ul>
-
-              <div className="mt-3 text-xs font-semibold text-text-primary">Honors &amp; leadership</div>
-              <ul className="mt-2 text-xs text-text-secondary list-disc list-inside space-y-1">
-                <li>(Add 1–2 items you want recruiters to see)</li>
-                <li>(Clubs, leadership, awards, etc.)</li>
-              </ul>
-            </div>
-          </div>
-
-          {/* MIT / course */}
-          <div className="edu-mini-card group">
-            <div className="flex items-start justify-between gap-3">
-              <div className="flex items-start gap-3">
-                <div className="h-9 w-9 rounded-xl border border-divider bg-background flex items-center justify-center">
-                  🤖
-                </div>
-                <div>
-                  <div className="text-sm font-semibold text-text-primary">MIT (xPRO)</div>
-                  <div className="text-xs text-text-secondary">AI / ML Bootcamp · Python-heavy</div>
-                  <div className="text-xs text-text-muted mt-1">Capstone: malaria detection (CNN)</div>
-                </div>
-              </div>
-              <span className="pill-tag">Online</span>
-            </div>
-
-            <div className="edu-hover">
-              <div className="mt-3 text-xs font-semibold text-text-primary">What I built</div>
-              <ul className="mt-2 text-xs text-text-secondary list-disc list-inside space-y-1">
-                <li>End-to-end ML pipeline (preprocessing → training → eval)</li>
-                <li>Model iteration with regularization + early stopping</li>
-                <li>Clear evaluation artifacts (metrics, confusion matrix, etc.)</li>
-              </ul>
-            </div>
-          </div>
-
-          {/* High school placeholder */}
-          <div className="edu-mini-card group">
-            <div className="flex items-start justify-between gap-3">
-              <div className="flex items-start gap-3">
-                <div className="h-9 w-9 rounded-xl border border-divider bg-background flex items-center justify-center">
-                  🏫
-                </div>
-                <div>
-                  <div className="text-sm font-semibold text-text-primary">High School</div>
-                  <div className="text-xs text-text-secondary">Name · Year</div>
-                  <div className="text-xs text-text-muted mt-1">Honors / activities (optional)</div>
-                </div>
-              </div>
-              <span className="pill-tag">Buffalo</span>
-            </div>
-
-            <div className="edu-hover">
-              <div className="mt-3 text-xs font-semibold text-text-primary">More details</div>
-              <ul className="mt-2 text-xs text-text-secondary list-disc list-inside space-y-1">
-                <li>(Optional: 1–2 bullets only)</li>
-                <li>(Keep it light)</li>
-              </ul>
-            </div>
-          </div>
+              <div className="education-footer">{ed.footer}</div>
+              <div className="experience-cta">View details →</div>
+            </button>
+          ))}
         </div>
 
         <div className="mt-6 flex justify-center">
-          <Link href="/education" className="btn-secondary">
+          <Link href="/education" className="btn-muted">
             View education →
           </Link>
         </div>
+
+        {activeEducation && (
+          <div className="modal-overlay" onMouseDown={() => setActiveEducation(null)}>
+            <div className="modal-card" onMouseDown={(ev) => ev.stopPropagation()}>
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex items-start gap-4">
+                  <div className="modal-logo text-[22px]">{activeEducation.icon}</div>
+                  <div>
+                    <div className="text-xl font-semibold text-text-primary">
+                      {activeEducation.school}
+                    </div>
+                    <div className="text-sm text-text-primary mt-1">
+                      {activeEducation.meta}
+                    </div>
+                    <p className="text-sm text-text-secondary mt-3">
+                      {activeEducation.summary}
+                    </p>
+                  </div>
+                </div>
+
+                <button className="icon-btn" onClick={() => setActiveEducation(null)} aria-label="Close modal">
+                  <X size={16} />
+                </button>
+              </div>
+
+              <div className="mt-5">
+                <div className="text-xs font-semibold text-text-primary mb-2">Details</div>
+                <ul className="text-sm text-text-secondary space-y-2 list-disc list-inside">
+                  {activeEducation.bullets.map((b) => (
+                    <li key={b}>{b}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="mt-6 flex justify-end">
+                <Link href="/education" className="btn-secondary" onClick={() => setActiveEducation(null)}>
+                  Full education →
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
 
-      {/* Interests / vibe */}
+      <div className="section-divider" />
+
+      {/* Outside of work */}
       <section className="section-container pb-24">
         <h2 className="section-title mb-2">Outside of work</h2>
         <p className="section-subtitle max-w-3xl mb-6">
-          I take “recovery” seriously… and then do something mildly unsafe (but certified).
+          I take recovery seriously… and then do something mildly unsafe (but certified).
         </p>
 
-        <div className="flex flex-wrap gap-3">
-          <span className="interest-chip" title="PADI certified, yes I log dives like a nerd.">
-            🤿 PADI Advanced Diver
-          </span>
-          <span className="interest-chip" title="Certified lifeguard/CPR: I can save you, then roast you for panicking.">
-            🛟 Lifeguard / CPR
-          </span>
-          <span className="interest-chip" title="BJJ white belt: professional humbling enthusiast.">
-            🥋 BJJ (white belt)
-          </span>
-          <span className="interest-chip" title="Working on paragliding: 5 flights logged, 0 hero moments (so far).">
-            🪂 Paragliding (5 flights)
-          </span>
-          <span className="interest-chip" title="Volunteered on a rural Italy farm when I was dead broke. Great character development.">
-            🌱 WWOOF / sustainable farming
-          </span>
-          <span className="interest-chip" title="Half marathon runner: I suffer for fun, on schedule.">
-            🏃 Half marathon running
-          </span>
-          <span className="interest-chip" title="Skiing/snowboarding: happiest when it’s cold and I’m slightly out of control.">
-            🎿 Ski + snowboard
-          </span>
-          <span className="interest-chip" title="Williamsburg Athletic Club: adult recess, responsibly.">
-            🏋️ Williamsburg Athletic Club
-          </span>
-          <span className="interest-chip" title="New country every year: collecting perspective, not magnets.">
-            🌍 New country every year
-          </span>
-          <span className="interest-chip" title="Technical: always learning, occasionally finishing personal projects.">
-            🧠 Technical tinkering
-          </span>
+        {activeInterest && (
+          <div className="interest-featured">
+            <button
+              type="button"
+              className="icon-btn"
+              aria-label="Collapse"
+              onClick={() => setActiveInterestId(null)}
+            >
+              <X size={16} />
+            </button>
+
+            <div className="text-center mt-2">
+              <div className="text-2xl">{activeInterest.emoji}</div>
+              <div className="text-base font-semibold text-text-primary mt-2">
+                {activeInterest.label}
+              </div>
+              <p className="text-sm text-text-secondary mt-2 max-w-xl mx-auto">
+                {activeInterest.detail}
+              </p>
+            </div>
+          </div>
+        )}
+
+        <div className="flex flex-wrap gap-3 justify-start">
+          {interests.map((i) => (
+            <button
+              key={i.id}
+              type="button"
+              className={`interest-pill ${activeInterestId === i.id ? "interest-pill-active" : ""}`}
+              onClick={() => setActiveInterestId(i.id)}
+            >
+              <span aria-hidden>{i.emoji}</span> {i.label}
+            </button>
+          ))}
         </div>
       </section>
     </>

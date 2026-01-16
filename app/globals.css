@@ -1,3 +1,4 @@
+/* globals.css */
 @config "../tailwind.config.js";
 @import "tailwindcss";
 
@@ -49,16 +50,33 @@
     @apply text-sm md:text-base text-text-secondary mb-6 max-w-3xl leading-relaxed;
   }
 
-  /* --- Cards --- */
-  .card-skeuo {
-    @apply bg-surface rounded-av-lg p-6 shadow-skeuo-soft;
+  /* --- Dividers --- */
+  .divider-soft {
+    @apply h-px w-full bg-divider/70;
   }
 
-  .card-skeuo-tight {
-    @apply bg-surface rounded-av-lg p-4 shadow-skeuo-soft;
+  .section-divider {
+    @apply max-w-5xl mx-auto px-6 sm:px-8 md:px-10 my-10 h-px bg-divider/70;
   }
 
-  /* --- Snapshot primitives (reused) --- */
+  /* --- Panels --- */
+  .panel-title {
+    @apply text-sm md:text-base font-semibold text-text-primary;
+  }
+
+  .panel-clear {
+    @apply rounded-av-lg border border-divider bg-transparent p-6;
+  }
+
+  .top-grid {
+    @apply grid gap-6 md:gap-0 md:grid-cols-[1fr_auto_1fr] items-stretch;
+  }
+
+  .top-vert-divider {
+    @apply hidden md:block w-px bg-divider/70 mx-6;
+  }
+
+  /* --- Snapshot primitives --- */
   .snapshot-row {
     @apply flex items-start gap-3 text-sm;
   }
@@ -72,15 +90,16 @@
     @apply text-text-primary text-[11px] tracking-wide uppercase;
   }
 
-  /* --- Buttons / pills --- */
-  .btn-primary {
-    @apply inline-flex items-center justify-center rounded-av-md px-4 py-2 text-sm
-           bg-brand-primary text-white shadow-skeuo-soft transition hover:opacity-90;
-  }
-
+  /* --- Buttons --- */
   .btn-secondary {
     @apply inline-flex items-center justify-center rounded-av-md px-4 py-2 text-sm
            border border-divider bg-surface text-text-primary shadow-skeuo-soft transition hover:opacity-90;
+  }
+
+  .btn-muted {
+    @apply inline-flex items-center justify-center rounded-av-md px-4 py-2 text-sm
+           border border-divider bg-brand-secondary/10 text-text-primary
+           shadow-skeuo-soft transition hover:bg-brand-secondary/15;
   }
 
   .icon-btn {
@@ -88,35 +107,140 @@
            border border-divider bg-background hover:opacity-90 transition;
   }
 
-  .pill-tag {
-    @apply text-[10px] uppercase tracking-[0.14em] text-text-muted
-           border border-divider rounded-full px-2.5 py-1 whitespace-nowrap;
-  }
-
-  /* --- Deployments marquee --- */
-  .marquee-outer {
-    @apply rounded-2xl border border-divider bg-background/60 shadow-skeuo-soft/40 overflow-hidden;
-  }
-
-  .marquee-track {
+  /* --- Experience / Education cards --- */
+  .experience-card {
+    @apply bg-surface rounded-av-lg p-6 shadow-skeuo-soft border border-divider
+           transition hover:opacity-95;
+    min-height: 360px; /* forces alignment across cards */
     display: flex;
-    gap: 12px;
-    padding: 14px;
-    width: max-content;
-    animation: marquee-left 26s linear infinite;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
-  .marquee-paused .marquee-track {
-    animation-play-state: paused;
+  .experience-card-centered {
+    @apply items-center text-center;
   }
 
-  .marquee-card {
-    @apply min-w-[340px] md:min-w-[420px] rounded-av-lg bg-surface border border-divider
-           px-4 py-4 shadow-skeuo-soft text-left transition hover:opacity-95;
+  .experience-logo-plain {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .marquee-card.link-card {
-    @apply flex items-center;
+  .experience-logo-img {
+    object-fit: contain;
+  }
+
+  .experience-stack {
+    @apply mt-5;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .experience-company {
+    @apply text-xl font-semibold text-text-primary;
+  }
+
+  .experience-role {
+    @apply text-xs md:text-sm text-text-primary mt-2;
+  }
+
+  .experience-short {
+    @apply text-sm text-text-secondary mt-4 leading-relaxed;
+  }
+
+  .experience-cta {
+    @apply mt-6 text-sm text-brand-primary underline underline-offset-4;
+  }
+
+  .education-footer {
+    @apply mt-4 text-xs text-text-muted;
+  }
+
+  .modal-logo {
+    @apply h-12 w-12 rounded-2xl border border-divider bg-background
+           flex items-center justify-center overflow-hidden;
+  }
+
+  /* --- Deployments horizontal scroll (no tag box, centered, uniform) --- */
+  .hscroll-outer {
+    @apply bg-transparent;
+  }
+
+  .hscroll-outer-soft {
+    @apply px-1;
+  }
+
+  .hscroll {
+    @apply flex gap-6 overflow-x-auto py-4;
+    padding-left: 6px;
+    padding-right: 6px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Hide scrollbar unless actively scrolling (best-effort) */
+  .hscroll-hidebar {
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .hscroll-hidebar::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  .hscroll-card {
+    @apply min-w-[320px] md:min-w-[360px] rounded-av-lg border border-divider bg-surface
+           shadow-skeuo-soft px-6 py-6 transition hover:opacity-95;
+    scroll-snap-align: start;
+    min-height: 320px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hscroll-card-centered {
+    @apply items-center text-center;
+  }
+
+  .hscroll-icon {
+    @apply h-20 w-20 rounded-2xl border border-divider bg-background
+           flex items-center justify-center text-[22px];
+  }
+
+  .hscroll-stack {
+    @apply mt-5;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .hscroll-title {
+    @apply text-xl font-semibold text-text-primary;
+  }
+
+  .hscroll-meta {
+    @apply text-sm text-text-secondary mt-3 leading-relaxed;
+  }
+
+  .hscroll-cta-row {
+    @apply mt-6;
+  }
+
+  .hscroll-cta {
+    @apply text-sm text-brand-primary underline underline-offset-4;
+  }
+
+  .hscroll-viewall {
+    @apply border-brand-secondary/35;
   }
 
   /* --- Modal --- */
@@ -137,166 +261,26 @@
            shadow-skeuo-soft px-6 py-6;
   }
 
-  /* --- Education mini cards --- */
-  .edu-mini-card {
-    @apply bg-surface rounded-av-lg p-5 shadow-skeuo-soft border border-divider transition;
+  /* --- Interests: same fill as cards (white) --- */
+  .interest-pill {
+    @apply inline-flex items-center gap-2 rounded-full border border-divider bg-surface
+           px-3 py-2 text-xs text-text-secondary shadow-skeuo-soft/60 transition;
   }
 
-  .edu-mini-card:hover {
+  .interest-pill:hover {
     @apply opacity-95;
   }
 
-  .edu-hover {
-    @apply hidden;
+  .interest-pill-active {
+    @apply border-brand-secondary/40 bg-brand-secondary/10;
   }
 
-  .edu-mini-card:hover .edu-hover {
-    @apply block;
+  .interest-featured {
+    @apply mb-6 rounded-2xl border border-divider bg-surface shadow-skeuo-soft
+           px-6 py-6 max-w-2xl mx-auto relative;
   }
 
-  /* =========================
-     Education (hero + cards)
-     (Standardized, no per-school theming)
-  ========================= */
-  .edu-hero-section {
-    @apply max-w-5xl mx-auto px-6 sm:px-8 md:px-10 pt-24 pb-20 md:min-h-[80vh]
-           flex flex-col justify-center;
-  }
-
-  .hero-list {
-    @apply flex flex-col gap-4 mt-8;
-  }
-
-  .hero-list-item {
-    @apply flex items-center gap-4 cursor-pointer px-3 py-3 rounded-av-md
-           border border-transparent transition text-left;
-  }
-
-  .hero-list-item:hover {
-    @apply bg-surface shadow-skeuo-soft border-divider;
-  }
-
-  .hero-list-item-active {
-    @apply bg-surface shadow-skeuo-soft border-brand-secondary/40;
-  }
-
-  .hero-list-text-main {
-    @apply text-lg md:text-xl font-semibold text-text-primary;
-  }
-
-  .hero-list-text-meta {
-    @apply text-xs md:text-sm text-text-secondary;
-  }
-
-  .hero-list-item:hover .hero-list-text-main {
-    @apply underline underline-offset-4;
-  }
-
-  .edu-card {
-    @apply rounded-2xl border border-divider bg-background/70 px-6 py-6
-           shadow-skeuo-soft/40 cursor-pointer transition;
-  }
-
-  .edu-card-active {
-    @apply border-brand-primary/40 ring-1 ring-brand-primary/25;
-  }
-
-  .edu-card-inactive {
-    @apply hover:border-divider/80;
-  }
-
-  .edu-card-header {
-    @apply flex items-start justify-between gap-4 mb-3;
-  }
-
-  .edu-card-title {
-    @apply text-base md:text-lg font-semibold text-text-primary;
-  }
-
-  .edu-card-meta {
-    @apply text-[11px] text-text-muted mt-1;
-  }
-
-  .edu-card-tag {
-    @apply text-[10px] uppercase tracking-[0.16em] text-text-muted
-           border border-divider rounded-full px-2.5 py-1 whitespace-nowrap;
-  }
-
-  .edu-card-short {
-    @apply text-sm text-text-secondary;
-  }
-
-  .edu-card-long {
-    @apply text-sm text-text-secondary mt-3 leading-relaxed;
-  }
-
-  .edu-pill-row {
-    @apply mt-4 flex flex-wrap gap-2;
-  }
-
-  .edu-pill {
-    @apply text-left rounded-xl border border-divider bg-background/60 px-3 py-2
-           text-xs text-text-secondary transition;
-  }
-
-  .edu-pill:hover {
-    @apply border-divider/80;
-  }
-
-  .edu-pill-active {
-    @apply border-brand-primary/40 ring-1 ring-brand-primary/25;
-  }
-
-  .edu-pill-badge {
-    @apply inline-flex w-fit rounded-full border border-divider bg-background px-2 py-0.5
-           text-[10px] text-text-muted;
-  }
-
-  /* --- Interests chips --- */
-  .interest-chip {
-    @apply inline-flex items-center gap-2 rounded-full border border-divider bg-surface
-           px-3 py-2 text-xs text-text-secondary shadow-skeuo-soft/70;
-  }
-}
-
-/* =========================
-   Flip-card / 3D utilities
-   (Experience section)
-========================= */
-.perspective {
-  perspective: 1200px;
-}
-
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.7s ease;
-}
-
-.group:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-.flip-card-face {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-}
-
-.flip-card-back {
-  transform: rotateY(180deg);
-}
-
-/* =========================
-   Keyframes
-========================= */
-@keyframes marquee-left {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
+  .interest-featured .icon-btn {
+    @apply absolute top-3 right-3;
   }
 }
