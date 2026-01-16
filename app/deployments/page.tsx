@@ -107,7 +107,6 @@ export default function DeploymentsPage() {
           </article>
         </div>
       </section>
-
       {/* Data Products & In-Progress Builds */}
       <section className="section-container pb-12">
         <h2 className="section-title mb-2">Data Products &amp; In-Progress Builds</h2>
@@ -116,6 +115,7 @@ export default function DeploymentsPage() {
           writing SQL/Python, and thinking about how operators would actually use the output.
         </p>
 
+      
         <div className="grid gap-6 md:grid-cols-2">
           {/* MyTab */}
           <article className="card-skeuo">
@@ -154,6 +154,55 @@ export default function DeploymentsPage() {
               <li>• Framed outputs around investor- and operator-relevant questions.</li>
               <li>• Served as a sandbox for further ML / forecasting ideas.</li>
             </ul>
+          </article>  
+
+          {/* AML Network Analysis (Peregrine take-home) */}
+          <article className="card-skeuo">
+            <p className="text-[11px] font-semibold text-brand-primary mb-1">
+              DATA ANALYSIS · AML / NETWORKS
+            </p>
+            <h3 className="text-lg font-semibold text-text-primary mb-2">
+              Money Laundering Detection — Transaction Graph & Suspect Prioritization
+            </h3>
+
+            <p className="text-sm text-text-secondary mb-3">
+              Investigated a large wire-transfer dataset to surface likely laundering behavior.
+              Built a hypothesis-driven pipeline that flags coordinated pickup timing, repeated
+              sender→payee channels, and concentration at endpoints — then validated patterns
+              with an interpretable network graph.
+            </p>
+
+            <ul className="text-xs text-text-secondary space-y-1 mb-4">
+              <li>• Lag analysis to isolate “coordination” (fast pickups) vs. long-tail noise.</li>
+              <li>• Frequency + repeated dyads to separate infrastructure routes from burst behavior.</li>
+              <li>• Network visualization where size/width/color encode involvement, repetition, and speed.</li>
+            </ul>
+
+            {/* Mini “always-a-table” evidence summary */}
+            <div className="overflow-hidden rounded-xl border border-border-subtle">
+              <table className="w-full text-xs">
+                <thead className="bg-surface-2 text-text-tertiary">
+                  <tr>
+                    <th className="text-left font-medium px-3 py-2">Signal</th>
+                    <th className="text-left font-medium px-3 py-2">Why it matters</th>
+                  </tr>
+                </thead>
+                <tbody className="text-text-secondary">
+                  <tr className="border-t border-border-subtle">
+                    <td className="px-3 py-2">Fast pickup (lag)</td>
+                    <td className="px-3 py-2">Timing coordination indicator; clusters by actor/channel.</td>
+                  </tr>
+                  <tr className="border-t border-border-subtle">
+                    <td className="px-3 py-2">Repeated dyads</td>
+                    <td className="px-3 py-2">Controlled “channels” are stronger laundering signal than volume alone.</td>
+                  </tr>
+                  <tr className="border-t border-border-subtle">
+                    <td className="px-3 py-2">Endpoint concentration</td>
+                    <td className="px-3 py-2">Highlights likely aggregation / cash-out nodes for investigation.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </article>
         </div>
       </section>

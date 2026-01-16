@@ -60,7 +60,6 @@ export default function AboutPage() {
               <li>• M&amp;A &amp; Transformation @ PwC (Standalone, carve-outs, synergies)</li>
               <li>• Building toward Product / Deployment Strategy roles</li>
               <li>• Technical focus: Python, SQL, DS/ML, systems thinking</li>
-              <li>• Entrepreneurial projects across restaurants, AI, and dual-use tech</li>
             </ul>
           </div>
 
@@ -71,7 +70,7 @@ export default function AboutPage() {
             <ul className="text-xs text-text-secondary space-y-2">
               <li>• NYC-based, always exploring new restaurants & neighborhoods</li>
               <li>• Active traveler &amp; scuba diver (Nitrox certified)</li>
-              <li>• Fitness: lifting, running, skiing, martial arts</li>
+              <li>• Fitness: lifting, running, skiing, BJJ</li>
               <li>• Reading, photography, and learning new ideas</li>
             </ul>
           </div>
@@ -128,8 +127,8 @@ export default function AboutPage() {
                 <td>Intermediate</td>
               </tr>
               <tr className="border-b border-border/20">
-                <td className="py-3 font-medium text-text-primary w-40">Hindi</td>
-                <td>Conversational</td>
+                <td className="py-3 font-medium text-text-primary w-40">Russian</td>
+                <td>Learning!</td>
               </tr>
             </tbody>
           </table>
@@ -142,7 +141,7 @@ export default function AboutPage() {
           <Globe2 className="w-4 h-4 text-brand-primary" /> Countries I&apos;ve Visited
         </h2>
         <p className="section-subtitle max-w-3xl mb-6">
-          A simple snapshot of travel over time.
+          Evolving map of my travels around the world.
         </p>
 
         <div className="card-skeuo">

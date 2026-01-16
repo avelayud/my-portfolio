@@ -72,11 +72,92 @@
     @apply text-text-primary text-[11px] tracking-wide uppercase;
   }
 
+  /* --- Buttons / pills --- */
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-av-md px-4 py-2 text-sm
+           bg-brand-primary text-white shadow-skeuo-soft transition hover:opacity-90;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-av-md px-4 py-2 text-sm
+           border border-divider bg-surface text-text-primary shadow-skeuo-soft transition hover:opacity-90;
+  }
+
+  .icon-btn {
+    @apply inline-flex items-center justify-center h-9 w-9 rounded-av-md
+           border border-divider bg-background hover:opacity-90 transition;
+  }
+
+  .pill-tag {
+    @apply text-[10px] uppercase tracking-[0.14em] text-text-muted
+           border border-divider rounded-full px-2.5 py-1 whitespace-nowrap;
+  }
+
+  /* --- Deployments marquee --- */
+  .marquee-outer {
+    @apply rounded-2xl border border-divider bg-background/60 shadow-skeuo-soft/40 overflow-hidden;
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 12px;
+    padding: 14px;
+    width: max-content;
+    animation: marquee-left 26s linear infinite;
+  }
+
+  .marquee-paused .marquee-track {
+    animation-play-state: paused;
+  }
+
+  .marquee-card {
+    @apply min-w-[340px] md:min-w-[420px] rounded-av-lg bg-surface border border-divider
+           px-4 py-4 shadow-skeuo-soft text-left transition hover:opacity-95;
+  }
+
+  .marquee-card.link-card {
+    @apply flex items-center;
+  }
+
+  /* --- Modal --- */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    z-index: 50;
+  }
+
+  .modal-card {
+    @apply w-full max-w-2xl rounded-2xl border border-divider bg-surface
+           shadow-skeuo-soft px-6 py-6;
+  }
+
+  /* --- Education mini cards --- */
+  .edu-mini-card {
+    @apply bg-surface rounded-av-lg p-5 shadow-skeuo-soft border border-divider transition;
+  }
+
+  .edu-mini-card:hover {
+    @apply opacity-95;
+  }
+
+  .edu-hover {
+    @apply hidden;
+  }
+
+  .edu-mini-card:hover .edu-hover {
+    @apply block;
+  }
+
   /* =========================
      Education (hero + cards)
      (Standardized, no per-school theming)
   ========================= */
-
   .edu-hero-section {
     @apply max-w-5xl mx-auto px-6 sm:px-8 md:px-10 pt-24 pb-20 md:min-h-[80vh]
            flex flex-col justify-center;
@@ -132,12 +213,10 @@
     @apply text-base md:text-lg font-semibold text-text-primary;
   }
 
-  /* NOTE: replaced text-text-tertiary -> text-text-muted */
   .edu-card-meta {
     @apply text-[11px] text-text-muted mt-1;
   }
 
-  /* NOTE: replaced text-text-tertiary + border-border-subtle -> text-text-muted + border-divider */
   .edu-card-tag {
     @apply text-[10px] uppercase tracking-[0.16em] text-text-muted
            border border-divider rounded-full px-2.5 py-1 whitespace-nowrap;
@@ -168,10 +247,15 @@
     @apply border-brand-primary/40 ring-1 ring-brand-primary/25;
   }
 
-  /* NOTE: replaced border-border-subtle + text-text-tertiary -> border-divider + text-text-muted */
   .edu-pill-badge {
     @apply inline-flex w-fit rounded-full border border-divider bg-background px-2 py-0.5
            text-[10px] text-text-muted;
+  }
+
+  /* --- Interests chips --- */
+  .interest-chip {
+    @apply inline-flex items-center gap-2 rounded-full border border-divider bg-surface
+           px-3 py-2 text-xs text-text-secondary shadow-skeuo-soft/70;
   }
 }
 
@@ -203,4 +287,16 @@
 
 .flip-card-back {
   transform: rotateY(180deg);
+}
+
+/* =========================
+   Keyframes
+========================= */
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
