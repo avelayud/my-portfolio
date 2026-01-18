@@ -172,9 +172,9 @@ export default function Home() {
         id: "hs",
         icon: "🏫",
         school: "East Aurora High School",
-        meta: "2017",
+        meta: "Class of 2017",
         footer: "Top 10 in class · Class & Student Council VP",
-        summary: "98 / 4.5 W GPA · rigorous coursework & leadership.",
+        summary: "98.2 GPA · 11 APs rigorous coursework & leadership.",
         bullets: [
           "Honors: Top 10 in class, Honor Roll all semesters, Volunteer Service Award",
           "AP Classes: Statistics, Calc AB & BC, Chemistry, Economics, Government, Language & Composition, World History, US History, Spanish",
@@ -288,7 +288,7 @@ export default function Home() {
       <PageHeader
         kicker="Overview"
         title="Arjuna Velayudam"
-        subtitle="Engineer working to get out of Finance & into tech. Looking for on-the-ground, with-customers roles tackling important missions."
+        subtitle="Engineer with experience in management consulting focused on PE diligence & executing large scale transactions. Experience leading teams of 3-7 & owning multiple cross functional workstreams."
       />
 
       {/* Top section */}
@@ -298,8 +298,8 @@ export default function Home() {
             <p className="panel-title mb-2">Who I am</p>
 
             <p className="text-base md:text-[1.05rem] text-text-secondary leading-relaxed">
-              I turn ambiguity into shippable systems — translating between operators, data, and product so teams can make clean
-              decisions and move.
+              I love working directly with clients from CFOs to analysts on the ground shipping systems - translating between operators,
+              data, and leadership so teams can make clean decisions.
             </p>
 
             <div className="divider-soft my-5" />
@@ -307,7 +307,7 @@ export default function Home() {
             <div className="flex-1">
               <p className="panel-title mb-2">What I&apos;m looking for</p>
               <ul className="text-sm md:text-base text-text-secondary space-y-2">
-                <li>• Build alongside talented people (high standards, low ego)</li>
+                <li>• Build solutions alongside talented people</li>
                 <li>• Work hand-in-hand with customers and operators</li>
                 <li>• Build, deploy, iterate — real problems, real outcomes</li>
               </ul>
@@ -345,8 +345,8 @@ export default function Home() {
               </div>
 
               <div className="snapshot-row">
-                <div className="snapshot-icon" aria-label="Email">
-                  <Mail size={14} />
+                <div className="snapshot-icon">
+                  <span aria-hidden>📧</span>
                 </div>
                 <div>
                   <div className="snapshot-label mb-1">Email</div>
@@ -360,9 +360,9 @@ export default function Home() {
               </div>
 
               <div className="snapshot-row">
-                <div className="snapshot-icon" aria-label="Phone">
-                  <Phone size={14} />
-                </div>
+                <div className="snapshot-icon">
+                  <span aria-hidden>📞</span>
+                </div>                
                 <div>
                   <div className="snapshot-label mb-1">Phone</div>
                   <a
@@ -678,7 +678,7 @@ export default function Home() {
       <section className="section-container pb-24">
         <h2 className="section-title mb-2">Outside of work</h2>
         <p className="section-subtitle max-w-3xl mb-6">
-          I take recovery seriously… and then do something mildly unsafe (but certified).
+          Love taking on new hobbies & skills - currently working on my next diving certification & love talking about it!
         </p>
 
         {activeInterest && (
