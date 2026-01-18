@@ -147,12 +147,12 @@ export default function Home() {
         icon: "🎓",
         school: "Northeastern University",
         meta: "B.S. Industrial Engineering · Math + Econ minors",
-        footer: "Honors / clubs: (add 1–2 here)",
+        footer: "3.85 GPA · Magna Cum Laude · Dean's List",
         summary: "Systems + optimization background; strong quant base.",
         bullets: [
-          "Coursework: optimization, stochastic models, operations research, statistics.",
+          "Coursework: stochastics, calculus 3, operations research, database engineering, human machine systems, statistics.",
           "Built comfort translating real-world mess into structured models and decisions.",
-          "Leadership: (add 1–2 crisp bullets that matter).",
+          "Leadership: Dean's List, Under Research Assistant, Engineering Capstone Project Lead.",
         ],
       },
       {
@@ -161,7 +161,7 @@ export default function Home() {
         school: "MIT xPRO",
         meta: "AI / ML Bootcamp · Python-heavy",
         footer: "Capstone: malaria detection (CNN)",
-        summary: "Hands-on ML pipeline work with evaluation artifacts.",
+        summary: "Hands-on data clensing, feature engineering, ML pipeline, model development & tuning.",
         bullets: [
           "End-to-end ML pipeline: preprocessing → training → evaluation.",
           "Iterated with regularization + early stopping; tracked metrics carefully.",
@@ -171,11 +171,18 @@ export default function Home() {
       {
         id: "hs",
         icon: "🏫",
-        school: "High School",
-        meta: "Name · Year",
-        footer: "Honors / activities: (optional)",
-        summary: "Keep it light — 1–2 lines max.",
-        bullets: ["(Optional) 1–2 bullets only.", "(Keep it short)."],
+        school: "East Aurora High School",
+        meta: "2017",
+        footer: "Top 10 in class · Class & Student Council VP",
+        summary: "98 / 4.5 W GPA · rigorous coursework & leadership.",
+        bullets: [
+          "Honors: Top 10 in class, Honor Roll all semesters, Volunteer Service Award",
+          "AP Classes: Statistics, Calc AB & BC, Chemistry, Economics, Government, Language & Composition, World History, US History, Spanish",
+          "Leadership: Class VP, Student Council VP",
+          "Clubs: Key Club President, Model UN Delegate, Musical Stage Crew Lead, Math Team",
+          "Sports: Varisty Soccer, Tennis, Track"
+
+        ],
       },
     ],
     []
