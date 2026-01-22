@@ -108,28 +108,69 @@
   }
 
   /* --- Experience / Education cards --- */
-  .experience-card {
-    @apply bg-surface rounded-av-lg p-6 shadow-skeuo-soft border border-divider
-           transition hover:opacity-95;
+  .experience-card-centered {
+    @apply items-center text-center;
+  }
+
+    .experience-card {
+    @apply bg-surface rounded-av-lg p-6 border border-divider
+           shadow-skeuo-soft transition;
     min-height: 360px; /* forces alignment across cards */
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+
+    /* interaction */
+    transform: translateZ(0);
+    will-change: transform, box-shadow, border-color;
+    transition-property: transform, box-shadow, border-color, opacity;
+    transition-duration: 160ms;
+    transition-timing-function: ease;
   }
 
-  .experience-card-centered {
-    @apply items-center text-center;
+  .experience-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+    border-color: rgba(99, 102, 241, 0.28); /* subtle “brand-ish” focus ring */
+  }
+
+  .experience-card:active {
+    transform: scale(1.01);
+  }
+
+  .experience-card:focus-visible {
+    outline: none;
+    transform: scale(1.02);
+    border-color: rgba(99, 102, 241, 0.4);
+    box-shadow:
+      0 10px 28px rgba(0, 0, 0, 0.12),
+      0 0 0 3px rgba(99, 102, 241, 0.18);
+  }
+
+    /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .experience-card,
+    .experience-card:hover,
+    .experience-card:active,
+    .experience-card:focus-visible {
+      transition: none;
+      transform: none;
+    }
   }
 
   .experience-logo-plain {
     height: 100px;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
   .experience-logo-img {
+    height: 84px;
+    width: auto;
+    max-width: 140px;
     object-fit: contain;
   }
 
@@ -285,5 +326,39 @@
 
   .interest-featured .icon-btn {
     @apply absolute top-3 right-3;
+  }
+
+
+  /* ===== Experience page helpers (match Overview look) ===== */
+
+  .card-kicker {
+    @apply text-[11px] uppercase tracking-[0.16em] text-text-tertiary mb-2;
+  }
+
+  .card-meta {
+    @apply text-[11px] text-text-tertiary mt-1;
+  }
+
+  .experience-fallback-icon {
+    @apply h-16 w-16 rounded-2xl border border-divider bg-background
+           flex items-center justify-center text-[20px] text-text-secondary;
+  }
+
+  /* Cards that include short bullet previews */
+  .experience-card-bullets {
+    min-height: 420px; /* slightly taller for preview bullets */
+  }
+
+  .card-bullets {
+    @apply mt-4 text-sm text-text-secondary space-y-2;
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .card-bullets li::before {
+    content: "•";
+    margin-right: 8px;
+    color: currentColor;
+    opacity: 0.9;
   }
 }
