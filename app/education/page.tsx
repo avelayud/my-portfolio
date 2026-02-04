@@ -147,6 +147,7 @@ const EDUCATION: EduEntry[] = [
     id: "lyon",
     icon: "🌍",
     name: "Lyon Catholic University (Université Catholique de Lyon)",
+    gradYear: "2019",
     tag: "Study Abroad",
     location: "Lyon, France",
     duration: "Semester abroad",
@@ -401,7 +402,7 @@ export default function EducationPage() {
                     </div>
 
                     {activeActivity && (
-                      <div className="interest-featured mt-6">
+                      <div className="interest-featured education-activity-featured mt-6">
                         <button
                           type="button"
                           className="icon-btn"
