@@ -208,6 +208,11 @@
            flex items-center justify-center overflow-hidden;
   }
 
+  .modal-logo .experience-logo-img {
+    height: 40px;
+    max-width: 80px;
+  }
+
   /* --- Deployments horizontal scroll (no tag box, centered, uniform) --- */
   .hscroll-outer {
     @apply bg-transparent;

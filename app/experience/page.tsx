@@ -17,7 +17,8 @@ type ExpItem = {
   logoSrc?: string;
   icon?: string;
   short: string; // SHORT overview text (card)
-  bullets: string[]; // details (modal)
+  overview: string[]; // overview bullets (modal)
+  highlights?: string[]; // work highlights bullets (modal)
 };
 
 export default function ExperiencePage() {
@@ -34,13 +35,20 @@ export default function ExperiencePage() {
         roleLine: "Senior Associate · Deals Transformation · 2022–Now",
         location: "New York, NY",
         short:
-          "Built internal tools + decision systems for teams operating under deal timelines.",
-        bullets: [
-          "Shipped a scenario hub used across engagements; reduced repeat modeling churn and improved speed-to-answer.",
-          "Designed partner-friendly outputs that work live in meetings (fast, legible, decision-ready).",
-          "Translated operator constraints into product requirements; iterated with feedback and shipped upgrades.",
-          "Owned end-to-end delivery: scoping, build coordination, rollout, and adoption support.",
-          "Built reusable templates and QA checks so teams could move quickly without breaking trust in numbers.",
+          "Led deal transformation across PE diligence and separation programs.",
+        overview: [
+          "Extensive experience (25+ engagements) across industries on PE standalone and synergy diligence.",
+          "On-the-ground client exposure on long-term M&A programs (separations and spins).",
+          "Worked across 15+ clients and promoted first in class on a 1-year accelerated timeline.",
+          "Built a technical brand by leveraging SQL and Python to accelerate analysis.",
+        ],
+        highlights: [
+          "Led teams of 3–7 across US automotive and industrials to deliver multi-workstream programs.",
+          "Drove corporate org design, standalone and synergy modeling, budget development, and rollout of project-wide technical tools.",
+          "Shipped a commercial scenario hub; generalized the approach into a new solution offering driving $5M+ in revenue to date.",
+          "Designed custom ETL aggregation to improve management forecasting and market penetration insights.",
+          "Led C-suite report-outs for product pitches and workstream updates, translating data into clear narratives.",
+          "Owned end-to-end delivery across multiple workstreams: scoping, build coordination, rollout, and adoption support.",
         ],
       },
       {
@@ -51,12 +59,18 @@ export default function ExperiencePage() {
         roleLine: "Analyst · Performance Improvement · 2020–2022",
         location: "San Francisco, CA",
         short:
-          "Built SQL workflows, exhibits, and forecast models under tight deadlines.",
-        bullets: [
-          "Built repeatable SQL pipelines for multi-source datasets under strict QA requirements.",
-          "Produced exhibits and visuals designed for scrutiny with clear logic and documented assumptions.",
-          "Created forecast models tying assumptions to outcomes with full traceability.",
-          "Partnered cross-functionally to turn messy inputs into clear decision narratives.",
+          "Forensic analytics and visualization for legal damages cases.",
+        overview: [
+          "Analyzed large datasets and built visual narratives for expert testimony on legal damages.",
+          "Supported matters spanning lost revenue quantification and software IP infringement.",
+        ],
+        highlights: [
+          "Acted as a forensic accountant, analyzing tax filings and financial statements to trace investment allocations and cash flows.",
+          "Identified $600M+ in questionable offshore investments delegated to tax havens.",
+          "Took projects from raw data dumps to multi-dashboard work products using Python and Tableau over six-month timelines.",
+          "Cleaned and evaluated multi-million-row SQL datasets, creating variables for complex analysis and exhibit-ready outputs.",
+          "Delivered exhibits and written analyses for expert reports and client presentations across damages and contract breach cases.",
+          "Built repeatable SQL pipelines and forecast models with documented assumptions and audit-ready traceability.",
         ],
       },
       {
@@ -67,11 +81,18 @@ export default function ExperiencePage() {
         roleLine: "Operations / Markets · Internship · 2017–2018",
         location: "New York, NY",
         short:
-          "Worked inside high-volume systems with strict SLAs and real failure modes.",
-        bullets: [
-          "Automated recurring ops reporting; reduced manual effort under strict SLAs.",
-          "Analyzed trade-flow anomalies by validating inputs, breaks, and downstream impact.",
-          "Coordinated across teams to resolve issues quickly with clear communication.",
+          "Analytics, compliance, and reporting for PWM operations at scale.",
+        overview: [
+          "Supported Private Wealth Management operations with analytics, compliance remediation, and reporting.",
+          "Focused on improving advisor performance metrics and ensuring regulatory adherence.",
+        ],
+        highlights: [
+          "Built custom Salesforce reports to analyze advisor wins and identify incentive-driven growth opportunities.",
+          "Partnered on division-wide budget reallocation and performance metric analysis.",
+          "Ran cost-benefit analysis on underfunded accounts, comparing revenue gain vs management fee loss over time.",
+          "Designed a 3-month remediation workflow to address new regulations; coordinated bi-weekly with compliance and advisors.",
+          "Developed VBA automations and spreadsheet systems to track fees and compensation across 12 offices.",
+          "Cut a manual, month-long annual process down to a single-day system update.",
         ],
       },
 
@@ -87,7 +108,7 @@ export default function ExperiencePage() {
         icon: "🎤",
         short:
           "Co-founded a professional speaking community and built the operating system.",
-        bullets: [
+        overview: [
           "Co-founded a monthly, membership-based public speaking club for professionals.",
           "Designed pricing and membership structure; managed finances and sustainability.",
           "Facilitated sessions and spoke regularly to keep standards high.",
@@ -103,7 +124,7 @@ export default function ExperiencePage() {
         icon: "🍲",
         short:
           "Built and ran a small operation delivering meals during COVID disruption.",
-        bullets: [
+        overview: [
           "Responded to food insecurity after tourism collapsed during COVID-19.",
           "Hired and managed a small operating team across cooking and distribution.",
           "Created simple workflows for procurement, prep, and delivery.",
@@ -123,7 +144,7 @@ export default function ExperiencePage() {
         icon: "🧪",
         short:
           "Hands-on lab research with strict procedures and process discipline.",
-        bullets: [
+        overview: [
           "Assisted in developing catalysts to convert methane into methanol.",
           "Worked in a lab environment with careful documentation and repeatability.",
           "Connected chemistry and engineering work to sustainability goals.",
@@ -142,7 +163,7 @@ export default function ExperiencePage() {
         icon: "🌱",
         short:
           "Field work focused on consistency, teamwork, and physical systems.",
-        bullets: [
+        overview: [
           "Worked at an organic farm supporting daily operations.",
           "Helped build a greenhouse and maintain an apiary.",
           "Planted, harvested, and cooked with seasonal farm output.",
@@ -157,7 +178,7 @@ export default function ExperiencePage() {
         icon: "📚",
         short:
           "Mentored high school students through consistent academic support.",
-        bullets: [
+        overview: [
           "Mentored students after school across multiple subjects.",
           "Helped with homework, study habits, and confidence-building.",
           "Served as a consistent role model and sounding board.",
@@ -319,14 +340,38 @@ export default function ExperiencePage() {
             </div>
 
             <div className="mt-5">
-              <div className="text-xs font-semibold text-text-primary mb-2">
-                Highlights
-              </div>
-              <ul className="text-sm text-text-secondary space-y-2 list-disc list-inside">
-                {active.bullets.map((b) => (
-                  <li key={b}>{b}</li>
-                ))}
-              </ul>
+              {active.highlights && active.highlights.length > 0 ? (
+                <>
+                  <div className="text-xs font-semibold text-text-primary mb-2">
+                    Overview
+                  </div>
+                  <ul className="text-sm text-text-secondary space-y-2 list-disc list-outside pl-5">
+                    {active.overview.map((b) => (
+                      <li key={b}>{b}</li>
+                    ))}
+                  </ul>
+
+                  <div className="text-xs font-semibold text-text-primary mt-5 mb-2">
+                    Work Highlights
+                  </div>
+                  <ul className="text-sm text-text-secondary space-y-2 list-disc list-outside pl-5">
+                    {active.highlights.map((b) => (
+                      <li key={b}>{b}</li>
+                    ))}
+                  </ul>
+                </>
+              ) : (
+                <>
+                  <div className="text-xs font-semibold text-text-primary mb-2">
+                    Highlights
+                  </div>
+                  <ul className="text-sm text-text-secondary space-y-2 list-disc list-outside pl-5">
+                    {active.overview.map((b) => (
+                      <li key={b}>{b}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
             </div>
           </div>
         </div>
