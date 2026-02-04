@@ -185,7 +185,7 @@ export default function ContactPage() {
                     </div>
                   </div>
                   <a
-                    href="/files/Arjuna%20Velayudam%20Resume.pdf"
+                    href="/resume"
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center rounded-full border border-brand-primary/40 bg-brand-primary/5 px-3 py-1.5 text-[11px] font-medium text-brand-primary hover:bg-brand-primary/10 transition"
