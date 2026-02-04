@@ -1,302 +1,339 @@
 // app/deployments/page.tsx
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+import PageHeader from "@/app/components/PageHeader";
+import { X, Briefcase, Boxes, GraduationCap } from "lucide-react";
+
+type SectionKey = "Deal Tools" | "Data Products" | "Academic & ML";
+
+type DeployItem = {
+  id: string;
+  section: SectionKey;
+  kicker: string; // small uppercase line
+  title: string;
+  short: string; // card summary (keep tight)
+  bullets: string[]; // modal details
+  table?: {
+    headers: string[];
+    rows: string[][];
+  };
+};
 
 export default function DeploymentsPage() {
+  const items: DeployItem[] = useMemo(
+    () => [
+      /* =======================
+         Deal & Internal Tools
+      ======================= */
+      {
+        id: "deal-hub",
+        section: "Deal Tools",
+        kicker: "Internal tool",
+        title: "Deal Scenario Analysis Hub",
+        short: "Internal web tool to simulate deal scenarios fast across engagements.",
+        bullets: [
+          "Defined must-have scenarios with partners; shipped an MVP quickly under deal timelines.",
+          "Normalized financial + operational inputs into one decision-ready view.",
+          "Designed workflows for non-technical teams; reduced repeat analysis churn.",
+        ],
+      },
+      {
+        id: "reporting-hub",
+        section: "Deal Tools",
+        kicker: "Internal tool",
+        title: "Business Reporting / Metrics Hub",
+        short: "Reporting layer that makes risks + KPIs hard to ignore.",
+        bullets: [
+          "Translated messy operational reality into clean weekly reporting.",
+          "Created rollups that align operators and execs on the same numbers.",
+          "Designed outputs for clarity under time pressure (fast, legible, decision-ready).",
+        ],
+      },
+      {
+        id: "metrics-hub",
+        section: "Deal Tools",
+        kicker: "Analytics",
+        title: "Benchmarking & Performance Tool",
+        short: "Sector comps combining internal + market data for quick storytelling.",
+        bullets: [
+          "Unified disparate sources into a consistent metric dictionary and schema.",
+          "Built reusable “tell me the story” views for partner conversations.",
+          "Standardized inputs + outputs to improve speed-to-insight across deals.",
+        ],
+      },
+      {
+        id: "am-trucking",
+        section: "Deal Tools",
+        kicker: "Operations model",
+        title: "Trucking Network & Cost Model",
+        short: "Operational + financial model tying routing and utilization to unit economics.",
+        bullets: [
+          "Mapped routes, lanes, and asset utilization into a single structure.",
+          "Linked operational changes directly to cost per mile and margin outcomes.",
+          "Clarified which levers had real impact vs. noise for performance improvement.",
+        ],
+      },
+
+      /* =======================
+         Data Products & In-Progress
+      ======================= */
+      {
+        id: "mytab",
+        section: "Data Products",
+        kicker: "Data product · in progress",
+        title: "MyTab — Tip & Performance Analytics",
+        short: "Prototype to quantify server performance and design a fair, incentive-aligned tip pool.",
+        bullets: [
+          "Designed a PoS-style schema (tickets, tips, shifts) to support operator questions.",
+          "Built Python analyses for revenue attribution, tip distribution, and fairness metrics.",
+          "Optimized for explainable outputs that feel fair to staff (not black-box scoring).",
+        ],
+      },
+      {
+        id: "fds",
+        section: "Data Products",
+        kicker: "Analytics · defense / industrials",
+        title: "Defense & Industrials Analytics Sandbox",
+        short: "Structured view of segments, players, and where value is likely to accrue.",
+        bullets: [
+          "Organized messy inputs into a usable, queryable structure.",
+          "Framed outputs around operator- and investor-relevant questions.",
+          "Served as a sandbox for forecasting / ML ideas as data quality improves.",
+        ],
+      },
+      {
+        id: "aml",
+        section: "Data Products",
+        kicker: "Data analysis · aml / networks",
+        title: "AML Pattern Analysis (Case Study)",
+        short: "SQL + Python triage of coordination, routes, and suspicious behavior.",
+        bullets: [
+          "Built lag, frequency, dyad, and network analyses to triage suspects.",
+          "Produced decision-ready visuals and a short list for review.",
+          "Prioritized explainable signals over opaque scoring to support investigation workflows.",
+        ],
+        table: {
+          headers: ["Signal", "Why it matters"],
+          rows: [
+            ["Fast pickup (lag)", "Timing coordination indicator; clusters by actor/channel."],
+            ["Repeated dyads", "Controlled “channels” are stronger signal than volume alone."],
+            ["Endpoint concentration", "Highlights likely aggregation / cash-out nodes."],
+          ],
+        },
+      },
+
+      /* =======================
+         Academic & ML
+      ======================= */
+      {
+        id: "pain-capstone",
+        section: "Academic & ML",
+        kicker: "Capstone · computer vision",
+        title: "Facial Expression–Based Pain Assessment",
+        short: "Remote pain assessment capstone using ML under COVID constraints.",
+        bullets: [
+          "Defined scope and methodology with advisors; led execution as capstone lead.",
+          "Used OpenFace to extract facial action units (AUs) from remote video captures.",
+          "Trained an SVM model and documented how performance could improve with more data.",
+        ],
+      },
+      {
+        id: "mit-malaria",
+        section: "Academic & ML",
+        kicker: "MIT bootcamp · CNN",
+        title: "Malaria Detection Capstone",
+        short: "End-to-end CV pipeline with attention to data quality and deployment constraints.",
+        bullets: [
+          "Built data loaders, augmentations, and training loops in Python.",
+          "Evaluated architectures against baselines; tuned for generalization.",
+          "Framed results around how a real workflow would use the output.",
+        ],
+      },
+      {
+        id: "svhn",
+        section: "Academic & ML",
+        kicker: "ML project · vision",
+        title: "SVHN Digit Recognition",
+        short: "Compared simpler ANNs vs deeper CNNs and studied failure modes.",
+        bullets: [
+          "Implemented and compared ANN and CNN approaches on the SVHN dataset.",
+          "Explored hyperparameters, regularization, and augmentation effects.",
+          "Focused on interpretability: where the model fails and why.",
+        ],
+      },
+      {
+        id: "foodhub",
+        section: "Academic & ML",
+        kicker: "Analytics · python / stats",
+        title: "FoodHub Order Analysis",
+        short: "EDA + stats to understand demand patterns and customer behavior.",
+        bullets: [
+          "Performed EDA on order and customer-level data to find behavioral patterns.",
+          "Used statistical tests to validate hypotheses (not just visual intuition).",
+          "Translated findings into simple, decision-ready recommendations.",
+        ],
+      },
+    ],
+    []
+  );
+
+  const sections = useMemo(
+    () => [
+      {
+        key: "Deal Tools" as const,
+        icon: <Briefcase className="h-4 w-4 text-brand-primary" />,
+        title: "Deal & Internal Tools",
+        subtitle:
+          "Decision-support tools built in deal environments where speed and explainability matter as much as accuracy.",
+        cols: "md:grid-cols-2",
+      },
+      {
+        key: "Data Products" as const,
+        icon: <Boxes className="h-4 w-4 text-brand-primary" />,
+        title: "Data Products & In-Progress Builds",
+        subtitle:
+          "Closer to the metal — designing schemas, writing SQL/Python, and building outputs operators can actually use.",
+        cols: "md:grid-cols-2",
+      },
+      {
+        key: "Academic & ML" as const,
+        icon: <GraduationCap className="h-4 w-4 text-brand-primary" />,
+        title: "Academic & ML Projects",
+        subtitle:
+          "Work where the output is a working model or pipeline — built with an eye toward real-world constraints.",
+        cols: "md:grid-cols-2",
+      },
+    ],
+    []
+  );
+
+  const [active, setActive] = useState<DeployItem | null>(null);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setActive(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   return (
     <>
-      {/* Header */}
-      <section className="section-container pt-20 pb-10">
-        <p className="text-[11px] uppercase tracking-[0.2em] text-text-tertiary mb-2">
-          Deployments &amp; Product Work
-        </p>
-        <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-3">
-          Tools, models, and systems I&apos;ve helped ship.
-        </h1>
-        <p className="section-subtitle max-w-3xl">
-          From internal hubs in consulting to ML capstones and data products,
-          these are the things that moved beyond slides into working artifacts.
-        </p>
-      </section>
+      <PageHeader
+        kicker="Deployments & Product Work"
+        title="Tools, models, and systems I’ve helped ship."
+        subtitle="From internal hubs in consulting to data products and ML pipelines — work that moved beyond slides into artifacts people can actually use."
+      />
 
-      {/* Internal / Deal Tools */}
-      <section className="section-container pb-12">
-        <h2 className="section-title mb-2">Deal &amp; Internal Tools</h2>
-        <p className="section-subtitle max-w-3xl mb-6">
-          Decision-support tools built inside consulting and deal environments,
-          where speed and explainability matter as much as accuracy.
-        </p>
+      {sections.map((s, idx) => {
+        const sectionItems = items.filter((i) => i.section === s.key);
 
-        <div className="grid gap-6 md:grid-cols-2">
-          {/* Deal Scenario Analysis Hub */}
-          <article className="card-skeuo">
-            <p className="text-[11px] font-semibold text-brand-primary mb-1">
-              INTERNAL TOOL · DEPLOYED
-            </p>
-            <h3 className="text-lg font-semibold text-text-primary mb-2">
-              Deal Scenario Analysis Hub
-            </h3>
-            <p className="text-sm text-text-secondary mb-3">
-              Internal web-based tool to quickly simulate standalone, synergy,
-              and carve-out scenarios across deals, giving partners and teams a
-              single place to reason about outcomes.
-            </p>
-            <ul className="text-xs text-text-secondary space-y-1">
-              <li>• Aggregated and normalized financial and operational inputs.</li>
-              <li>• Framed outputs around questions partners actually ask in deal rooms.</li>
-              <li>• Iterated based on feedback from teams using it across engagements.</li>
-            </ul>
-          </article>
+        return (
+          <div key={s.key}>
+            <section className="section-container pb-12">
+              <div className="flex items-center gap-2 mb-2">
+                {s.icon}
+                <h2 className="section-title mb-0">{s.title}</h2>
+              </div>
+              <p className="section-subtitle max-w-3xl mb-6">{s.subtitle}</p>
 
-          {/* Business Reporting / Metrics Tool */}
-          <article className="card-skeuo">
-            <p className="text-[11px] font-semibold text-brand-primary mb-1">
-              INTERNAL TOOL · METRICS HUB
-            </p>
-            <h3 className="text-lg font-semibold text-text-primary mb-2">
-              Business Reporting &amp; Sector Metrics Tool
-            </h3>
-            <p className="text-sm text-text-secondary mb-3">
-              Metrics hub combining internal project data and market benchmarks
-              to make it easier for teams to compare companies, sectors, and
-              deal theses without rebuilding the same views from scratch.
-            </p>
-            <ul className="text-xs text-text-secondary space-y-1">
-              <li>• Defined a common schema for sector- and deal-level metrics.</li>
-              <li>• Built views that could be reused across pitches and diligence work.</li>
-              <li>• Focused on reducing time from question to “good enough” answer.</li>
-            </ul>
-          </article>
+              <div className={`grid gap-6 ${s.cols}`}>
+                {sectionItems.map((it) => (
+                  <button
+                    key={it.id}
+                    type="button"
+                    className="experience-card experience-card-centered"
+                    onClick={() => setActive(it)}
+                  >
+                    <div className="experience-logo-plain">
+                      <div className="experience-fallback-icon" aria-hidden>
+                        ✦
+                      </div>
+                    </div>
 
-          {/* Benchmarking Tool */}
-          <article className="card-skeuo">
-            <p className="text-[11px] font-semibold text-brand-primary mb-1">
-              ANALYTICS · BENCHMARKING
-            </p>
-            <h3 className="text-lg font-semibold text-text-primary mb-2">
-              Benchmarking &amp; Performance Comparison Tool
-            </h3>
-            <p className="text-sm text-text-secondary mb-3">
-              Framework and templates to benchmark companies against peers across
-              margin, capital intensity, and operational metrics, supporting both
-              diligence and portfolio work.
-            </p>
-            <ul className="text-xs text-text-secondary space-y-1">
-              <li>• Standardized metric definitions to reduce debate about the numbers.</li>
-              <li>• Built reusable views aligned to how investors talk about businesses.</li>
-              <li>• Enabled faster, more consistent comparisons across targets.</li>
-            </ul>
-          </article>
+                    <div className="experience-stack">
+                      <div className="card-kicker">{it.kicker}</div>
+                      <div className="experience-company">{it.title}</div>
+                      <p className="experience-short">{it.short}</p>
+                    </div>
 
-          {/* A&amp;M Trucking */}
-          <article className="card-skeuo">
-            <p className="text-[11px] font-semibold text-brand-primary mb-1">
-              OPERATIONS · NETWORK MODEL
-            </p>
-            <h3 className="text-lg font-semibold text-text-primary mb-2">
-              A&amp;M Trucking Network &amp; Cost Model
-            </h3>
-            <p className="text-sm text-text-secondary mb-3">
-              Operational and financial model for a trucking / logistics network,
-              tying route patterns, utilization, and cost structure to concrete
-              levers for performance improvement.
-            </p>
-            <ul className="text-xs text-text-secondary space-y-1">
-              <li>• Mapped routes, lanes, and asset utilization into a single structure.</li>
-              <li>• Linked operational changes directly to unit economics.</li>
-              <li>• Helped teams see which levers had real impact on cost per mile.</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-      {/* Data Products & In-Progress Builds */}
-      <section className="section-container pb-12">
-        <h2 className="section-title mb-2">Data Products &amp; In-Progress Builds</h2>
-        <p className="section-subtitle max-w-3xl mb-6">
-          Experiments where I&apos;m closer to the metal — designing schemas,
-          writing SQL/Python, and thinking about how operators would actually use the output.
-        </p>
+                    <div className="experience-cta">View details →</div>
+                  </button>
+                ))}
+              </div>
+            </section>
 
-      
-        <div className="grid gap-6 md:grid-cols-2">
-          {/* MyTab */}
-          <article className="card-skeuo">
-            <p className="text-[11px] font-semibold text-brand-primary mb-1">
-              DATA PRODUCT · IN PROGRESS
-            </p>
-            <h3 className="text-lg font-semibold text-text-primary mb-2">
-              MyTab — Restaurant Tip &amp; Performance Analytics
-            </h3>
-            <p className="text-sm text-text-secondary mb-3">
-              Prototype data product to quantify server performance and design a fair,
-              incentive-aligned tip pool — giving operators a clearer picture of who
-              drives revenue and why.
-            </p>
-            <ul className="text-xs text-text-secondary space-y-1">
-              <li>• Synthetic PoS schema in PostgreSQL for tickets, tips, and shifts.</li>
-              <li>• Python-based analysis for revenue, tip distribution, and fairness metrics.</li>
-              <li>• Designed around metrics that feel explainable and fair to staff.</li>
-            </ul>
-          </article>
+            {idx !== sections.length - 1 && <div className="section-divider" />}
+          </div>
+        );
+      })}
 
-          {/* FDS / Defense project (high level) */}
-          <article className="card-skeuo">
-            <p className="text-[11px] font-semibold text-brand-primary mb-1">
-              ANALYTICS · DEFENSE / INDUSTRIALS
-            </p>
-            <h3 className="text-lg font-semibold text-text-primary mb-2">
-              FDS Project — Defense &amp; Industrial Analytics
-            </h3>
-            <p className="text-sm text-text-secondary mb-3">
-              Analytical work exploring defense and industrial spend, focused on building
-              a structured view of segments, players, and where value is likely to accrue.
-            </p>
-            <ul className="text-xs text-text-secondary space-y-1">
-              <li>• Organized messy data into a usable, queryable structure.</li>
-              <li>• Framed outputs around investor- and operator-relevant questions.</li>
-              <li>• Served as a sandbox for further ML / forecasting ideas.</li>
-            </ul>
-          </article>  
+      {active && (
+        <div className="modal-overlay" onMouseDown={() => setActive(null)}>
+          <div className="modal-card" onMouseDown={(e) => e.stopPropagation()}>
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex items-start gap-4">
+                <div className="modal-logo">
+                  <span className="text-[18px]" aria-hidden>
+                    ✦
+                  </span>
+                </div>
 
-          {/* AML Network Analysis (Peregrine take-home) */}
-          <article className="card-skeuo">
-            <p className="text-[11px] font-semibold text-brand-primary mb-1">
-              DATA ANALYSIS · AML / NETWORKS
-            </p>
-            <h3 className="text-lg font-semibold text-text-primary mb-2">
-              Money Laundering Detection — Transaction Graph & Suspect Prioritization
-            </h3>
+                <div>
+                  <div className="card-kicker mb-2">{active.kicker}</div>
+                  <div className="text-xl font-semibold text-text-primary">
+                    {active.title}
+                  </div>
+                  <p className="text-sm text-text-secondary mt-3">{active.short}</p>
+                </div>
+              </div>
 
-            <p className="text-sm text-text-secondary mb-3">
-              Investigated a large wire-transfer dataset to surface likely laundering behavior.
-              Built a hypothesis-driven pipeline that flags coordinated pickup timing, repeated
-              sender→payee channels, and concentration at endpoints — then validated patterns
-              with an interpretable network graph.
-            </p>
-
-            <ul className="text-xs text-text-secondary space-y-1 mb-4">
-              <li>• Lag analysis to isolate “coordination” (fast pickups) vs. long-tail noise.</li>
-              <li>• Frequency + repeated dyads to separate infrastructure routes from burst behavior.</li>
-              <li>• Network visualization where size/width/color encode involvement, repetition, and speed.</li>
-            </ul>
-
-            {/* Mini “always-a-table” evidence summary */}
-            <div className="overflow-hidden rounded-xl border border-border-subtle">
-              <table className="w-full text-xs">
-                <thead className="bg-surface-2 text-text-tertiary">
-                  <tr>
-                    <th className="text-left font-medium px-3 py-2">Signal</th>
-                    <th className="text-left font-medium px-3 py-2">Why it matters</th>
-                  </tr>
-                </thead>
-                <tbody className="text-text-secondary">
-                  <tr className="border-t border-border-subtle">
-                    <td className="px-3 py-2">Fast pickup (lag)</td>
-                    <td className="px-3 py-2">Timing coordination indicator; clusters by actor/channel.</td>
-                  </tr>
-                  <tr className="border-t border-border-subtle">
-                    <td className="px-3 py-2">Repeated dyads</td>
-                    <td className="px-3 py-2">Controlled “channels” are stronger laundering signal than volume alone.</td>
-                  </tr>
-                  <tr className="border-t border-border-subtle">
-                    <td className="px-3 py-2">Endpoint concentration</td>
-                    <td className="px-3 py-2">Highlights likely aggregation / cash-out nodes for investigation.</td>
-                  </tr>
-                </tbody>
-              </table>
+              <button className="icon-btn" onClick={() => setActive(null)} aria-label="Close modal">
+                <X size={16} />
+              </button>
             </div>
-          </article>
+
+            <div className="mt-5">
+              <div className="text-xs font-semibold text-text-primary mb-2">
+                What it is / what I did
+              </div>
+              <ul className="text-sm text-text-secondary space-y-2 list-disc list-inside">
+                {active.bullets.map((b) => (
+                  <li key={b}>{b}</li>
+                ))}
+              </ul>
+            </div>
+
+            {active.table && (
+              <div className="mt-5 overflow-hidden rounded-xl border border-divider">
+                <table className="w-full text-sm">
+                  <thead className="bg-background text-text-tertiary">
+                    <tr>
+                      {active.table.headers.map((h) => (
+                        <th key={h} className="text-left font-medium px-3 py-2">
+                          {h}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody className="text-text-secondary">
+                    {active.table.rows.map((row, idx) => (
+                      <tr key={idx} className="border-t border-divider">
+                        {row.map((cell, j) => (
+                          <td key={j} className="px-3 py-2">
+                            {cell}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
         </div>
-      </section>
-
-      {/* Academic & ML Projects */}
-      <section className="section-container pb-24">
-        <h2 className="section-title mb-2">Academic &amp; ML Projects</h2>
-        <p className="section-subtitle max-w-3xl mb-6">
-          Work from MIT and Northeastern where the output was a working model or pipeline,
-          not just a paper — with an eye toward how these ideas could live in the real world.
-        </p>
-
-        <div className="grid gap-6 md:grid-cols-2">
-          {/* Engineering Capstone */}
-          <article className="card-skeuo">
-            <p className="text-[11px] font-semibold text-brand-primary mb-1">
-              CAPSTONE · COMPUTER VISION
-            </p>
-            <h3 className="text-lg font-semibold text-text-primary mb-2">
-              Facial Expression-Based Pain Assessment (Engineering Capstone)
-            </h3>
-            <p className="text-sm text-text-secondary mb-3">
-              Spearheaded a remote pain assessment capstone using machine learning to
-              adapt to COVID-19&apos;s constraints on in-person care. The team captured
-              facial expression data remotely via Zoom and used OpenFace 2.0 to extract
-              facial action units (AUs), training an SVM model to estimate pain levels.
-            </p>
-            <ul className="text-xs text-text-secondary space-y-1">
-              <li>• Defined project scope and methodology in collaboration with advisors.</li>
-              <li>• Used OpenFace 2.0 to convert video into structured AU features.</li>
-              <li>• Trained an SVM model whose performance improves with new data over time.</li>
-            </ul>
-          </article>
-
-          {/* Malaria Capstone */}
-          <article className="card-skeuo">
-            <p className="text-[11px] font-semibold text-brand-primary mb-1">
-              MIT BOOTCAMP · CNN
-            </p>
-            <h3 className="text-lg font-semibold text-text-primary mb-2">
-              Malaria Detection Capstone (MIT Python for AI &amp; Data)
-            </h3>
-            <p className="text-sm text-text-secondary mb-3">
-              End-to-end computer vision pipeline to detect malaria from blood smear images
-              using convolutional neural networks, with attention to data quality,
-              model performance, and potential deployment constraints in low-resource settings.
-            </p>
-            <ul className="text-xs text-text-secondary space-y-1">
-              <li>• Built data loaders, augmentations, and training loops in Python.</li>
-              <li>• Tuned CNN architectures and evaluated against baselines.</li>
-              <li>• Considered how such a system might integrate with real clinical workflows.</li>
-            </ul>
-          </article>
-
-          {/* SVHN Digit Recognition */}
-          <article className="card-skeuo">
-            <p className="text-[11px] font-semibold text-brand-primary mb-1">
-              ML PROJECT · VISION
-            </p>
-            <h3 className="text-lg font-semibold text-text-primary mb-2">
-              Street View House Number Digit Recognition
-            </h3>
-            <p className="text-sm text-text-secondary mb-3">
-              Recognized street view house number digits using artificial and convolutional
-              neural networks on the SVHN dataset, exploring the tradeoffs between
-              simpler models and deeper CNNs.
-            </p>
-            <ul className="text-xs text-text-secondary space-y-1">
-              <li>• Implemented and compared basic ANNs and CNNs.</li>
-              <li>• Experimented with hyperparameters, regularization, and augmentation.</li>
-              <li>• Focused on interpretability and where the models failed.</li>
-            </ul>
-          </article>
-
-          {/* FoodHub / other analytics project */}
-          <article className="card-skeuo">
-            <p className="text-[11px] font-semibold text-brand-primary mb-1">
-              ANALYTICS · PYTHON / STATS
-            </p>
-            <h3 className="text-lg font-semibold text-text-primary mb-2">
-              FoodHub Order Analysis
-            </h3>
-            <p className="text-sm text-text-secondary mb-3">
-              Analytical project for a food aggregator, using Python to understand order
-              patterns, customer behavior, and platform dynamics through EDA and statistics.
-            </p>
-            <ul className="text-xs text-text-secondary space-y-1">
-              <li>• Performed extensive EDA on order and customer-level data.</li>
-              <li>• Used statistical tests to validate hypotheses about demand patterns.</li>
-              <li>• Translated findings into simple, decision-ready recommendations.</li>
-            </ul>
-          </article>
-        </div>
-      </section>
+      )}
     </>
   );
 }
