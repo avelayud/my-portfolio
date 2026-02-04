@@ -10,6 +10,7 @@ type SectionKey = "Deal Tools" | "Data Products" | "Academic & ML";
 type DeployItem = {
   id: string;
   section: SectionKey;
+  icon: string;
   kicker: string; // small uppercase line
   title: string;
   short: string; // card summary (keep tight)
@@ -29,6 +30,7 @@ export default function DeploymentsPage() {
       {
         id: "deal-hub",
         section: "Deal Tools",
+        icon: "🧠",
         kicker: "Internal tool",
         title: "Deal Scenario Analysis Hub",
         short: "Internal web tool to simulate deal scenarios fast across engagements.",
@@ -41,6 +43,7 @@ export default function DeploymentsPage() {
       {
         id: "reporting-hub",
         section: "Deal Tools",
+        icon: "📊",
         kicker: "Internal tool",
         title: "Business Reporting / Metrics Hub",
         short: "Reporting layer that makes risks + KPIs hard to ignore.",
@@ -53,6 +56,7 @@ export default function DeploymentsPage() {
       {
         id: "metrics-hub",
         section: "Deal Tools",
+        icon: "📈",
         kicker: "Analytics",
         title: "Benchmarking & Performance Tool",
         short: "Sector comps combining internal + market data for quick storytelling.",
@@ -65,6 +69,7 @@ export default function DeploymentsPage() {
       {
         id: "am-trucking",
         section: "Deal Tools",
+        icon: "🚚",
         kicker: "Operations model",
         title: "Trucking Network & Cost Model",
         short: "Operational + financial model tying routing and utilization to unit economics.",
@@ -81,6 +86,7 @@ export default function DeploymentsPage() {
       {
         id: "mytab",
         section: "Data Products",
+        icon: "🍽️",
         kicker: "Data product · in progress",
         title: "MyTab — Tip & Performance Analytics",
         short: "Prototype to quantify server performance and design a fair, incentive-aligned tip pool.",
@@ -93,6 +99,7 @@ export default function DeploymentsPage() {
       {
         id: "fds",
         section: "Data Products",
+        icon: "🛡️",
         kicker: "Analytics · defense / industrials",
         title: "Defense & Industrials Analytics Sandbox",
         short: "Structured view of segments, players, and where value is likely to accrue.",
@@ -105,6 +112,7 @@ export default function DeploymentsPage() {
       {
         id: "aml",
         section: "Data Products",
+        icon: "🕵️",
         kicker: "Data analysis · aml / networks",
         title: "AML Pattern Analysis (Case Study)",
         short: "SQL + Python triage of coordination, routes, and suspicious behavior.",
@@ -129,6 +137,7 @@ export default function DeploymentsPage() {
       {
         id: "pain-capstone",
         section: "Academic & ML",
+        icon: "🩺",
         kicker: "Capstone · computer vision",
         title: "Facial Expression–Based Pain Assessment",
         short: "Remote pain assessment capstone using ML under COVID constraints.",
@@ -141,6 +150,7 @@ export default function DeploymentsPage() {
       {
         id: "mit-malaria",
         section: "Academic & ML",
+        icon: "🔬",
         kicker: "MIT bootcamp · CNN",
         title: "Malaria Detection Capstone",
         short: "End-to-end CV pipeline with attention to data quality and deployment constraints.",
@@ -153,6 +163,7 @@ export default function DeploymentsPage() {
       {
         id: "svhn",
         section: "Academic & ML",
+        icon: "🔢",
         kicker: "ML project · vision",
         title: "SVHN Digit Recognition",
         short: "Compared simpler ANNs vs deeper CNNs and studied failure modes.",
@@ -165,6 +176,7 @@ export default function DeploymentsPage() {
       {
         id: "foodhub",
         section: "Academic & ML",
+        icon: "🍔",
         kicker: "Analytics · python / stats",
         title: "FoodHub Order Analysis",
         short: "EDA + stats to understand demand patterns and customer behavior.",
@@ -248,7 +260,7 @@ export default function DeploymentsPage() {
                   >
                     <div className="experience-logo-plain">
                       <div className="experience-fallback-icon" aria-hidden>
-                        ✦
+                        {it.icon}
                       </div>
                     </div>
 
@@ -276,7 +288,7 @@ export default function DeploymentsPage() {
               <div className="flex items-start gap-4">
                 <div className="modal-logo">
                   <span className="text-[18px]" aria-hidden>
-                    ✦
+                    {active.icon}
                   </span>
                 </div>
 

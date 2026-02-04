@@ -15,6 +15,7 @@ type ExpItem = {
   roleLine: string;
   location: string; // shown on card + modal
   logoSrc?: string;
+  icon?: string;
   short: string; // SHORT overview text (card)
   bullets: string[]; // details (modal)
 };
@@ -83,6 +84,7 @@ export default function ExperiencePage() {
         company: "Manhattan Orators",
         roleLine: "Co-Founder · VP Finance · Speaker · 2023–Now",
         location: "New York, NY",
+        icon: "🎤",
         short:
           "Co-founded a professional speaking community and built the operating system.",
         bullets: [
@@ -98,6 +100,7 @@ export default function ExperiencePage() {
         company: "El Comedor",
         roleLine: "Founder & Manager · 2020–2021",
         location: "Playa del Carmen, MX",
+        icon: "🍲",
         short:
           "Built and ran a small operation delivering meals during COVID disruption.",
         bullets: [
@@ -117,6 +120,7 @@ export default function ExperiencePage() {
         company: "Chemistry Lab Research",
         roleLine: "Methane → Methanol Catalysis",
         location: "Northeastern University",
+        icon: "🧪",
         short:
           "Hands-on lab research with strict procedures and process discipline.",
         bullets: [
@@ -135,6 +139,7 @@ export default function ExperiencePage() {
         company: "WWOOF Italia",
         roleLine: "Farm Hand & Chef · 2017",
         location: "Padua, Italy",
+        icon: "🌱",
         short:
           "Field work focused on consistency, teamwork, and physical systems.",
         bullets: [
@@ -149,6 +154,7 @@ export default function ExperiencePage() {
         company: "Fenway Academic Mentoring (FAM)",
         roleLine: "Mentor",
         location: "Boston, MA",
+        icon: "📚",
         short:
           "Mentored high school students through consistent academic support.",
         bullets: [
@@ -245,7 +251,7 @@ export default function ExperiencePage() {
                         />
                       ) : (
                         <div className="experience-fallback-icon" aria-hidden>
-                          ✦
+                          {it.icon ?? "✦"}
                         </div>
                       )}
                     </div>
@@ -284,7 +290,7 @@ export default function ExperiencePage() {
                     />
                   ) : (
                     <span className="text-[18px]" aria-hidden>
-                      ✦
+                      {active.icon ?? "✦"}
                     </span>
                   )}
                 </div>

@@ -1,8 +1,9 @@
 // app/education/page.tsx
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PageHeader from "@/app/components/PageHeader";
+import { GraduationCap } from "lucide-react";
 
 type EduId = "mit" | "neu" | "lyon" | "eahs";
 
@@ -14,6 +15,7 @@ type Activity = {
 
 type EduEntry = {
   id: EduId;
+  icon: string;
   name: string;
   tag: string;
   location: string;
@@ -26,6 +28,7 @@ type EduEntry = {
 const EDUCATION: EduEntry[] = [
   {
     id: "mit",
+    icon: "🤖",
     name: "MIT Bootcamp — Python for AI & Data",
     tag: "Continuing Education",
     location: "Remote / Global",
@@ -59,6 +62,7 @@ const EDUCATION: EduEntry[] = [
   },
   {
     id: "neu",
+    icon: "🎓",
     name: "Northeastern University — B.S. Industrial Engineering",
     tag: "Undergraduate",
     location: "Boston, MA",
@@ -102,6 +106,7 @@ const EDUCATION: EduEntry[] = [
   },
   {
     id: "lyon",
+    icon: "🌍",
     name: "Lyon Catholic University (Université Catholique de Lyon)",
     tag: "Study Abroad",
     location: "Lyon, France",
@@ -125,6 +130,7 @@ const EDUCATION: EduEntry[] = [
   },
   {
     id: "eahs",
+    icon: "📣",
     name: "East Aurora High School",
     tag: "Foundation",
     location: "East Aurora, NY",
@@ -169,21 +175,28 @@ export default function EducationPage() {
     Partial<Record<EduId, string | null>>
   >({});
 
-  const handlePillClick = (eduId: EduId, title: string) => {
-    setActiveActivityByEdu((prev) => {
-      const current = prev[eduId] ?? null;
-      return { ...prev, [eduId]: current === title ? null : title };
-    });
-  };
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setActiveId(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   const handleSelect = (id: EduId) => {
     setActiveId((prev) => {
       const next = prev === id ? null : id;
-      if (next === id) {
-        const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (prev === id) {
+        setActiveActivityByEdu((curr) => ({ ...curr, [id]: null }));
       }
       return next;
+    });
+  };
+
+  const handlePillClick = (eduId: EduId, title: string) => {
+    setActiveActivityByEdu((prev) => {
+      const current = prev[eduId] ?? null;
+      return { ...prev, [eduId]: current === title ? null : title };
     });
   };
 
@@ -195,86 +208,85 @@ export default function EducationPage() {
         subtitle="A path through Boston, Lyon, New York, San Francisco, and Mexico — mixing engineering, data, and real work with operators."
       />
 
-      {/* Hero list */}
-      <section className="section-container pb-10">
-        <div className="hero-list">
+      <section className="section-container pb-24">
+        <div className="flex items-center gap-2 mb-2">
+          <GraduationCap className="h-4 w-4 text-brand-primary" />
+          <h2 className="section-title mb-0">Education &amp; Training</h2>
+        </div>
+        <p className="section-subtitle max-w-3xl mb-6">
+          Each program added tools for thinking, building, and shipping work that
+          holds up under real-world constraints.
+        </p>
+
+        <div className="grid gap-6">
           {EDUCATION.map((edu) => {
             const isActive = edu.id === activeId;
+            const activeTitle = activeActivityByEdu[edu.id] ?? null;
+            const activeActivity = activeTitle
+              ? edu.activities.find((a) => a.title === activeTitle) ?? null
+              : null;
+            const otherActivities = activeTitle
+              ? edu.activities.filter((a) => a.title !== activeTitle)
+              : edu.activities;
+
             return (
-              <button
-                key={edu.id}
-                type="button"
-                onClick={() => handleSelect(edu.id)}
-                className={`hero-list-item ${isActive ? "hero-list-item-active" : ""}`}
-              >
-                <div className="snapshot-icon">
-                  {edu.id === "mit"
-                    ? "🤖"
-                    : edu.id === "neu"
-                    ? "🎓"
-                    : edu.id === "lyon"
-                    ? "🌍"
-                    : "📣"}
-                </div>
-                <div>
-                  <div className="hero-list-text-main">{edu.name}</div>
-                  <div className="hero-list-text-meta">
-                    {edu.duration} · {edu.location}
-                  </div>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Details */}
-      <section className="section-container pb-24 space-y-10">
-        {EDUCATION.map((edu) => {
-          const isActive = edu.id === activeId;
-
-          return (
             <article
               key={edu.id}
-              id={edu.id}
-              className={`edu-card ${isActive ? "edu-card-active" : "edu-card-inactive"} scroll-mt-28`}
+              className={`experience-card education-card-wide ${
+                isActive ? "education-card-expanded" : ""
+              }`}
               onClick={() => handleSelect(edu.id)}
+              aria-expanded={isActive}
+              id={edu.id}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  handleSelect(edu.id);
+                }
+              }}
             >
-              <header className="edu-card-header">
-                <div>
-                  <h3 className="edu-card-title">{edu.name}</h3>
-                  <p className="edu-card-meta">
-                    {edu.duration} · {edu.location}
-                  </p>
+              <div className="education-card-icon" aria-hidden>
+                {edu.icon}
+              </div>
+
+              <div className="education-card-body">
+                <div className="card-kicker">{edu.tag}</div>
+                <div className="education-card-title">{edu.name}</div>
+                <div className="education-card-meta">
+                  {edu.duration} · {edu.location}
                 </div>
-                <span className="edu-card-tag">
-                  {edu.tag}
-                  {isActive ? " · Selected" : ""}
-                </span>
-              </header>
+                <p className="education-card-short">{edu.shortDesc}</p>
 
-              <p className="edu-card-short">{edu.shortDesc}</p>
+                {isActive && (
+                  <>
+                    <p className="education-card-long">{edu.longDesc}</p>
 
-              {isActive && (
-                <>
-                  <p className="edu-card-long">{edu.longDesc}</p>
+                    <div className="education-pill-stack" aria-label="Focus areas">
+                      {activeActivity && (
+                        <div className="education-pill-row education-pill-row-expanded">
+                          <button
+                            key={activeActivity.title}
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handlePillClick(edu.id, activeActivity.title);
+                            }}
+                            className="education-pill education-pill-active education-pill-expanded"
+                          >
+                            <span className="education-pill-title">
+                              {activeActivity.title}
+                            </span>
+                            <p className="education-pill-desc">
+                              {activeActivity.desc}
+                            </p>
+                          </button>
+                        </div>
+                      )}
 
-                  <div className="edu-pill-row">
-                    {(() => {
-                      const activeTitle = activeActivityByEdu[edu.id] ?? null;
-
-                      const activitiesForCard = activeTitle
-                        ? [
-                            ...edu.activities.filter((a) => a.title === activeTitle),
-                            ...edu.activities.filter((a) => a.title !== activeTitle),
-                          ]
-                        : edu.activities;
-
-                      return activitiesForCard.map((act) => {
-                        const isActivityActive =
-                          activeActivityByEdu[edu.id] === act.title;
-
-                        return (
+                      <div className="education-pill-row education-pill-row-secondary">
+                        {otherActivities.map((act) => (
                           <button
                             key={act.title}
                             type="button"
@@ -282,32 +294,32 @@ export default function EducationPage() {
                               e.stopPropagation();
                               handlePillClick(edu.id, act.title);
                             }}
-                            className={`edu-pill ${isActivityActive ? "edu-pill-active" : ""}`}
+                            className="education-pill"
                           >
-                            <span className="font-semibold text-text-primary">
+                            <span className="education-pill-title">
                               {act.title}
                             </span>
-
-                            {isActivityActive && (
-                              <>
-                                <span className="edu-pill-badge mt-1">
-                                  {act.category}
-                                </span>
-                                <p className="text-[11px] text-text-secondary mt-1">
-                                  {act.desc}
-                                </p>
-                              </>
-                            )}
                           </button>
-                        );
-                      });
-                    })()}
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                <div
+                  className={`education-cta-row ${
+                    isActive ? "education-cta-row-expanded" : ""
+                  }`}
+                >
+                  <div className="experience-cta">
+                    {isActive ? "Collapse details ←" : "View details →"}
                   </div>
-                </>
-              )}
+                </div>
+              </div>
             </article>
-          );
-        })}
+            );
+          })}
+        </div>
       </section>
     </>
   );
