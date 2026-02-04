@@ -419,7 +419,7 @@
     @apply w-full text-left pb-6;
     min-height: 0;
     display: grid;
-    grid-template-columns: 56px 1fr;
+    grid-template-columns: 56px 1fr 56px;
     gap: 20px;
     align-items: start;
     text-align: left;
@@ -427,13 +427,26 @@
 
   @media (min-width: 768px) {
     .education-card-wide {
-      grid-template-columns: 72px 1fr;
+      grid-template-columns: 72px 1fr 72px;
     }
   }
 
   .education-card-icon {
     @apply h-12 w-12 rounded-2xl border border-divider bg-background
            flex items-center justify-center text-[20px] text-text-secondary;
+  }
+
+  .education-card-chevron {
+    @apply flex items-center justify-end text-text-muted;
+    align-self: start;
+    margin-top: 2px;
+    padding-right: 4px; /* match icon inset on the left */
+  }
+
+  @media (min-width: 768px) {
+    .education-card-chevron {
+      padding-right: 12px; /* match larger icon column inset */
+    }
   }
 
   .education-card-body {

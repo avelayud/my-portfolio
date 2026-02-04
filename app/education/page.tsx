@@ -322,14 +322,9 @@ export default function EducationPage() {
               </div>
 
               <div className="education-card-body">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <div className="card-kicker">{edu.tag}</div>
-                    <div className="education-card-title">{edu.name}</div>
-                  </div>
-                  <span className="text-text-tertiary mt-1">
-                    {isActive ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
-                  </span>
+                <div>
+                  <div className="card-kicker">{edu.tag}</div>
+                  <div className="education-card-title">{edu.name}</div>
                 </div>
                 <div className="education-card-meta">
                   {edu.duration} · {edu.location}
@@ -432,6 +427,11 @@ export default function EducationPage() {
                 )}
 
               </div>
+
+              <div className="education-card-chevron" aria-hidden>
+                {isActive ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+              </div>
+
             </article>
             );
           })}
