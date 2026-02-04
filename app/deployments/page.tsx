@@ -3,6 +3,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import PageHeader from "@/app/components/PageHeader";
+import Section from "@/app/components/Section";
 import { X, Briefcase, Boxes, GraduationCap } from "lucide-react";
 
 type SectionKey = "Deal Tools" | "Data Products" | "Academic & ML";
@@ -243,7 +244,7 @@ export default function DeploymentsPage() {
 
         return (
           <div key={s.key}>
-            <section className="section-container pb-12">
+            <Section>
               <div className="flex items-center gap-2 mb-2">
                 {s.icon}
                 <h2 className="section-title mb-0">{s.title}</h2>
@@ -270,11 +271,11 @@ export default function DeploymentsPage() {
                       <p className="experience-short">{it.short}</p>
                     </div>
 
-                    <div className="experience-cta">View details →</div>
+                    <div className="experience-cta">View Details</div>
                   </button>
                 ))}
               </div>
-            </section>
+            </Section>
 
             {idx !== sections.length - 1 && <div className="section-divider" />}
           </div>
@@ -310,7 +311,7 @@ export default function DeploymentsPage() {
               <div className="text-xs font-semibold text-text-primary mb-2">
                 What it is / what I did
               </div>
-              <ul className="text-sm text-text-secondary space-y-2 list-disc list-inside">
+              <ul className="text-sm text-text-secondary space-y-1 list-disc list-inside">
                 {active.bullets.map((b) => (
                   <li key={b}>{b}</li>
                 ))}

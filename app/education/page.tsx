@@ -3,7 +3,8 @@
 
 import { useEffect, useState } from "react";
 import PageHeader from "@/app/components/PageHeader";
-import { GraduationCap } from "lucide-react";
+import Section from "@/app/components/Section";
+import { ChevronDown, ChevronUp, GraduationCap, X } from "lucide-react";
 
 type EduId = "mit" | "neu" | "lyon" | "eahs";
 
@@ -17,11 +18,19 @@ type EduEntry = {
   id: EduId;
   icon: string;
   name: string;
+  degreeLine?: string;
+  highlightsLine?: string;
+  gradYear?: string;
   tag: string;
   location: string;
   duration: string;
   shortDesc: string;
-  longDesc: string;
+  detail: {
+    overview: string[];
+    coursework?: string[];
+    languages?: string;
+    software?: string;
+  };
   activities: Activity[];
 };
 
@@ -30,13 +39,27 @@ const EDUCATION: EduEntry[] = [
     id: "mit",
     icon: "🤖",
     name: "MIT Bootcamp — Python for AI & Data",
+    degreeLine: "AI / ML Bootcamp · Python-heavy · 2024–2025",
+    highlightsLine:
+      "Capstone: Malaria CNN · Model evaluation artifacts · End-to-end ML pipeline",
+    gradYear: "2024–2025",
     tag: "Continuing Education",
     location: "Remote / Global",
     duration: "16-week program",
     shortDesc:
       "Focused on using Python to build AI-powered and data-driven applications.",
-    longDesc:
-      "Built end-to-end ML pipelines and analytics workflows using Python, from EDA and feature engineering through model training and evaluation, with a focus on computer vision and deployment-minded use cases.",
+    detail: {
+      overview: [
+        "Hands-on data cleansing, feature engineering, and ML pipeline work with a deployment mindset.",
+        "Built and evaluated models with clear artifacts (metrics + diagnostics) that make results legible to non-technical stakeholders.",
+        "Capstone centered on a malaria CNN, with an end-to-end workflow from preprocessing to evaluation.",
+      ],
+      coursework: [
+        "Model training + evaluation, feature engineering + preprocessing, validation strategies + error analysis.",
+      ],
+      languages: "Python",
+      software: "Jupyter / Notebook workflows (local + cloud), Git / version control",
+    },
     activities: [
       {
         title: "ML Pipelines",
@@ -64,13 +87,29 @@ const EDUCATION: EduEntry[] = [
     id: "neu",
     icon: "🎓",
     name: "Northeastern University — B.S. Industrial Engineering",
+    degreeLine: "B.S. Industrial Engineering · Math + Econ minors · Class of 2022",
+    highlightsLine: "3.9 GPA · Magna Cum Laude · Dean's List · Honors College",
+    gradYear: "Class of 2022",
     tag: "Undergraduate",
     location: "Boston, MA",
     duration: "5-year co-op program",
     shortDesc:
       "Industrial Engineering with Economics & Math minors, built around three 6-month co-op rotations.",
-    longDesc:
-      "Combined engineering fundamentals with real-world rotations in New York, San Francisco, and Mexico, tying data and process design to how organizations actually operate under constraints.",
+    detail: {
+      overview: [
+        "Systems + optimization foundation with strong quantitative coursework across math, stats, and engineering systems.",
+        "Honors College graduate; learned to translate real-world ambiguity into structured models and decisions.",
+        "Program built around three full-time co-op rotations, tying classroom theory to live operational constraints.",
+      ],
+      coursework: [
+        "Math + statistics: Calculus 3, Differential Equations, Linear Algebra, Probability & Statistics.",
+        "Economics: Macro Economics, Micro Economics, Engineering Economics.",
+        "Engineering systems: Manufacturing Systems, Operations Research, Engineering Databases, Physics.",
+      ],
+      languages: "AMPL, OCTOPUZ, C++, SQL, Python, MATLAB 2017, Arduino",
+      software:
+        "AutoCAD 2018, SolidWorks 2018, Fusion 360, Microsoft Suite: Access, Excel, PowerPoint, Word",
+    },
     activities: [
       {
         title: "Co-op Rotations",
@@ -113,8 +152,13 @@ const EDUCATION: EduEntry[] = [
     duration: "Semester abroad",
     shortDesc:
       "Study abroad term through Northeastern combining coursework with immersion in French language and culture.",
-    longDesc:
-      "Spent a term in Lyon, experiencing how institutions and teams operate outside the U.S., and learning to navigate academics and daily life in French.",
+    detail: {
+      overview: [
+        "Study abroad term combining coursework with immersion in French language and culture.",
+        "Experienced how institutions and teams operate outside the U.S., navigating academics and daily life in French.",
+        "Built comfort collaborating across cultural expectations and communication styles.",
+      ],
+    },
     activities: [
       {
         title: "French Language",
@@ -132,13 +176,24 @@ const EDUCATION: EduEntry[] = [
     id: "eahs",
     icon: "📣",
     name: "East Aurora High School",
+    degreeLine: "Regents Diploma with Honors · Class of 2017",
+    highlightsLine:
+      "98.5 GPA · 11 APs · Top 10 in Class · Top Math SAT score (class)",
     tag: "Foundation",
     location: "East Aurora, NY",
-    duration: "4 years",
+    duration: "Class of 2017",
     shortDesc:
       "Leadership, academics, sports, and music that set the base for how I show up on teams.",
-    longDesc:
-      "Balanced student leadership roles, varsity sports, music, and a heavy AP course load, building early habits for responsibility and follow-through.",
+    detail: {
+      overview: [
+        "Balanced student leadership roles, varsity sports, music, and a heavy AP course load.",
+        "Built early habits for responsibility, follow-through, and showing up for teams.",
+        "Focused on rigorous academics alongside consistent extracurricular commitment.",
+      ],
+      coursework: [
+        "11 APs across math, science, economics, history, Spanish, and composition.",
+      ],
+    },
     activities: [
       {
         title: "Student Council President",
@@ -170,6 +225,23 @@ const EDUCATION: EduEntry[] = [
 ];
 
 export default function EducationPage() {
+  const activityIcons: Record<string, string> = {
+    "Data & Modeling": "🧮",
+    "AI / CV": "🤖",
+    Analytics: "📊",
+    Deployment: "🚀",
+    Experience: "🧭",
+    Research: "🧪",
+    Capstone: "🧩",
+    Leadership: "🧱",
+    Technical: "🛠️",
+    Community: "🤝",
+    Language: "🗣️",
+    Context: "🧭",
+    Sports: "🏅",
+    Music: "🥁",
+    Academics: "📚",
+  };
   const [activeId, setActiveId] = useState<EduId | null>(null);
   const [activeActivityByEdu, setActiveActivityByEdu] = useState<
     Partial<Record<EduId, string | null>>
@@ -208,7 +280,7 @@ export default function EducationPage() {
         subtitle="A path through Boston, Lyon, New York, San Francisco, and Mexico — mixing engineering, data, and real work with operators."
       />
 
-      <section className="section-container pb-24">
+      <Section>
         <div className="flex items-center gap-2 mb-2">
           <GraduationCap className="h-4 w-4 text-brand-primary" />
           <h2 className="section-title mb-0">Education &amp; Training</h2>
@@ -225,9 +297,6 @@ export default function EducationPage() {
             const activeActivity = activeTitle
               ? edu.activities.find((a) => a.title === activeTitle) ?? null
               : null;
-            const otherActivities = activeTitle
-              ? edu.activities.filter((a) => a.title !== activeTitle)
-              : edu.activities;
 
             return (
             <article
@@ -252,75 +321,121 @@ export default function EducationPage() {
               </div>
 
               <div className="education-card-body">
-                <div className="card-kicker">{edu.tag}</div>
-                <div className="education-card-title">{edu.name}</div>
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <div className="card-kicker">{edu.tag}</div>
+                    <div className="education-card-title">{edu.name}</div>
+                  </div>
+                  <span className="text-text-tertiary mt-1">
+                    {isActive ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                  </span>
+                </div>
                 <div className="education-card-meta">
                   {edu.duration} · {edu.location}
+                  {edu.gradYear ? ` · ${edu.gradYear}` : ""}
                 </div>
-                <p className="education-card-short">{edu.shortDesc}</p>
+                {isActive && edu.highlightsLine ? (
+                  <div className="education-highlights">{edu.highlightsLine}</div>
+                ) : null}
+                {!isActive && <p className="education-card-short">{edu.shortDesc}</p>}
 
                 {isActive && (
                   <>
-                    <p className="education-card-long">{edu.longDesc}</p>
+                    <div className="mt-5 space-y-5">
+                      <div>
+                        <div className="text-xs font-semibold text-text-primary mb-2">Overview</div>
+                        <ul className="text-sm text-text-secondary space-y-1 list-disc list-outside pl-5">
+                          {edu.detail.overview.map((b) => (
+                            <li key={b}>{b}</li>
+                          ))}
+                        </ul>
+                      </div>
 
-                    <div className="education-pill-stack" aria-label="Focus areas">
-                      {activeActivity && (
-                        <div className="education-pill-row education-pill-row-expanded">
-                          <button
-                            key={activeActivity.title}
-                            type="button"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handlePillClick(edu.id, activeActivity.title);
-                            }}
-                            className="education-pill education-pill-active education-pill-expanded"
-                          >
-                            <span className="education-pill-title">
-                              {activeActivity.title}
-                            </span>
-                            <p className="education-pill-desc">
-                              {activeActivity.desc}
-                            </p>
-                          </button>
+                      {edu.detail.coursework && edu.detail.coursework.length > 0 && (
+                        <div>
+                          <div className="text-xs font-semibold text-text-primary mb-2">Coursework</div>
+                          <ul className="text-sm text-text-secondary space-y-1 list-disc list-outside pl-5">
+                            {edu.detail.coursework.map((c) => (
+                              <li key={c}>{c}</li>
+                            ))}
+                          </ul>
                         </div>
                       )}
 
-                      <div className="education-pill-row education-pill-row-secondary">
-                        {otherActivities.map((act) => (
-                          <button
-                            key={act.title}
-                            type="button"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handlePillClick(edu.id, act.title);
-                            }}
-                            className="education-pill"
-                          >
-                            <span className="education-pill-title">
-                              {act.title}
-                            </span>
-                          </button>
-                        ))}
-                      </div>
+                      {(edu.detail.languages || edu.detail.software) && (
+                        <div>
+                          <div className="text-xs font-semibold text-text-primary mb-2">
+                            Programming Languages / Software
+                          </div>
+                          <ul className="text-sm text-text-secondary space-y-1 list-disc list-outside pl-5">
+                            {edu.detail.languages && <li>{edu.detail.languages}</li>}
+                            {edu.detail.software && <li>{edu.detail.software}</li>}
+                          </ul>
+                        </div>
+                      )}
                     </div>
+
+                    <div className="text-xs font-semibold text-text-primary mt-6 mb-2">
+                      Activities
+                    </div>
+                    <div
+                      className="flex flex-wrap gap-3 justify-start"
+                      aria-label="Focus areas"
+                    >
+                      {edu.activities.map((act) => (
+                        <button
+                          key={act.title}
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handlePillClick(edu.id, act.title);
+                          }}
+                          className={`interest-pill ${
+                            activeTitle === act.title ? "interest-pill-active" : ""
+                          }`}
+                        >
+                          <span aria-hidden>{activityIcons[act.category] ?? "•"}</span>
+                          {act.title}
+                        </button>
+                      ))}
+                    </div>
+
+                    {activeActivity && (
+                      <div className="interest-featured mt-6">
+                        <button
+                          type="button"
+                          className="icon-btn"
+                          aria-label="Collapse"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handlePillClick(edu.id, activeActivity.title);
+                          }}
+                        >
+                          <X size={16} />
+                        </button>
+
+                        <div className="text-left mt-2">
+                          <div className="flex items-center gap-2 text-base font-semibold text-text-primary mt-2">
+                            <span aria-hidden>
+                              {activityIcons[activeActivity.category] ?? "•"}
+                            </span>
+                            {activeActivity.title}
+                          </div>
+                          <p className="text-sm text-text-secondary mt-2 max-w-xl">
+                            {activeActivity.desc}
+                          </p>
+                        </div>
+                      </div>
+                    )}
                   </>
                 )}
 
-                <div
-                  className={`education-cta-row ${
-                    isActive ? "education-cta-row-expanded" : ""
-                  }`}
-                >
-                  <div className="experience-cta">
-                    {isActive ? "Collapse details ←" : "View details →"}
-                  </div>
-                </div>
               </div>
             </article>
             );
           })}
         </div>
-      </section>
+      </Section>
     </>
   );
 }

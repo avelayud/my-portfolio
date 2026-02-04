@@ -5,6 +5,7 @@ import { useMemo, useState, useEffect } from "react";
 import Image from "next/image";
 import { X, Briefcase, Rocket, HeartHandshake, FlaskConical } from "lucide-react";
 import PageHeader from "@/app/components/PageHeader";
+import Section from "@/app/components/Section";
 
 type SectionKey = "Professional" | "Entrepreneurial" | "Research" | "Volunteer";
 
@@ -56,7 +57,7 @@ export default function ExperiencePage() {
         section: "Professional",
         company: "Alvarez & Marsal",
         logoSrc: "/companies/AM_logo.png",
-        roleLine: "Analyst · Performance Improvement · 2020–2022",
+        roleLine: "Data Analyst · Disputes & Investigations · 2020–2021",
         location: "San Francisco, CA",
         short:
           "Forensic analytics and visualization for legal damages cases.",
@@ -78,7 +79,7 @@ export default function ExperiencePage() {
         section: "Professional",
         company: "Goldman Sachs",
         logoSrc: "/companies/GS_logo.png",
-        roleLine: "Operations / Markets · Internship · 2017–2018",
+        roleLine: "Analyst · PWM & Operations · 2019",
         location: "New York, NY",
         short:
           "Analytics, compliance, and reporting for PWM operations at scale.",
@@ -245,7 +246,7 @@ export default function ExperiencePage() {
 
         return (
           <div key={s.key}>
-            <section className="section-container pb-12">
+            <Section>
               <div className="flex items-center gap-2 mb-2">
                 {s.icon}
                 <h2 className="section-title mb-0">{s.title}</h2>
@@ -288,7 +289,7 @@ export default function ExperiencePage() {
                   </button>
                 ))}
               </div>
-            </section>
+            </Section>
 
             {idx !== sections.length - 1 && <div className="section-divider" />}
           </div>
@@ -345,7 +346,7 @@ export default function ExperiencePage() {
                   <div className="text-xs font-semibold text-text-primary mb-2">
                     Overview
                   </div>
-                  <ul className="text-sm text-text-secondary space-y-2 list-disc list-outside pl-5">
+                  <ul className="text-sm text-text-secondary space-y-1 list-disc list-outside pl-5">
                     {active.overview.map((b) => (
                       <li key={b}>{b}</li>
                     ))}
@@ -354,7 +355,7 @@ export default function ExperiencePage() {
                   <div className="text-xs font-semibold text-text-primary mt-5 mb-2">
                     Work Highlights
                   </div>
-                  <ul className="text-sm text-text-secondary space-y-2 list-disc list-outside pl-5">
+                  <ul className="text-sm text-text-secondary space-y-1 list-disc list-outside pl-5">
                     {active.highlights.map((b) => (
                       <li key={b}>{b}</li>
                     ))}
@@ -365,7 +366,7 @@ export default function ExperiencePage() {
                   <div className="text-xs font-semibold text-text-primary mb-2">
                     Highlights
                   </div>
-                  <ul className="text-sm text-text-secondary space-y-2 list-disc list-outside pl-5">
+                  <ul className="text-sm text-text-secondary space-y-1 list-disc list-outside pl-5">
                     {active.overview.map((b) => (
                       <li key={b}>{b}</li>
                     ))}

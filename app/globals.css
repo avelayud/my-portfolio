@@ -56,7 +56,7 @@
   }
 
   .section-divider {
-    @apply max-w-5xl mx-auto px-6 sm:px-8 md:px-10 my-4 md:my-5 h-px bg-divider/70;
+    @apply max-w-5xl mx-auto px-6 sm:px-8 md:px-10 my-0 h-px bg-divider/70;
   }
 
   /* --- Panels --- */
@@ -195,8 +195,12 @@
     @apply text-sm text-text-secondary mt-4 leading-relaxed;
   }
 
+  .education-highlights {
+    @apply text-xs md:text-sm text-text-secondary mt-3 leading-relaxed;
+  }
+
   .experience-cta {
-    @apply mt-6 text-sm text-brand-primary underline underline-offset-4;
+    @apply mt-6 text-sm text-brand-primary;
   }
 
   .education-footer {
@@ -295,7 +299,7 @@
   }
 
   .hscroll-cta {
-    @apply text-sm text-brand-primary underline underline-offset-4;
+    @apply text-sm text-brand-primary;
   }
 
   .hscroll-viewall {
@@ -330,7 +334,7 @@
 
 
   .interest-pill:hover {
-    @apply opacity-95;
+    @apply opacity-100 bg-brand-secondary/3 border-brand-secondary/20;
   }
 
   .interest-pill-active {
@@ -394,7 +398,7 @@
   }
 
   .card-bullets {
-    @apply mt-4 text-sm text-text-secondary space-y-2;
+    @apply mt-4 text-sm text-text-secondary space-y-1;
     list-style: none;
     padding-left: 0;
   }
@@ -451,58 +455,6 @@
   .education-card-expanded {
     border-color: rgba(99, 102, 241, 0.32);
     box-shadow: 0 14px 36px rgba(15, 23, 42, 0.12);
-  }
-
-  .education-pill-stack {
-    @apply mt-6 flex flex-col gap-2;
-  }
-
-  .education-pill-row {
-    @apply flex flex-wrap gap-2 justify-center;
-  }
-
-  .education-pill {
-    @apply inline-flex flex-col items-center rounded-2xl border border-divider bg-background
-           px-3 py-2 text-[11px] text-text-secondary transition text-center;
-    min-width: 120px;
-    max-width: 180px;
-  }
-
-  .education-pill:hover {
-    @apply opacity-95;
-  }
-
-  .education-pill-active {
-    @apply border-brand-secondary/50 bg-brand-secondary/10 text-text-primary;
-  }
-
-  .education-pill-row-expanded {
-    @apply flex justify-center;
-  }
-
-  .education-pill-expanded {
-    width: 100%;
-    max-width: 520px;
-  }
-
-  .education-pill-row-secondary {
-    @apply justify-center;
-  }
-
-  .education-pill-title {
-    @apply text-[12px] font-semibold text-text-primary;
-  }
-
-  .education-pill-desc {
-    @apply text-[11px] text-text-secondary mt-2 leading-relaxed;
-  }
-
-  .education-cta-row {
-    @apply mt-0 flex;
-  }
-
-  .education-cta-row-expanded {
-    @apply justify-end;
   }
 
   .education-activity {

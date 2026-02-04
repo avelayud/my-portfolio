@@ -5,20 +5,22 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import PageHeader from "@/app/components/PageHeader";
-import { Mail, Linkedin, Phone, X } from "lucide-react";
+import Section from "@/app/components/Section";
+import { Linkedin, X } from "lucide-react";
 
 type Experience = {
   id: string;
   company: string;
-  logoSrc: string; // /public path
-  roleLine: string; // role / group / years
+  logoSrc: string;
+  roleLine: string;
   short: string;
-  bullets: string[];
+  overview: string[];
+  highlights?: string[];
 };
 
 type Deployment = {
   id: string;
-  icon: string; // emoji or short text
+  icon: string;
   title: string;
   summary: string;
   bullets: string[];
@@ -26,12 +28,16 @@ type Deployment = {
 
 type Education = {
   id: string;
-  icon: string;
+  icon: string; // emoji
   school: string;
-  meta: string; // major / years
-  footer: string; // honors/clubs line
-  summary: string;
-  bullets: string[];
+  degreeLine: string; // degree/focus/class/year
+  highlightsLine: string; // black dot-separated highlights line
+  detail: {
+    overview: string[];
+    coursework?: string[];
+    languages?: string;
+    software?: string;
+  };
 };
 
 type Interest = {
@@ -49,48 +55,65 @@ export default function Home() {
         company: "PwC",
         logoSrc: "/companies/pwc_logo.png",
         roleLine: "Senior Associate · Deals Transformation · 2022–Now",
-        short:
-          "Built internal tools + decision systems for teams operating under deal timelines.",
-        bullets: [
-          "Shipped a scenario hub used across engagements; reduced repeat modeling churn and improved speed-to-answer.",
-          "Designed partner-friendly outputs that work live in meetings (fast, legible, decision-ready).",
-          "Translated operator constraints into product requirements; iterated with feedback and shipped upgrades.",
-          "Owned end-to-end delivery for internal tooling: scoping, build coordination, rollout, and adoption support.",
+        short: "Led deal transformation across PE diligence and separation programs.",
+        overview: [
+          "Extensive experience (25+ engagements) across industries on PE standalone and synergy diligence.",
+          "On-the-ground client exposure on long-term M&A programs (separations and spins).",
+          "Worked across 15+ clients and promoted first in class on a 1-year accelerated timeline.",
+          "Built a technical brand by leveraging SQL and Python to accelerate analysis.",
+        ],
+        highlights: [
+          "Led teams of 3–7 across US automotive and industrials to deliver multi-workstream programs.",
+          "Drove corporate org design, standalone and synergy modeling, budget development, and rollout of project-wide technical tools.",
+          "Shipped a commercial scenario hub; generalized the approach into a new solution offering driving $5M+ in revenue to date.",
+          "Designed custom ETL aggregation to improve management forecasting and market penetration insights.",
+          "Led C-suite report-outs for product pitches and workstream updates, translating data into clear narratives.",
+          "Owned end-to-end delivery across multiple workstreams: scoping, build coordination, rollout, and adoption support.",
         ],
       },
       {
         id: "am",
         company: "Alvarez & Marsal",
         logoSrc: "/companies/AM_logo.png",
-        roleLine: "Analyst · Performance Improvement · 2020–2022",
-        short:
-          "Built SQL workflows, visualizations, and forecast models for damages / expert testimony work.",
-        bullets: [
-          "Built repeatable SQL pipelines for multi-source datasets under tight deadlines and strict QA requirements.",
-          "Produced exhibits and visuals designed for scrutiny (clear logic, defensible assumptions, documented lineage).",
-          "Created forecast models tying assumptions to outcomes; ensured end-to-end traceability for review.",
-          "Partnered cross-functionally to translate messy inputs into crisp narratives decision-makers could use.",
+        roleLine: "Data Analyst · Disputes & Investigations · 2020–2021",
+        short: "Forensic analytics and visualization for legal damages cases.",
+        overview: [
+          "Analyzed large datasets and built visual narratives for expert testimony on legal damages.",
+          "Supported matters spanning lost revenue quantification and software IP infringement.",
+        ],
+        highlights: [
+          "Acted as a forensic accountant, analyzing tax filings and financial statements to trace investment allocations and cash flows.",
+          "Identified $600M+ in questionable offshore investments delegated to tax havens.",
+          "Took projects from raw data dumps to multi-dashboard work products using Python and Tableau over six-month timelines.",
+          "Cleaned and evaluated multi-million-row SQL datasets, creating variables for complex analysis and exhibit-ready outputs.",
+          "Delivered exhibits and written analyses for expert reports and client presentations across damages and contract breach cases.",
+          "Built repeatable SQL pipelines and forecast models with documented assumptions and audit-ready traceability.",
         ],
       },
       {
         id: "gs",
         company: "Goldman Sachs",
         logoSrc: "/companies/GS_logo.png",
-        roleLine: "Operations / Markets · Internship · 2017–2018",
-        short:
-          "Early exposure to high-volume systems, tight SLAs, and failure modes that matter.",
-        bullets: [
-          "Automated recurring ops reporting; improved reliability under strict SLAs and reduced manual effort.",
-          "Analyzed flow anomalies by validating inputs, breaks, and downstream impact quickly.",
-          "Coordinated across teams to resolve data issues with minimal downtime and clear comms.",
+        roleLine: "Analyst · PWM & Operations · 2019",
+        short: "Analytics, compliance, and reporting for PWM operations at scale.",
+        overview: [
+          "Supported Private Wealth Management operations with analytics, compliance remediation, and reporting.",
+          "Focused on improving advisor performance metrics and ensuring regulatory adherence.",
+        ],
+        highlights: [
+          "Built custom Salesforce reports to analyze advisor wins and identify incentive-driven growth opportunities.",
+          "Partnered on division-wide budget reallocation and performance metric analysis.",
+          "Ran cost-benefit analysis on underfunded accounts, comparing revenue gain vs management fee loss over time.",
+          "Designed a 3-month remediation workflow to address new regulations; coordinated bi-weekly with compliance and advisors.",
+          "Developed VBA automations and spreadsheet systems to track fees and compensation across 12 offices.",
+          "Cut a manual, month-long annual process down to a single-day system update.",
         ],
       },
     ],
     []
   );
 
-  // Keep your 4 featured cards here
-  const deployments = useMemo(
+  const deployments = useMemo<Deployment[]>(
     () => [
       {
         id: "deal-hub",
@@ -140,49 +163,63 @@ export default function Home() {
     []
   );
 
-  const education: Education[] = useMemo(
+  const education = useMemo<Education[]>(
     () => [
       {
         id: "neu",
         icon: "🎓",
         school: "Northeastern University",
-        meta: "B.S. Industrial Engineering · Math + Econ minors",
-        footer: "3.85 GPA · Magna Cum Laude · Dean's List",
-        summary: "Systems + optimization background; strong quant base.",
-        bullets: [
-          "Coursework: stochastics, calculus 3, operations research, database engineering, human machine systems, statistics.",
-          "Built comfort translating real-world mess into structured models and decisions.",
-          "Leadership: Dean's List, Under Research Assistant, Engineering Capstone Project Lead.",
-        ],
+        degreeLine: "B.S. Industrial Engineering · Math + Econ minors · Class of 2020",
+        highlightsLine: "3.9 GPA · Magna Cum Laude · Dean's List · Honors College",
+        detail: {
+          overview: [
+            "Systems + optimization foundation with strong quantitative coursework.",
+            "Graduated from the Honors College; built comfort translating real-world mess into structured models and decisions.",
+          ],
+          coursework: [
+            "Math + statistics: Calculus 3, Differential Equations, Linear Algebra, Probability & Statistics.",
+            "Economics: Macro Economics, Micro Economics, Engineering Economics.",
+            "Engineering systems: Manufacturing Systems, Operations Research, Engineering Databases, Physics.",
+          ],
+          languages: "AMPL, OCTOPUZ, C++, SQL, Python, MATLAB 2017, Arduino",
+          software: "AutoCAD 2018, SolidWorks 2018, Fusion 360, Microsoft Suite: Access, Excel, PowerPoint, Word",
+        },
       },
       {
         id: "mit",
         icon: "🤖",
         school: "MIT xPRO",
-        meta: "AI / ML Bootcamp · Python-heavy",
-        footer: "Capstone: malaria detection (CNN)",
-        summary: "Hands-on data clensing, feature engineering, ML pipeline, model development & tuning.",
-        bullets: [
-          "End-to-end ML pipeline: preprocessing → training → evaluation.",
-          "Iterated with regularization + early stopping; tracked metrics carefully.",
-          "Built explainable artifacts: performance summary, confusion matrix, etc.",
-        ],
+        degreeLine: "AI / ML Bootcamp · Python-heavy · 2024–2025",
+        highlightsLine: "Capstone: Malaria CNN · Model evaluation artifacts · End-to-end ML pipeline",
+        detail: {
+          overview: [
+            "Hands-on data cleansing, feature engineering, and ML pipeline work.",
+            "Built and evaluated models with clear artifacts (metrics + diagnostics) for non-technical stakeholders.",
+          ],
+          coursework: [
+            "Model training + evaluation, feature engineering + preprocessing, validation strategies + error analysis.",
+          ],
+          languages: "Python",
+          software: "Jupyter / Notebook workflows (local + cloud), Git / version control",
+        },
       },
       {
         id: "hs",
         icon: "🏫",
         school: "East Aurora High School",
-        meta: "Class of 2017",
-        footer: "Top 10 in class · Class & Student Council VP",
-        summary: "98.2 GPA · 11 APs rigorous coursework & leadership.",
-        bullets: [
-          "Honors: Top 10 in class, Honor Roll all semesters, Volunteer Service Award",
-          "AP Classes: Statistics, Calc AB & BC, Chemistry, Economics, Government, Language & Composition, World History, US History, Spanish",
-          "Leadership: Class VP, Student Council VP",
-          "Clubs: Key Club President, Model UN Delegate, Musical Stage Crew Lead, Math Team",
-          "Sports: Varisty Soccer, Tennis, Track"
-
-        ],
+        degreeLine: "Regents Diploma with Honors · Class of 2017",
+        highlightsLine: "98.5 GPA · 11 APs · Top 10 in Class · Top Math SAT score (class)",
+        detail: {
+          overview: [
+            "Graduated with a Regents Diploma with Honors.",
+            "Balanced rigorous coursework with leadership roles and competitive extracurriculars.",
+            "Top math SAT score in my class.",
+            "Leadership: Class VP, Student Council VP.",
+          ],
+          coursework: [
+            "11 APs (incl. Calc AB/BC, Statistics, Chemistry, Economics, Government).",
+          ],
+        },
       },
     ],
     []
@@ -265,7 +302,7 @@ export default function Home() {
   );
 
   const [activeExperience, setActiveExperience] = useState<Experience | null>(null);
-  const [activeDeployment, setActiveDeployment] = useState<(typeof deployments)[number] | null>(null);
+  const [activeDeployment, setActiveDeployment] = useState<Deployment | null>(null);
   const [activeEducation, setActiveEducation] = useState<Education | null>(null);
 
   const [activeInterestId, setActiveInterestId] = useState<string | null>(null);
@@ -288,17 +325,17 @@ export default function Home() {
       <PageHeader
         kicker="Overview"
         title="Arjuna Velayudam"
-        subtitle="Engineer with experience in management consulting focused on PE diligence & executing large scale transactions. Experience leading teams of 3-7 & owning multiple cross functional workstreams."
+        subtitle="Engineer working to get out of Finance & into tech. Looking for on-the-ground, with-customers roles tackling important missions."
       />
 
       {/* Top section */}
-      <section className="section-container pb-10">
+      <Section>
         <div className="top-grid">
           <div className="panel-clear h-full flex flex-col">
             <p className="panel-title mb-2">Who I am</p>
 
             <p className="text-base md:text-[1.05rem] text-text-secondary leading-relaxed">
-              I love working directly with clients from CFOs to analysts on the ground shipping systems - translating between operators,
+              I love working directly with clients from CFOs to analysts on the ground shipping systems — translating between operators,
               data, and leadership so teams can make clean decisions.
             </p>
 
@@ -306,7 +343,7 @@ export default function Home() {
 
             <div className="flex-1">
               <p className="panel-title mb-2">What I&apos;m looking for</p>
-              <ul className="text-sm md:text-base text-text-secondary space-y-2">
+              <ul className="text-sm md:text-base text-text-secondary space-y-1">
                 <li>• Build solutions alongside talented people</li>
                 <li>• Work hand-in-hand with customers and operators</li>
                 <li>• Build, deploy, iterate — real problems, real outcomes</li>
@@ -362,7 +399,7 @@ export default function Home() {
               <div className="snapshot-row">
                 <div className="snapshot-icon">
                   <span aria-hidden>📞</span>
-                </div>                
+                </div>
                 <div>
                   <div className="snapshot-label mb-1">Phone</div>
                   <a
@@ -393,12 +430,12 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
       <div className="section-divider" />
 
       {/* Experience */}
-      <section className="section-container pb-10">
+      <Section>
         <h2 className="section-title mb-2">Where I&apos;ve Worked</h2>
         <p className="section-subtitle max-w-3xl mb-6">
           I&apos;ve been the “make it real” person: messy inputs → clean outputs → shipped workflows.
@@ -429,7 +466,7 @@ export default function Home() {
                 <p className="experience-short">{e.short}</p>
               </div>
 
-              <div className="experience-cta">View details →</div>
+              <div className="experience-cta">View Details</div>
             </button>
           ))}
         </div>
@@ -473,38 +510,50 @@ export default function Home() {
               </div>
 
               <div className="mt-5">
-                <div className="text-xs font-semibold text-text-primary mb-2">
-                  Highlights
-                </div>
-                <ul className="text-sm text-text-secondary space-y-2 list-disc list-inside">
-                  {activeExperience.bullets.map((b) => (
-                    <li key={b}>{b}</li>
-                  ))}
-                </ul>
+                {activeExperience.highlights && activeExperience.highlights.length > 0 ? (
+                  <>
+                    <div className="text-xs font-semibold text-text-primary mb-2">Overview</div>
+                    <ul className="text-sm text-text-secondary space-y-1 list-disc list-outside pl-5">
+                      {activeExperience.overview.map((b) => (
+                        <li key={b}>{b}</li>
+                      ))}
+                    </ul>
+
+                    <div className="text-xs font-semibold text-text-primary mt-5 mb-2">Work Highlights</div>
+                    <ul className="text-sm text-text-secondary space-y-1 list-disc list-outside pl-5">
+                      {activeExperience.highlights.map((b) => (
+                        <li key={b}>{b}</li>
+                      ))}
+                    </ul>
+                  </>
+                ) : (
+                  <>
+                    <div className="text-xs font-semibold text-text-primary mb-2">Highlights</div>
+                    <ul className="text-sm text-text-secondary space-y-1 list-disc list-outside pl-5">
+                      {activeExperience.overview.map((b) => (
+                        <li key={b}>{b}</li>
+                      ))}
+                    </ul>
+                  </>
+                )}
               </div>
 
               <div className="mt-6 flex justify-end">
-                <Link
-                  href="/experience"
-                  className="btn-secondary"
-                  onClick={() => setActiveExperience(null)}
-                >
+                <Link href="/experience" className="btn-secondary" onClick={() => setActiveExperience(null)}>
                   Full experience →
                 </Link>
               </div>
             </div>
           </div>
         )}
-      </section>
+      </Section>
 
       <div className="section-divider" />
 
-      {/* Featured Deployments (scroll, no outer outline, centered, uniform) */}
-      <section className="section-container pb-12">
+      {/* Featured Deployments */}
+      <Section>
         <h2 className="section-title mb-2">Featured Deployments &amp; Product Work</h2>
-        <p className="section-subtitle max-w-3xl mb-6">
-          A few highlights. Click a card to open details.
-        </p>
+        <p className="section-subtitle max-w-3xl mb-6">A few highlights. Click a card to open details.</p>
 
         <div className="hscroll-outer hscroll-outer-soft">
           <div className="hscroll hscroll-hidebar">
@@ -523,12 +572,11 @@ export default function Home() {
                 </div>
 
                 <div className="hscroll-cta-row">
-                  <span className="hscroll-cta">View details →</span>
+                  <span className="hscroll-cta">View Details</span>
                 </div>
               </button>
             ))}
 
-            {/* 5th card: View all */}
             <Link href="/deployments" className="hscroll-card hscroll-card-centered hscroll-viewall">
               <div className="hscroll-icon">→</div>
               <div className="hscroll-stack">
@@ -557,12 +605,8 @@ export default function Home() {
                     {activeDeployment.icon}
                   </div>
                   <div>
-                    <div className="text-base font-semibold text-text-primary">
-                      {activeDeployment.title}
-                    </div>
-                    <div className="text-sm text-text-secondary mt-1">
-                      {activeDeployment.summary}
-                    </div>
+                    <div className="text-base font-semibold text-text-primary">{activeDeployment.title}</div>
+                    <div className="text-sm text-text-secondary mt-1">{activeDeployment.summary}</div>
                   </div>
                 </div>
 
@@ -572,10 +616,8 @@ export default function Home() {
               </div>
 
               <div className="mt-4">
-                <div className="text-xs font-semibold text-text-primary mb-2">
-                  What it is / what I did
-                </div>
-                <ul className="text-sm text-text-secondary space-y-2 list-disc list-inside">
+                <div className="text-xs font-semibold text-text-primary mb-2">What it is / what I did</div>
+                <ul className="text-sm text-text-secondary space-y-1 list-disc list-inside">
                   {activeDeployment.bullets.map((b) => (
                     <li key={b}>{b}</li>
                   ))}
@@ -590,16 +632,14 @@ export default function Home() {
             </div>
           </div>
         )}
-      </section>
+      </Section>
 
       <div className="section-divider" />
 
-      {/* Education */}
-      <section className="section-container pb-12">
+      {/* Education (updated to match experience cards) */}
+      <Section>
         <h2 className="section-title mb-2">Education</h2>
-        <p className="section-subtitle max-w-3xl mb-6">
-          Formal training + the “I like learning hard things” habit.
-        </p>
+        <p className="section-subtitle max-w-3xl mb-6">Formal training + the “I like learning hard things” habit.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {education.map((ed) => (
@@ -613,12 +653,11 @@ export default function Home() {
 
               <div className="experience-stack">
                 <div className="experience-company">{ed.school}</div>
-                <div className="experience-role">{ed.meta}</div>
-                <p className="experience-short">{ed.summary}</p>
+                <div className="experience-role">{ed.degreeLine}</div>
+                <div className="education-highlights">{ed.highlightsLine}</div>
               </div>
 
-              <div className="education-footer">{ed.footer}</div>
-              <div className="experience-cta">View details →</div>
+              <div className="experience-cta">View Details</div>
             </button>
           ))}
         </div>
@@ -636,15 +675,9 @@ export default function Home() {
                 <div className="flex items-start gap-4">
                   <div className="modal-logo text-[22px]">{activeEducation.icon}</div>
                   <div>
-                    <div className="text-xl font-semibold text-text-primary">
-                      {activeEducation.school}
-                    </div>
-                    <div className="text-sm text-text-primary mt-1">
-                      {activeEducation.meta}
-                    </div>
-                    <p className="text-sm text-text-secondary mt-3">
-                      {activeEducation.summary}
-                    </p>
+                    <div className="text-xl font-semibold text-text-primary">{activeEducation.school}</div>
+                    <div className="text-sm text-text-primary mt-1">{activeEducation.degreeLine}</div>
+                    <div className="text-sm text-text-secondary mt-2">{activeEducation.highlightsLine}</div>
                   </div>
                 </div>
 
@@ -653,13 +686,43 @@ export default function Home() {
                 </button>
               </div>
 
-              <div className="mt-5">
-                <div className="text-xs font-semibold text-text-primary mb-2">Details</div>
-                <ul className="text-sm text-text-secondary space-y-2 list-disc list-inside">
-                  {activeEducation.bullets.map((b) => (
-                    <li key={b}>{b}</li>
-                  ))}
-                </ul>
+              <div className="mt-5 space-y-5">
+                <div>
+                  <div className="text-xs font-semibold text-text-primary mb-2">Overview</div>
+                  <ul className="text-sm text-text-secondary space-y-1 list-disc list-outside pl-5">
+                    {activeEducation.detail.overview.map((b) => (
+                      <li key={b}>{b}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                {activeEducation.detail.coursework && activeEducation.detail.coursework.length > 0 && (
+                  <div>
+                    <div className="text-xs font-semibold text-text-primary mb-2">Coursework</div>
+                    <ul className="text-sm text-text-secondary space-y-1 list-disc list-outside pl-5">
+                      {activeEducation.detail.coursework.map((c) => (
+                        <li key={c}>{c}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {(activeEducation.detail.languages || activeEducation.detail.software) && (
+                  <div>
+                    <div className="text-xs font-semibold text-text-primary mb-2">
+                      Programming Languages / Software
+                    </div>
+                    <ul className="text-sm text-text-secondary space-y-1 list-disc list-outside pl-5">
+                      {activeEducation.detail.languages && (
+                        <li>{activeEducation.detail.languages}</li>
+                      )}
+                      {activeEducation.detail.software && (
+                        <li>{activeEducation.detail.software}</li>
+                      )}
+                    </ul>
+                  </div>
+                )}
+
               </div>
 
               <div className="mt-6 flex justify-end">
@@ -670,39 +733,16 @@ export default function Home() {
             </div>
           </div>
         )}
-      </section>
+      </Section>
 
       <div className="section-divider" />
 
       {/* Outside of work */}
-      <section className="section-container pb-24">
+      <Section>
         <h2 className="section-title mb-2">Outside of work</h2>
         <p className="section-subtitle max-w-3xl mb-6">
-          Love taking on new hobbies & skills - currently working on my next diving certification & love talking about it!
+          Love taking on new hobbies &amp; skills — currently working on my next diving certification &amp; always down to talk about it.
         </p>
-
-        {activeInterest && (
-          <div className="interest-featured">
-            <button
-              type="button"
-              className="icon-btn"
-              aria-label="Collapse"
-              onClick={() => setActiveInterestId(null)}
-            >
-              <X size={16} />
-            </button>
-
-            <div className="text-center mt-2">
-              <div className="text-2xl">{activeInterest.emoji}</div>
-              <div className="text-base font-semibold text-text-primary mt-2">
-                {activeInterest.label}
-              </div>
-              <p className="text-sm text-text-secondary mt-2 max-w-xl mx-auto">
-                {activeInterest.detail}
-              </p>
-            </div>
-          </div>
-        )}
 
         <div className="flex flex-wrap gap-3 justify-start">
           {interests.map((i) => (
@@ -710,13 +750,27 @@ export default function Home() {
               key={i.id}
               type="button"
               className={`interest-pill ${activeInterestId === i.id ? "interest-pill-active" : ""}`}
-              onClick={() => setActiveInterestId(i.id)}
+              onClick={() => setActiveInterestId((prev) => (prev === i.id ? null : i.id))}
             >
               <span aria-hidden>{i.emoji}</span> {i.label}
             </button>
           ))}
         </div>
-      </section>
+
+        {activeInterest && (
+          <div className="interest-featured mt-6">
+            <button type="button" className="icon-btn" aria-label="Collapse" onClick={() => setActiveInterestId(null)}>
+              <X size={16} />
+            </button>
+
+            <div className="text-center mt-2">
+              <div className="text-2xl">{activeInterest.emoji}</div>
+              <div className="text-base font-semibold text-text-primary mt-2">{activeInterest.label}</div>
+              <p className="text-sm text-text-secondary mt-2 max-w-xl mx-auto">{activeInterest.detail}</p>
+            </div>
+          </div>
+        )}
+      </Section>
     </>
   );
 }

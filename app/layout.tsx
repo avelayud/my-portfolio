@@ -39,7 +39,7 @@ export default function RootLayout({
           {/* Main column; pad left on desktop to clear fixed sidebar */}
           <div className="flex flex-col min-h-screen md:pl-64">
             {/* Top padding so content doesn't sit under mobile top bar */}
-            <main className="flex-1 pt-16 md:pt-10">
+            <main className="flex-1 pt-16 md:pt-8">
               {children}
             </main>
 

@@ -1,4 +1,5 @@
 // app/components/PageHeader.tsx
+import Section from "./Section";
 type PageHeaderProps = {
   kicker: string;
   title: string;
@@ -7,7 +8,7 @@ type PageHeaderProps = {
 
 export default function PageHeader({ kicker, title, subtitle }: PageHeaderProps) {
   return (
-    <section className="section-container pt-14 pb-6 md:pt-16 md:pb-6">
+    <Section className="pt-14 pb-6 md:pt-16 md:pb-6">
       <p className="text-[11px] uppercase tracking-[0.2em] text-text-tertiary mb-2">
         {kicker}
       </p>
@@ -21,6 +22,6 @@ export default function PageHeader({ kicker, title, subtitle }: PageHeaderProps)
           {subtitle}
         </p>
       ) : null}
-    </section>
+    </Section>
   );
 }

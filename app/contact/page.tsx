@@ -2,6 +2,7 @@
 "use client";
 
 import PageHeader from "@/app/components/PageHeader";
+import Section from "@/app/components/Section";
 
 function IconMail(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -110,7 +111,7 @@ export default function ContactPage() {
 
       <div className="section-divider" />
 
-      <section className="section-container pb-24">
+      <Section>
         {/* Layout */}
         <div className="grid gap-10 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] items-start">
           {/* Left: Quick contacts */}
@@ -298,7 +299,7 @@ export default function ContactPage() {
 
           </section>
         </div>
-      </section>
+      </Section>
     </>
   );
 }

@@ -4,6 +4,7 @@
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import PageHeader from "@/app/components/PageHeader";
+import Section from "@/app/components/Section";
 import { Globe2, Camera, Book, Dumbbell, Code2, X } from "lucide-react";
 
 const WorldMap = dynamic(
@@ -127,13 +128,13 @@ export default function AboutPage() {
       />
 
       {/* Snapshot cards */}
-      <section className="section-container pb-12">
+      <Section>
         <div className="top-grid">
           <div className="panel-clear h-full">
             <p className="panel-title mb-2 flex items-center gap-2">
               <Code2 className="w-4 h-4 text-brand-primary" /> Professional Snapshot
             </p>
-            <ul className="text-sm md:text-base text-text-secondary space-y-2">
+            <ul className="text-sm md:text-base text-text-secondary space-y-1">
               <li>• Deals Transformation @ PwC (standalone, carve-outs, synergies)</li>
               <li>• Built internal tools + decision systems under deal timelines</li>
               <li>• Focus: deployment strategy, product thinking, data systems (Python, SQL)</li>
@@ -146,7 +147,7 @@ export default function AboutPage() {
             <p className="panel-title mb-2 flex items-center gap-2">
               <Dumbbell className="w-4 h-4 text-brand-primary" /> Personal Snapshot
             </p>
-            <ul className="text-sm md:text-base text-text-secondary space-y-2">
+            <ul className="text-sm md:text-base text-text-secondary space-y-1">
               <li>• NYC-based, originally Buffalo; always exploring new neighborhoods</li>
               <li>• Active traveler &amp; scuba diver (Nitrox certified)</li>
               <li>• Fitness: lifting, running, skiing, BJJ</li>
@@ -154,12 +155,12 @@ export default function AboutPage() {
             </ul>
           </div>
         </div>
-      </section>
+      </Section>
 
       <div className="section-divider" />
 
       {/* How I work */}
-      <section className="section-container pb-12">
+      <Section>
         <h2 className="section-title mb-2 flex items-center gap-2">
           <Book className="w-4 h-4 text-brand-primary" /> How I Work
         </h2>
@@ -190,12 +191,12 @@ export default function AboutPage() {
             </p>
           </div>
         </div>
-      </section>
+      </Section>
 
       <div className="section-divider" />
 
       {/* Interests (mirror Overview "Outside of work") */}
-      <section className="section-container pb-12">
+      <Section>
         <h2 className="section-title mb-2 flex items-center gap-2">
           <Book className="w-4 h-4 text-brand-primary" /> Interests
         </h2>
@@ -238,12 +239,12 @@ export default function AboutPage() {
             </button>
           ))}
         </div>
-      </section>
+      </Section>
 
       <div className="section-divider" />
 
       {/* Languages */}
-      <section className="section-container pb-12">
+      <Section>
         <h2 className="section-title mb-2 flex items-center gap-2">
           <Camera className="w-4 h-4 text-brand-primary" /> Languages
         </h2>
@@ -263,12 +264,12 @@ export default function AboutPage() {
             </span>
           ))}
         </div>
-      </section>
+      </Section>
 
       <div className="section-divider" />
 
       {/* Map */}
-      <section className="section-container pb-24">
+      <Section>
         <h2 className="section-title mb-2 flex items-center gap-2">
           <Globe2 className="w-4 h-4 text-brand-primary" /> Countries I&apos;ve Visited
         </h2>
@@ -287,7 +288,7 @@ export default function AboutPage() {
             />
           </div>
         </div>
-      </section>
+      </Section>
     </>
   );
 }

@@ -4,7 +4,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-16 pb-8 text-xs md:text-sm text-text-secondary">
+    <footer className="mt-8 pb-8 text-xs md:text-sm text-text-secondary">
       <div className="px-4">
         {/* Outer centering wrapper */}
         <div className="mx-auto max-w-4xl">
@@ -25,7 +25,7 @@ const Footer = () => {
                   className="
                     inline-flex items-center gap-2
                     rounded-av-md border border-border/40
-                    bg-background/80 px-3 py-1.5
+                    bg-background/80 px-4 py-2
                     text-xs md:text-sm text-text-primary
                     hover:border-brand-primary/60 hover:bg-brand-secondary/10
                     hover:text-brand-primary transition
