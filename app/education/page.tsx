@@ -305,12 +305,15 @@ export default function EducationPage() {
               className={`experience-card education-card-wide ${
                 isActive ? "education-card-expanded" : ""
               }`}
-              onClick={() => handleSelect(edu.id)}
+              onClick={() => {
+                if (!isActive) handleSelect(edu.id);
+              }}
               aria-expanded={isActive}
               id={edu.id}
-              role="button"
-              tabIndex={0}
+              role={isActive ? undefined : "button"}
+              tabIndex={isActive ? -1 : 0}
               onKeyDown={(event) => {
+                if (isActive) return;
                 if (event.key === "Enter" || event.key === " ") {
                   event.preventDefault();
                   handleSelect(edu.id);
@@ -428,9 +431,17 @@ export default function EducationPage() {
 
               </div>
 
-              <div className="education-card-chevron" aria-hidden>
+              <button
+                type="button"
+                className="education-card-chevron"
+                aria-label={isActive ? "Collapse card" : "Expand card"}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  handleSelect(edu.id);
+                }}
+              >
                 {isActive ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
-              </div>
+              </button>
 
             </article>
             );

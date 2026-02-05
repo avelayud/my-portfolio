@@ -9,6 +9,17 @@
   body {
     @apply bg-background text-text-primary font-sans antialiased leading-relaxed;
   }
+
+  button,
+  [role="button"],
+  a[href] {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [aria-disabled="true"] {
+    cursor: not-allowed;
+  }
 }
 
 /* =========================
@@ -104,7 +115,7 @@
 
   .icon-btn {
     @apply inline-flex items-center justify-center h-9 w-9 rounded-av-md
-           border border-divider bg-background hover:opacity-90 transition;
+           border border-divider bg-background hover:opacity-90 transition cursor-pointer;
   }
 
   /* --- Experience / Education cards --- */
@@ -112,9 +123,9 @@
     @apply items-center text-center;
   }
 
-    .experience-card {
+  .experience-card {
     @apply bg-surface rounded-av-lg p-6 border border-divider
-           shadow-skeuo-soft transition;
+           shadow-skeuo-soft transition cursor-pointer;
     min-height: 360px; /* forces alignment across cards */
     display: flex;
     flex-direction: column;
@@ -245,7 +256,7 @@
 
   .hscroll-card {
     @apply min-w-[320px] md:min-w-[360px] rounded-av-lg border border-divider bg-surface
-           shadow-skeuo-soft px-6 py-6 transition hover:opacity-95;
+           shadow-skeuo-soft px-6 py-6 transition hover:opacity-95 cursor-pointer;
     scroll-snap-align: start;
     min-height: 320px;
 
@@ -327,7 +338,7 @@
   /* --- Interests: same fill as cards (white) --- */
   .interest-pill {
     @apply inline-flex items-center gap-2 rounded-full border border-divider bg-surface
-          px-3 py-2 text-xs text-text-secondary transition;
+          px-3 py-2 text-xs text-text-secondary transition cursor-pointer;
     box-shadow: 0 1px 3px rgba(0,0,0,0.04);
   }
 
@@ -437,16 +448,30 @@
   }
 
   .education-card-chevron {
-    @apply flex items-center justify-end text-text-muted;
+    @apply inline-flex items-center justify-center text-text-muted rounded-full
+           transition-colors;
     align-self: start;
+    justify-self: end;
     margin-top: 2px;
-    padding-right: 4px; /* match icon inset on the left */
+    width: 32px;
+    height: 32px;
   }
 
   @media (min-width: 768px) {
     .education-card-chevron {
-      padding-right: 12px; /* match larger icon column inset */
+      width: 36px;
+      height: 36px;
     }
+  }
+
+  .education-card-chevron:hover {
+    @apply bg-brand-secondary/10 text-brand-primary;
+  }
+
+  .education-card-chevron:focus-visible {
+    outline: none;
+    @apply bg-brand-secondary/10 text-brand-primary;
+    box-shadow: 0 0 0 2px rgba(94, 106, 210, 0.35);
   }
 
   .education-card-body {
@@ -472,6 +497,11 @@
   .education-card-expanded {
     border-color: rgba(99, 102, 241, 0.32);
     box-shadow: 0 14px 36px rgba(15, 23, 42, 0.12);
+    cursor: default;
+  }
+
+  .education-card-expanded .education-card-chevron {
+    cursor: pointer;
   }
 
   .education-activity {
